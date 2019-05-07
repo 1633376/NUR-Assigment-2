@@ -1,0 +1,56 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\input{./Tex/included_packages}
+
+\renewenvironment{abstract}
+ { \vspace*{0.3cm} \textbf{\abstractname} \vspace{0.1cm} \\ \ignorespaces}
+ {\par\medskip \vspace{0.1cm}}
+
+\setlength{\parindent}{0em}
+
+\setlength{\textheight}{25.7cm}
+\setlength{\textwidth}{18cm}
+\setlength{\unitlength}{1mm}
+\setlength{\topskip}{2truecm}
+
+\topmargin 260mm \advance \topmargin -\textheight
+\divide \topmargin by 2 \advance \topmargin -1in
+\headheight 0pt \headsep 0pt \leftmargin 210mm \advance
+\leftmargin -\textwidth
+\divide \leftmargin by 2 \advance \leftmargin -1in
+\oddsidemargin \leftmargin \evensidemargin \leftmargin
+\parindent=0pt
+\frenchspacing
+
+
+%opening
+\title{\textbf{Numerical Recipes for Astrophysics \\ Solutions hand-in assignment-2}}
+\author{Luther Algra - s1633376}
+
+\begin{document}
+
+\maketitle
+
+\hrule
+\begin{abstract}
+The current document contains the solutions for the second hand-in assignment of Numerical Recipes. Each main question 1, 2, 3, ..., 7 is given its own section and contains a subsection for each sub-question (1.a, 1.b, ..., 1.f). A main question always ends with a final subsection that contains two segments of code. The first segment contains the full code of the program that executes the sub-questions. The second segment contains the shared modules (if any) used by the sub-question. A sub-question its self always starts with a short summary of the question that needs to be answered followed by an explanation of how the problem is solved. Next, the code and its output are provided. Finally the output is discussed if relevant. 
+
+
+\end{abstract}
+\hrule
+\vspace{0.5cm}
+
+
+\input{./Tex/assigment1.a}
+
+
+
+  
+
+
+
+
+
+
+
+\end{document}
