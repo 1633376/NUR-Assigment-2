@@ -1,0 +1,92 @@
+
+\subsection*{\textbf{Question 1.b}}
+\begin{quote}
+
+\textbf{Problem}
+\begin{quote}Now use the Box-Muller method to generate 1000 normally-distributed random numbers. To check if they are following the expected Gaussian distribution, make a histogram (scaled appropriate) with the corresponding true probability distribution (normalized to integrate to 1) as line. This plot should contain the interval of -5 $\sigma$ until $5\sigma$ from the theoretical probability distribution. Indicate the theoretical $1\sigma$, $2\sigma$, $3\sigma$ and $4\sigma$ interval with a line. For this plot, use $\mu =3$ and $\sigma = 2.4$ and choose bins that are appropriate.
+\end{quote}
+
+\textbf{Solution} 
+
+
+
+\begin{quote}
+The Box-Muller method allows two i.i.d uniform variables to be transformed to two i.i.d Gaussian distributed variables. It thereby overcomes the problem that there lacks a closed form for the CDF of a Gaussian distribution. The method overcomes the problem by transforming the joined CDF of the two random Gaussian variables to polar coordinates. This transformation makes it possible to find the CDFs for the polar coordinates of the random Gaussian variables. The CDFs can be used to convert the two uniform distributed variables to the polar coordinates of the Gaussian distributed variables. The polar coordinates can then finally be transformed back to Cartesian coordinates to find the transformation between the two uniform random variables and two gaussian random variables.
+
+ %and then by determing the CDFs of the polar coordinates. In polar coordinates it becomes possible to find the transformation between the uniform distributed random variables and the polar coordinates of the  Gaussian random variables. The polar coordinates can then be converted back to Cartesian coordinates to find the transformation between the two uniform random variables to the two gaussian random variables.
+
+
+Let $X, Y \sim G(\mu, \sigma ^2)$ be two i.i.d Gaussian distributed random variables. Their joined CDF is then given by, 
+\begin{equation}
+P(X \leq x_1, Y \leq y_1) =  \int_{-\infty}^{x_1} \int_{-\infty}^{y_1} G(x| \mu, \sigma^2) G(y| \mu, \sigma^2) dx dy
+\end{equation}
+
+Transforming to polar coordinates by substituting $ (x-\mu) = r \cos(\theta)$ and $ (y-\mu) = r\sin(\theta)$ yields,
+
+\begin{align*}
+P(R \leq r_1, \Theta \leq \theta_1) &= \int_0^{r_1} \int_{0}^{\theta_1} G(r\cos(\theta) \sigma + \mu| \mu, \sigma^2) G(r\sin(\theta) \sigma + \mu| \mu, \sigma^2) r dr d\theta \\
+&= \frac{1}{2 \pi \sigma^2} \int_0^{r_1} \int_{0}^{\theta_1} re^{ -\frac{1}{2} \left[ \left( \frac{r\cos(\theta)}{\sigma} \right)^2  + \left( \frac{r\sin(\theta)}{\sigma} \right)^2 \right]}  dr d\theta \\
+&=  \frac{1}{2 \pi \sigma^2} \int_0^{r_1} \int_{0}^{\theta_1} re^{ -\frac{r^2}{2 \sigma ^2} } dr d\theta
+\end{align*}
+
+The CDF's  for the polar coordinates are now given by, % $R$ and $\theta$ are now given by, 
+
+\begin{align}
+P(R \leq r_1) &= \frac{1}{\sigma^2} \int_{0}^{r_1}  re^{ -\frac{r^2}{2 \sigma ^2} } dr =  \int_{0}^{r_1} \frac{d}{dr} \left( -e^{ -\frac{r^2}{2 \sigma ^2}}  \right) dr = 1 - e^{- \frac{r_1^2}{2 \sigma^2}} \\
+P(\Theta \leq \theta_1) &= \frac{1}{2 \pi }  \left[ -e^{-\frac{r^2}{2 \sigma^2}} \right]^{\infty}_{0} \int_{0}^{\theta_1} d\theta = \frac{\theta_1}{2\pi}
+\end{align}
+
+Let $U_1, U_2 \sim U(0,1)$ be two i.i.d uniform variables. From the transformation law of probability we then must have that, %The transformation law of probability then states that,
+
+\begin{align}
+P(R \leq r_1) &= P(U_1 \leq u_1) \rightarrow  1 - e^{- \frac{r_1^2}{2\sigma^2}}  = \int_{0}^{u1} du_1 = u_1 \\
+P(\Theta \leq \theta) &= P(U_2 \leq u_2) \rightarrow   \frac{\theta_1}{2\pi} = \int_{0}^{u2} du_2 = u_2 
+\end{align}
+
+The transformation from the two uniform distributed variables to the polar coordinates of the Gaussian distributed variables then becomes,
+
+\begin{align}
+r_1 &=  \sqrt{-2\sigma^2 \ln(1 - u_1)} \\
+\theta_1 &= 2 \pi u_2
+\end{align}
+
+Finally converting back to carthesian c oordinates then yields the transformation from two i.i.d uniform distributed variables to two i.i.d gaussian distributed variables;
+\begin{align*}
+x_1 &= r\cos(\theta) + \mu = \sqrt{-2\sigma^2 \ln(1 - u_1)} \cos( 2 \pi u_2 ) + \mu \\
+y_1 &= r\sin(\theta) + \mu = \sqrt{-2\sigma^2 \ln(1 - u_1)} \sin( 2 \pi u_2 ) + \mu
+\end{align*}
+
+
+\end{quote}
+\end{quote}
+
+%\textbf{Code - output } 
+%\begin{quote}
+% The code that produces the output.
+%\lstinputlisting{./code/assigment1_a.py}
+%\end{quote}
+
+%\textbf{Code - helper } 
+%\begin{quote}
+%The code for the Poisson distribution and the factorial function.  
+%\lstinputlisting[firstline=2,lastline=46]{./code/mathlib/utils.py}
+%\end{quote}
+
+
+%\textbf{Output}
+%\begin{quote}
+%The output produced by \textsf{/code/assigment1\_ a.py} 
+%\lstinputlisting{./output/assigment1_a_out.txt}
+%\end{quote}
+\newpage
+
+
+
+
+
+
+
+
+
+
+
