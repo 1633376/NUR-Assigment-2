@@ -4,7 +4,7 @@ import numpy as np
 import mathlib.statistics as stats
 import scipy.stats as scipy_stats
 import mathlib.sorting as sorting
-
+import astropy.stats
 
 def main():
 
@@ -15,11 +15,13 @@ def main():
     print('Executing assigment 1.a............')
     #assigment_1a(rng) 
     print('Executing assigment 1.b............')
-    assigment_1b(rng)
+    #assigment_1b(rng)
     print('Executing assigment 1.c............')
-    assigment_1c(rng)
-    
-    pass
+    #assigment_1c(rng)
+    print('Executing assigment 1.d............')
+    #assigment_1d(rng)
+    print('Executing assigment 1.e.............')
+    assigment_1e(rng)
 
 
 def assigment_1a(random):
@@ -87,7 +89,7 @@ def assigment_1b(random):
 def assigment_1c(random):
 
     # The dex range to create the plots form
-    dex_range = np.arange(1, 5, 0.1)
+    dex_range = np.arange(1, 5.1, 0.1)
 
 
     # An array in which the p-values are stored for the self created
@@ -97,26 +99,50 @@ def assigment_1c(random):
 
     # Calculate the p-values with the ks-test
     for idx, dex in enumerate(dex_range):
-        print(dex)
         random_numbers = random.gen_normals(0,1, int(10**dex)) #random.gen_normals(0,1, int(10**dex))
 
-        # x range
-        sort =sorting.merge_sort(random_numbers)
-
-        #plt.plot(sort, scipy_stats.norm.cdf(sort)) #$np.linspace(min(random_numbers),max(random_numbers),len(random_numbers)))
-        #plt.plot(sort, stats.normal_cdf(sort))
-        #plt.show()
-        #p_values_scipy[idx] = scipy_stats.kstest(random_numbers, 'norm')[1] # discard distance
+        p_values_scipy[idx] = scipy_stats.kstest(random_numbers, 'norm')[1] # discard distance
         p_values_self[idx] = stats.kstest(random_numbers,  stats.normal_cdf) #scipy_stats.norm.cdf)
 
     # Plot the probabiliteis for beeing consistent under the null hypothesies, thus p-values
     plt.plot(dex_range, p_values_scipy, label= 'scipy')
     plt.plot(dex_range, p_values_self, label = 'self')
-    plt.xlabel('dex')
+    plt.xlabel(r'Log($N_{samples}$) [dex]')
     plt.ylabel('Probability')
     plt.legend()
     plt.show()
 
+def assigment_1d(random):
 
+    # The dex range to create the plots form
+    dex_range = np.arange(1, 5.1, 0.1)
+
+
+    # An array in which the p-values are stored for the self created
+    # ks-test and the scipy version.
+    p_values_self = np.zeros(len(dex_range))
+    p_values_astropy = np.zeros(len(dex_range))
+
+    # Calculate the p-values with the ks-test
+    for idx, dex in enumerate(dex_range):
+        random_numbers = random.gen_normals(0,1, int(10**dex)) #random.gen_normals(0,1, int(10**dex))
+
+        p_values_self[idx] = stats.kuper_test(random_numbers, stats.normal_cdf) # discard distance
+        p_values_astropy[idx] = astropy.stats.kuiper(random_numbers,stats.normal_cdf)[1] # stats.kuper_test(random_numbers,  stats.normal_cdf) #scipy_stats.norm.cdf)
+
+    # Plot the probabiliteis for beeing consistent under the null hypothesies, thus p-values
+    plt.plot(dex_range, p_values_self, label = 'self')
+    plt.plot(dex_range, p_values_astropy, label='astrop')
+    plt.xlabel(r'Log($N_{samples}$) [dex]')
+    plt.ylabel('Probability')
+    plt.legend()
+    plt.show()
+
+def assigment_1e(random):
+
+    # Load the data.
+    data = np.loadtxt('randomnumbers.txt')
+    print(data.shape)
+    
 if __name__ == '__main__':
     main()

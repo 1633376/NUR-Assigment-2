@@ -148,7 +148,7 @@ class Random(object):
             return: The new state of the random number generator.
         """
 
-        self._state = self._mwc(self._xor_shift(self._state)) ^ self._xor_shift(self._state)
+        self._state = self._mwc(self._xor_shift(self._state)) #^ self._xor_shift(self._state)
         
         
          
