@@ -1,0 +1,117 @@
+
+\subsection*{\textbf{Question 1.c}}
+\begin{quote}
+
+\textbf{Problem}
+\begin{quote}
+Write a code that can do the KS-test on the your function to determine if it is consistent with a normal distribution. For this, use $\mu = 0$ and $\sigma = 1$. Make a plot of the probability that your Gaussian random number generator is consistent with Gaussian distributed random numbers, start with 10 random numbers and use in your plot a spacing of 0.1 dex until you have calculated it for $10^5$ random numbers on the x-axis. Compare your algorithm with the KS-test function from \textit{scipy, scipy.stats.kstest} by making an other plot with the result from your KS-test and the KS-test from scipy.
+\end{quote}
+
+\textbf{Solution} 
+\begin{quote}
+The implementation of the KS-test is in general straight forwards. There are however two points of interest that needs to be discussed. The first point is the implementation of the CDF for the KS-statistic and the second point is the implementation of the CDF for the normal distribution.
+\\
+
+\textbf{(1) CDF KS-statistic }
+\begin{quote}
+The p-value produced by the KS-tests requires the evaluation of the CDF for the KS-test statistic,
+\begin{equation}
+P_{KS}(z) = \frac{2\sqrt{\pi}}{z} \sum_{j=1}^{\infty} \exp\left(- \frac{(2j-1)^2+\pi^2}{8z^2} \right)
+\end{equation}
+
+This infinite sum needs to be numerically approximated in order to perform the KS-test. The chosen approximation in the implementation of the KS-test for  the sum is taken from ... who states that the sum can be approximated by, % approximation can according to .. be approximated by, 
+\begin{equation}
+P_{KS}(z) \approx
+\begin{cases}
+\frac{\sqrt{2 \pi}}{z} \left[ \left( e^{-\pi^2/(8z^2)} \right)+^{9} + \left( e^{-\pi^2/(8z^2)} \right) \left( e^{-\pi^2/(8z^2)} \right)^{25} \right] &\quad \text{for $ z < 1.18$}\\
+1 -2 \left[ \left(e^{-2z^2}\right) - \left(e^{-2z^2}\right)^4 + \left(e^{-2z^2}\right)^9 \right]  &\quad \text{for $ z >= 1.18$}
+\end{cases}
+\end{equation}
+\end{quote}
+
+\textbf{(2) CDF normal distribution}
+\begin{quote}
+The CDF of the normal distribution is needed in order to perform the KS-test under the null hypothesis that the data follows a normal distribution. The CDF of the normal distribution can in general be written as,
+\begin{equation}
+\Phi\left( \frac{x- \mu}{\sigma}\right) = \frac{1}{2} \left[ 1 + \text{erf} \left( \frac{x - \mu}{\sigma\sqrt{2}} \right) \right]
+\end{equation}
+
+where the erf is given by,
+\begin{equation}
+\text{erf}(x)  \frac{2}{\sqrt{\pi}} \int_0^{x} e^{-t^2} dt
+\end{equation}
+
+The integral of the erf function lacks a closed form and therefore also needs to be numerically approximated. The chosen approximation is taken from ..., who states that the function can be 
+approximated by,
+
+\begin{equation}
+\text{erf}(x) \approx 1- (a_1t+a_2t^2 + ... + a_5t^5)e^{-x^2} \text{x} \quad t = \frac{1}{1+px}
+\end{equation}
+
+where $p  =0.3275911$, $a_1 =  0.254829592$, $a_2 = -0.284496736$, $a_3 = 1.421413741$, $a_4 =  -1.453152027$, $a_5 = 1.061405429$.
+\end{quote}
+
+The implementation of the KS-tests and using it to test the null hypothesis that the samples follow a normal distribution is with the above approximations implemented. The code for the KS-test and the approximations for the CDF's is located in the file .... at page, as this file is threaded as module. The code for the creation of the plot is given below.  
+\end{quote}
+
+\newpage
+\textbf{Code - Plots}
+
+\begin{quote}
+The code for generating the two plots.
+\lstinputlisting[firstline=117,lastline=169]{./Code/assigment1.py}
+\end{quote}
+\newpage
+
+\textbf{Code - Output plot(s)}
+\begin{quote}
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=12cm, height=7.5cm]{./Plots/1_plot_ks_test_self.pdf}
+\caption{TODO}
+\end{figure}
+
+\begin{figure}[!hb]
+\centering
+\includegraphics[width=12cm, height=7.5cm]{./Plots/1_plot_ks_test_self_scipy.pdf}
+\caption{TODO}
+\end{figure}
+
+\end{quote}
+
+
+
+\end{quote}
+\newpage
+
+
+%\textbf{Code - output } 
+%\begin{quote}
+% The code that produces the output.
+%\lstinputlisting{./code/assigment1_a.py}
+%\end{quote}
+
+%\textbf{Code - helper } 
+%\begin{quote}
+%The code for the Poisson distribution and the factorial function.  
+%\lstinputlisting[firstline=2,lastline=46]{./code/mathlib/utils.py}
+%\end{quote}
+
+
+%\textbf{Output}
+%\begin{quote}
+%The output produced by \textsf{/code/assigment1\_ a.py} 
+%\lstinputlisting{./output/assigment1_a_out.txt}
+%\end{quote}
+\newpage
+
+
+
+
+
+
+
+
+
+
+

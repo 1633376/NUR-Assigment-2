@@ -11,7 +11,9 @@
 
 
 \begin{quote}
-The Box-Muller method allows two i.i.d uniform variables to be transformed to two i.i.d Gaussian distributed variables. It thereby overcomes the problem that there lacks a closed form for the CDF of a Gaussian distribution. The method overcomes the problem by transforming the joined CDF of the two random Gaussian variables to polar coordinates. This transformation makes it possible to find the CDFs for the polar coordinates of the random Gaussian variables. The CDFs can be used to convert the two uniform distributed variables to the polar coordinates of the Gaussian distributed variables. The polar coordinates can then finally be transformed back to Cartesian coordinates to find the transformation between the two uniform random variables and two gaussian random variables.
+The solution consists of deriving the correct transformation of two i.i.d uniform variables to two i.i.d normal distributed variables with the Box-Muller method. This is done by first transforming the joined CDF of the two random Gaussian variables to polar coordinates. This transformation makes it possible to find the CDFs for the polar coordinates of the random Gaussian variables. 
+
+%The Box-Muller method allows two i.i.d uniform variables to be transformed to two i.i.d Gaussian distributed variables. It thereby overcomes the problem that there lacks a closed form for the CDF of a Gaussian distribution. The method overcomes the problem by transforming the joined CDF of the two random Gaussian variables to polar coordinates. This transformation makes it possible to find the CDFs for the polar coordinates of the random Gaussian variables. The CDFs can be used to convert the two uniform distributed variables to the polar coordinates of the Gaussian distributed variables. The polar coordinates can then finally be transformed back to Cartesian coordinates to find the transformation between the two uniform random variables and two gaussian random variables.
 
  %and then by determing the CDFs of the polar coordinates. In polar coordinates it becomes possible to find the transformation between the uniform distributed random variables and the polar coordinates of the  Gaussian random variables. The polar coordinates can then be converted back to Cartesian coordinates to find the transformation between the two uniform random variables to the two gaussian random variables.
 
@@ -36,7 +38,7 @@ P(R \leq r_1) &= \frac{1}{\sigma^2} \int_{0}^{r_1}  re^{ -\frac{r^2}{2 \sigma ^2
 P(\Theta \leq \theta_1) &= \frac{1}{2 \pi }  \left[ -e^{-\frac{r^2}{2 \sigma^2}} \right]^{\infty}_{0} \int_{0}^{\theta_1} d\theta = \frac{\theta_1}{2\pi}
 \end{align}
 
-Let $U_1, U_2 \sim U(0,1)$ be two i.i.d uniform variables. From the transformation law of probability we then must have that, %The transformation law of probability then states that,
+The CDFs can be used to convert  two uniform distributed variables to the polar coordinates of the Gaussian distributed variables. Let $U_1, U_2 \sim U(0,1)$ be two i.i.d uniform variables. From the transformation law of probability we then must have that, %The transformation law of probability then states that,
 
 \begin{align}
 P(R \leq r_1) &= P(U_1 \leq u_1) \rightarrow  1 - e^{- \frac{r_1^2}{2\sigma^2}}  = \int_{0}^{u1} du_1 = u_1 \\
@@ -50,12 +52,31 @@ r_1 &=  \sqrt{-2\sigma^2 \ln(1 - u_1)} \\
 \theta_1 &= 2 \pi u_2
 \end{align}
 
-Finally converting back to carthesian c oordinates then yields the transformation from two i.i.d uniform distributed variables to two i.i.d gaussian distributed variables;
+Converting back to Cartesian coordinates then yields the transformation from two i.i.d uniform distributed variables to two i.i.d Gaussian distributed variables;
 \begin{align*}
 x_1 &= r\cos(\theta) + \mu = \sqrt{-2\sigma^2 \ln(1 - u_1)} \cos( 2 \pi u_2 ) + \mu \\
 y_1 &= r\sin(\theta) + \mu = \sqrt{-2\sigma^2 \ln(1 - u_1)} \sin( 2 \pi u_2 ) + \mu
 \end{align*}
 
+These transformation are implemented in the class that contains the random number generator (see page ...). The code for the plots and the created plots can be found below. The code for the creation of the plots makes besides the random number generator use of a function that represents the normal distribution in the file '.....'. This file is treated as shared module and can be found on page ...
+\end{quote}
+
+\textbf{Code - Plots}
+
+\begin{quote}
+The code for generating the plots. The code for the function \textit{mathlib.statistics.normal} can be found on page ..., where the shared modules are shown. 
+
+\lstinputlisting[firstline=63,lastline=115]{./Code/assigment1.py}
+\end{quote}
+
+
+\textbf{Code - Output plot(s)}
+\begin{quote}
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=12cm, height=7.5cm]{./Plots/1_hist_gaussian.pdf}
+\caption{TODO}
+\end{figure}
 
 \end{quote}
 \end{quote}

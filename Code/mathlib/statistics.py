@@ -1,6 +1,7 @@
 import numpy as np
 import mathlib.sorting as sorting
 
+
 def kstest(x, cdf):
     """
         Perform the Kolmogorov-Smirnov test for goodness of fit 
@@ -14,37 +15,49 @@ def kstest(x, cdf):
         return: The p-value obtained by performing the KS-test 
     """
 
-    # Sort the data in ascending order, calculate the 
-    # cdf and the emperical cdf for the sorted values and save the total amount of 
-    # elements we have. 
+    # Amount of values in the input array.
+    x_size = len(x)
+
+    # Sort the values and evaluate the cdf
     x_sorted = sorting.merge_sort(x)
     x_sorted_cdf = cdf(x_sorted) 
-    x_elements = len(x)
 
-    # Find the maximum distance. 
-    max_dist = 0    
+    # Maximum distance.
+    max_dist = 0
 
-    # value of the cdf at step i -1
-    x_cdf_emperical_previous = 0 
-    
+    # Value of the emperical cdf at step i -1
+    x_cdf_emperical_previous = 0
 
-    for idx, x in enumerate(x_sorted):
+    # Find the maximum distance 
+    for idx in range(0,x_size):
 
         # Calculate the emperical cdf.
-        x_cdf_emperical = (idx+1)/x_elements
-        # Calculate the true cdf.
+        x_cdf_emperical = (idx+1)/x_size
+        # The true cdf evaluation at the given point.
         x_cdf_true = x_sorted_cdf[idx]
 
-        # Find the max distance.
-        # TODO: Why also compare with emperical of previous?
-        max_dist = max(max(abs(x_cdf_emperical - x_cdf_true),abs(x_cdf_emperical_previous - x_cdf_true)), max_dist)
+        # Find the distance. The emperical
+        # CDF is a step function so there are two distances
+        # that need to be checked at each step.
 
+        # Calculate the two distances
+        distance_one = abs(x_cdf_emperical - x_cdf_true)
+        distance_two = abs(x_cdf_emperical_previous - x_cdf_true)
+
+
+        # Find the maximum of those two distances and
+        # check if it is larger than the current know maximum distance.
+        max_dist = max(max_dist, max(distance_one, distance_two))
+
+        # Save the current value of the emperical cdf
         x_cdf_emperical_previous = x_cdf_emperical
 
-    sqaure_elem = np.sqrt(x_elements)
-    return 1- _ks_statistic_cdf((sqaure_elem + 0.12+0.11/sqaure_elem)*max_dist)
+    # Calculate the p-value with the help of the CDF.
+    square_elements = np.sqrt(x_size)
+    return 1 - _ks_statistic_cdf((square_elements + 0.12+0.11/square_elements)*max_dist)
+ 
 
-    
+
 def kuper_test(x, cdf):
     """
         Perform the Kuiper test for goodness of fit 
@@ -97,12 +110,10 @@ def _ks_statistic_cdf(z):
     """
         An approximation for the cdf of the 
         Kolmogorov-Smirnov (KS) test staistic.
-
     In:
         param: z -- The value to calculate the cdf at.
     Out:
         return: An approximation of the cdf for the given value.    print(max_dist_above + max_dist_below)
-
     """
 
 
@@ -157,6 +168,7 @@ def normal_cdf(x, mean = 0, sigma = 1):
 
     return 0.5 + 0.5*erf((x-mean)/(np.sqrt(2)*sigma)) 
 
+
 def normal(x, mean = 0, sigma = 1):
     """
         Evaluate the normal distrbution for the given
@@ -166,7 +178,7 @@ def normal(x, mean = 0, sigma = 1):
         param: mean -- The mean of the distribution.
         param: sigma -- The square root of the variance for the distribution.
     Out:
-        return: The parameterized istribution evaluated at the given point.
+        return: The value of the parameterized distribution evaluated at the given point.
     """
     
     return 1/((np.sqrt(2*np.pi)*sigma))*np.exp(-0.5*((x - mean)/sigma)**2)

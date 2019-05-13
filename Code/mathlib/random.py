@@ -138,7 +138,6 @@ class Random(object):
             normal_dist[i] = value
         
         return normal_dist
-
         
     def _update_state(self):
         """
@@ -148,12 +147,11 @@ class Random(object):
             return: The new state of the random number generator.
         """
 
-        self._state = self._mwc(self._xor_shift(self._state)) #^ self._xor_shift(self._state)
-        
-        
-         
-       # self._state ^= self._xor_shift(self._state)
-       # self._state = self._mwc(self._state)
+        self._state = self._xor_shift(self._state)
+        # Mwc can take as input a 64 bit unsigned values between 0 < x < 2^32.
+        # To obtain this value we first perform the 'AND' operation with the current state
+        # to only keep the first 32 bits. The value is still a np.uint64 type after this operation.
+        self._state = self._mwc(np.uint64(self._state & self._uint32_max))
         return self._state
 
 
