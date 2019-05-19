@@ -1,26 +1,61 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def _gen_shiffted_wavenumbers(k_max, size):
-    
 
-    ret = np.zeros(size)      
 
-    if size % 2 == 0:
-        ret[0: int(size/2) + 1] = np.linspace(0,k_max,int(size/2)+1)
-        ret[int(size/2)+1:] = np.linspace(-k_max,0,int(size)/2+1)[1:-1] # skip first element
-    else:
-        ret[0:int(size/2)+1] = np.linspace(0,k_max,int(size/2)+1)
-        ret[int(size/2)+1:] = np.linspace(-k_max,0,int(size)/2+1)[:-1]
 
+
+
+# Constants. 
+grid_size = 1024 # 1024x1024
+min_distance = 0.5 # 0.5 Mpc
+max_distance = min_distance*grid_size # Mpc
+
+
+def _gen_shiffted_wavenumbers(k_max, k_min, size):
+    """
+        Generate an array with wavenumbers for fourier 
+        shifted coordinates by lineair spacing between the maximum 
+        and mininimum wavenumber.
+
+        In:
+            param: k_max -- The maximum wavenumber.
+            param: k_min -- The minimum wavenumber.
+            param: size -- The size that the array should have.
+        Out:
+            return: An array with wavenumbers in fourier shifted coordinates such that
+                    the first element corresponds with the minimum wavenumber.
+
+        Example(s):
+            k_max = 3, k_min = 1, size = 4
+            [1, 2, 3,-2]
+            
+            k_max = 4, k_min = 1, size = 5 
+            [1, 2, 3, -3, -2]
+                
+    """
+    ret = np.zeros(size)
+
+    if size % 2 == 0: # even
+        # positive part: k_max should be included, linear space therefore size/2 + 1 
+        ret[0:int(size/2)+1] = np.linspace(k_min, k_max, int(size/2)+1)
+        # negative part: inverse array , multiply with 1 and select elements to repeat
+        ret[int(size/2)+1:] = -ret[::-1][int(size/2):-1]
+   
+    else: # odd
+        # positive part: k_max shouldn't be included, linear space therefore size/2 +2 and skip last element
+        ret[0:int(size/2)+1] = np.linspace(k_min, k_max, int(size/2)+2)[:-1]
+        # negative p artL inverse array, mulitply with 1 and select correct elements
+        ret[int(size/2)+1:] = -ret[::-1][int(size/2):-1]
     
     return ret
 
 
-def _gen_field(k_max,size,n):
+
+def _gen_field(size,n):
 
     field_matrix = np.zeros((size,size),dtype=complex)
-    wave_numbers = _gen_shiffted_wavenumbers(k_max, size)
+    wave_numbers = _gen_shiffted_wavenumbers((2*np.pi/min_distance), (2*np.pi/max_distance), size)
 
     # Fill the matrix at each position with a random normal value
 
@@ -60,11 +95,11 @@ def _gen_field(k_max,size,n):
             # point (3)
             field_matrix[row, column] = complex(field_matrix[size-row, size-column].real, -field_matrix[size-row, size-column].imag)
             
-        # point 4
-        if size % 2 == 0:
-            for i in range(0,size):
-                field_matrix[int(size/2),i] = field_matrix[int(size/2),i].real + 0J
-                field_matrix[i,int(size/2)] = field_matrix[i,int(size/2)].real + 0J
+    # point 4
+    if size % 2 == 0:
+        for i in range(0,size):
+            field_matrix[int(size/2),i] = field_matrix[int(size/2),i].real + 0J
+            field_matrix[i,int(size/2)] = field_matrix[i,int(size/2)].real + 0J
 
     return field_matrix            
 
@@ -73,12 +108,11 @@ def _power(k,n):
     return k**n
 
 np.random.seed(542)
-field = _gen_field(100,1024,-2)
-print(np.mean(field))
-print(field)
-print(np.fft.ifft2(field))
-#print(np.mean(field))
+field = _gen_field(grid_size,-3)
+#print(field)
 #print(np.fft.ifft2(field))
+#print(np.mean(field))
+print(np.fft.ifft2(field))
 
 
 plt.imshow(np.fft.ifft2(field).real)
