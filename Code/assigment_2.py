@@ -1,16 +1,22 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
-
-
-
-
+import mathlib.random as rnd
+import time
 
 # Constants. 
-grid_size = 1024 # 1024x1024
+grid_size = 4 # 1024x1024
 min_distance = 0.5 # 0.5 Mpc
 max_distance = min_distance*grid_size # Mpc
 
+# Create the random number generator
+random = rnd.Random(12345678)
+
+def main():
+    field = _gen_field(grid_size,-3)
+   # print(field)
+    print(np.fft.ifft2(field))
+   # plt.imshow(np.fft.ifft2(field).real)
+   # plt.show()
 
 def _gen_shiffted_wavenumbers(k_max, k_min, size):
     """
@@ -51,14 +57,56 @@ def _gen_shiffted_wavenumbers(k_max, k_min, size):
     return ret
 
 
+def _gen_field2(size, n):
+    a = time.time()
+    field_matrix = np.zeros((size,size),dtype=complex)
+    wave_numbers = _gen_shiffted_wavenumbers((2*np.pi/min_distance), (2*np.pi/max_distance), size)
+
+    for row in range(1, int(size/2)+1):
+
+        # Determine the k-value for the edges
+        k = np.sqrt(2*wave_numbers[row]**2)
+        sigma = np.sqrt(_power(k,n))
+        z = complex(random.gen_normal(0,sigma),random.gen_normal(0,sigma))#np.random.normal(0,sigma))
+
+        # Set the value for the first row and column
+        field_matrix[size-row, 0] = z
+        field_matrix[0, size-row] = z
+
+        # Make sure the first row and first colum have the correct symmetry
+        field_matrix[row, 0] = complex(z.real, -z.imag)
+        field_matrix[0, row] = complex(z.real, -z.imag)
+        
+        # Go over the inner matrix and make sure that it has the right symmetry
+        for column in range(1, size):
+
+            # Find the value of k and create the complex number
+            k = np.sqrt(wave_numbers[row]**2 + wave_numbers[column]**2)
+            sigma = np.sqrt(_power(k,n))
+            z = complex(np.random.normal(0,sigma),np.random.normal(0,sigma))
+
+            # Set the complex value in the inner matrix and make sure that the symmetry is correct.
+            field_matrix[size - row, size -column] = z
+            field_matrix[row,column] = complex(z.real, -z.imag)
+
+    # If the matrix is even, set the imaginary part of the columns correpsonding with a niquest
+    # wavenumber to zero.
+    if size % 2 == 0:
+        for i in range(0,size):
+            field_matrix[int(size/2),i] = field_matrix[int(size/2),i].real + 0J
+            field_matrix[i,int(size/2)] = field_matrix[i,int(size/2)].real + 0J
+    print(time.time()-a)
+    return field_matrix
 
 def _gen_field(size,n):
 
     field_matrix = np.zeros((size,size),dtype=complex)
     wave_numbers = _gen_shiffted_wavenumbers((2*np.pi/min_distance), (2*np.pi/max_distance), size)
 
-    # Fill the matrix at each position with a random normal value
+    # Fill the matrix at each position with a random normal value and make sure 
+    # the symmetry is correct
 
+    a = time.time()
     for row, k_x in enumerate(wave_numbers):
         for column, k_y in enumerate(wave_numbers):
             
@@ -69,6 +117,7 @@ def _gen_field(size,n):
             sigma = np.sqrt(_power(k,n))
             field_matrix[row, column] = complex(np.random.normal(0,sigma), np.random.normal(0,sigma))
         
+    
     # Make sure that the matrix obese the given symmety: H(k_x,k_y) = conj(H(-k_x, -k_y)).
     # The cel with wavenumbers k-x and k_y should be the conjjugate of the cel with wavenumbers -k_x, -k_y
     # Let z_{ij} denote a complex number in row i and column j of the matrix.
@@ -79,6 +128,9 @@ def _gen_field(size,n):
     # (3) Adjusting the inner matrix, this comes down of making z_{1+a, 1+b} = conj(z_{N-a, N-b}) where a is from 0 to N-1 and b from 1 to N
     # (4) For the symmetric case not all elements in the previous steps have pairs, in this case put the comple part to zero.
     #     The values without pair are in column N/2 for all rows and in row N/2 for all columns. This corresponds with the Nequist wavelengts
+
+
+
 
     for row in range(1, int(size/2) +1):
         
@@ -100,21 +152,14 @@ def _gen_field(size,n):
         for i in range(0,size):
             field_matrix[int(size/2),i] = field_matrix[int(size/2),i].real + 0J
             field_matrix[i,int(size/2)] = field_matrix[i,int(size/2)].real + 0J
-
+    print(time.time()-a)
     return field_matrix            
 
 
 def _power(k,n):
     return k**n
 
-np.random.seed(542)
-field = _gen_field(grid_size,-3)
-#print(field)
-#print(np.fft.ifft2(field))
-#print(np.mean(field))
-print(np.fft.ifft2(field))
 
+if __name__ == "__main__":
+    main()
 
-plt.imshow(np.fft.ifft2(field).real)
-plt.colorbar()
-plt.show()

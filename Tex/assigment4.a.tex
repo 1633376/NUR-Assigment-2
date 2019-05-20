@@ -1,0 +1,59 @@
+\newpage
+\section*{\textbf{4 - Zeldovich approximation} \hrule} 
+
+
+
+\subsection*{\textbf{Question 4.a}}
+\begin{quote}
+
+\textbf{Problem}
+\begin{quote} 
+The linear growth factor is expressed in terms of a integral expression given by,
+
+\begin{equation}
+D(z) = \frac{5 \Omega_m H_0^2}{2}H(z) \int_{z}^{\infty} \frac{1+z'}{H^3(z')}dz'
+\label{eq:lg}
+\end{equation}
+
+Here $z$ is the redshift, $\Omega_m$ is the matter fraction of the Universe at $z = 0$ ($\Omega_m = 0.3$), $H_0$ is the Hubble constant at $z = 0$ and $H(z)$ is the redshift dependent Hubble parameter given by,
+
+\begin{equation}
+H(z)^2 = H_0^2 \left(\Omega_m(1+z)^3 + \Omega_{\Lambda} \right)
+\end{equation}
+
+Here $\Omega_{\lambda}$ is the dark energy fraction of the Universe given by $\Omega_{\lambda} =0 .7.$ Use numerical integration to calculate the growth factor at $z =50$ with a relative accuracy of $10^{-5}$. Note that $D(a(z=50))=D(z=50)$, so use either variable.
+
+\end{quote}
+
+\textbf{Solution} 
+\begin{quote}
+The equation is before integrating first written in terms of the scale factor $a$. Substituting $a = 1/(1+z)$ yields,
+\begin{equation}
+dz = -(1+z)^2 da = -a^{-2} da
+\end{equation}
+Plugin this in by equation \ref{eq:lg} results in,
+
+\begin{equation}
+D(a) = \frac{5 \Omega_m H_0^2}{2}H(a) \int_{a}^{0} \frac{-a'^3}{H^3(a')} da' = \frac{5 \Omega_m H_0^2}{2}H(a) \int_{0}^{a} \frac{a'^3}{H^3(a')} da'
+\label{eq:Dd}
+\end{equation}
+
+Here the Hubble parameter in terms of the scale factor $a$ is given by,
+\begin{equation}
+H(a) = H_0^2 ( \Omega_m a^{-3} + \Omega_{\Lambda} )
+\end{equation}
+
+Filling this in by equation \ref{eq:Dd} and simplifying yields,
+\begin{align}
+D(a) &= \frac{5 \Omega_m H_0^3}{2} ( \Omega_m a^{-3} + \Omega_{\Lambda} ) \int_0^{a} \frac{a'^3}{\left(H_0^2( \Omega_m a^{-3} + \Omega_{\Lambda} ) \right)^{3/2}} da' \\
+&= \frac{5 \Omega_m}{2}  ( \Omega_m a^{-3} + \Omega_{\Lambda} ) \int_0^{a'} \frac{a'^{3}}{\left(\Omega_m a^{-3} + \Omega_{\lambda}\right)^{3/2}}
+\end{align}
+\newpage
+The above integral is with the help of Romberg integration solved for $\Omega_{m} =0.3$ and $\Omega_{\lambda} = 0.7$.  
+\end{quote}
+\end{quote}
+
+
+
+
+

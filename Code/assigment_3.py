@@ -44,7 +44,8 @@ def main():
         plt.ylabel('D(t)')
         plt.loglog()
         plt.legend()
-        plt.show()
+        plt.savefig('./Plots/3_ode_{0}.pdf'.format(case))
+        plt.figure()
 
 
 def _linear_density_growth(values,t):
