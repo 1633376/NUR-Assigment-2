@@ -1,112 +1,91 @@
 import numpy as np
+import mathlib.random as rnd
 
 
-
-def generate_gaussian_random_field_assigm4(power, size, min_distance, random):
+def gen_wavenumbers(size, min_distance):
     """
-        Generate a gaussian random field in fourier space.
+        Generate the fourier transform sample wavenumbers
+        for the discrete fourier transform.
     In:
-        param: power -- A function used to evaluate the power for
-                        a given wavenumber.
-        param: size -- The size of the grid.
+        param: size -- The size of the matrix.
+        param: min_distance -- The distance of a cell/ the sample spacing.
+    
     """
 
-    field_matrix = np.zeros((size,size),dtype=complex)
-    wave_numbers = _gen_shiffted_wavenumbers((2*np.pi/min_distance), (2*np.pi/(min_distance*size)), size)
+    # Array to return.
+    ret = np.zeros(size)
 
+    # Positive values
+    ret[0:int(size/2)+1] = np.arange(0,int(size/2)+1)
+
+    if size  % 2 == 0: # even
+        ret[int(size/2):] = -np.arange(int(size/2),0,-1)
+    else: # odd
+        ret[int(size/2)+1:] = -np.arange(int(size/2),0,-1)
+  
+
+    return ret/(size*min_distance)
+
+def generate_hermitian_fs_2D(size, min_distance, func, random_numbers,power = 2):
+    """
+        Generate a hermitan matrix in shifted fourier space.
+    In:
+        param: size -- The size of the matrix.
+        param: min_distance -- The sample spacing.
+        param: func -- A function that given the magnitude of 
+                       the k-vector produces a complex number that
+                       is placed inside the matrix.
+        param: power -- The power to use for the power law.
+        param: random_numers -- An optional array with random numbers.
+    Out:
+        return: A hemritian symmetric matrix in shifted fourier coordinates
+    """           
+
+    # The matrix to return.
+    matrix = np.zeros((size,size),dtype=complex)
+
+    # Create the wave numbers for fourier shifted coordinates.
+    wave_numbers = gen_wavenumbers(size, min_distance)
+
+    # Counter for random numbers
+    random_num_counter = 0
+
+    # Create the matrix
     for row in range(1, int(size/2)+1):
 
-        # Determine the k-value for the edges
+        # Determine the k-value for the edges and the complex number
         k = np.sqrt(2*wave_numbers[row]**2)
-        pre_factor = np.sqrt(power(k))
-        z = complex(random.gen_normal(0,1),random.gen_normal(0,1))*pre_factor
-
+        z = func(k,power, random_numbers[random_num_counter],random_numbers[random_num_counter+1])
+        random_num_counter+= 2
+       
         # Set the value for the first row and column
-        field_matrix[size-row, 0] = z
-        field_matrix[0, size-row] = z
+        matrix[size-row, 0] = z
+        matrix[0, size-row] = z
 
         # Make sure the first row and first colum have the correct symmetry
-        field_matrix[row, 0] = complex(z.real, -z.imag)
-        field_matrix[0, row] = complex(z.real, -z.imag)
+        matrix[row, 0] = complex(z.real, -z.imag)
+        matrix[0, row] = complex(z.real, -z.imag)
         
         # Go over the inner matrix and make sure that it has the right symmetry
         for column in range(1, size):
 
             # Find the value of k and create the complex number
-            k = np.sqrt(2*wave_numbers[row]**2)
-            pre_factor = np.sqrt(power(k))
-            z = complex(random.gen_normal(0,1),random.gen_normal(0,1))*pre_factor
-
+            k = np.sqrt(wave_numbers[row]**2 + wave_numbers[column]**2)
+            z = func(k, power,random_numbers[random_num_counter],random_numbers[random_num_counter+1])
+            random_num_counter += 2
+            
             # Set the complex value in the inner matrix and make sure that the symmetry is correct.
-            field_matrix[size - row, size -column] = z
-            field_matrix[row,column] = complex(z.real, -z.imag)
+            matrix[size - row, size -column] = z
+            matrix[row,column] = complex(z.real, -z.imag)
 
     # If the matrix is even, set the imaginary part of the columns correpsonding with a niquest
     # wavenumber to zero.
     if size % 2 == 0:
         for i in range(0,size):
-            field_matrix[int(size/2),i] = field_matrix[int(size/2),i].real + 0J
-            field_matrix[i,int(size/2)] = field_matrix[i,int(size/2)].real + 0J
+            matrix[int(size/2),i] = matrix[int(size/2),i].real + 0J
+            matrix[i,int(size/2)] = matrix[i,int(size/2)].real + 0J
 
-    return field_matrix
-
-    
-def _gen_shiffted_wavenumbers(k_max, k_min, size):
-    """
-        Generate an array with wavenumbers for fourier 
-        shifted coordinates by lineair spacing between the maximum 
-        and mininimum wavenumber.
-
-        In:
-            param: k_max -- The maximum wavenumber.
-            param: k_min -- The minimum wavenumber.
-            param: size -- The size that the array should have.
-        Out:
-            return: An array with wavenumbers in fourier shifted coordinates such that
-                    the first element corresponds with the minimum wavenumber.
-
-        Example(s):
-            k_max = 3, k_min = 1, size = 4
-            [1, 2, 3,-2]
-            
-            k_max = 4, k_min = 1, size = 5 
-            [1, 2, 3, -3, -2]
-                
-    """
-    ret = np.zeros(size)
-
-    if size % 2 == 0: # even
-        # positive part: k_max should be included, linear space therefore size/2 + 1 
-        ret[0:int(size/2)+1] = np.linspace(k_min, k_max, int(size/2)+1)
-        # negative part: inverse array , multiply with 1 and select elements to repeat
-        ret[int(size/2)+1:] = -ret[::-1][int(size/2):-1]
-   
-    else: # odd
-        # positive part: k_max shouldn't be included, linear space therefore size/2 +2 and skip last element
-        ret[0:int(size/2)+1] = np.linspace(k_min, k_max, int(size/2)+2)[:-1]
-        # negative p artL inverse array, mulitply with 1 and select correct elements
-        ret[int(size/2)+1:] = -ret[::-1][int(size/2):-1]
-    
-    return ret
-
-
-def generate_displacements2D(field, min_distance):
-
-
-    # create a matrix where the wavenumbers are the diogonal.
-
-    wavenumbers = _gen_shiffted_wavenumbers((2*np.pi/min_distance), (2*np.pi/(min_distance*field.shape[0])), field.shape[0])
-    diogonal = np.zeros(field.shape)
-
-    for i in range(0, field.shape[0]):
-        diogonal[i][i] = wavenumbers[i]
-
-    # The product of the diogonal matrix generates the displacement matrix to ifft when multiplied with the complex part
-
-    final = field*diogonal * (-1J)
-    print(np.fft.ifft2(final))
-
-    return np.fft.ifft2(final)
+    return matrix
 
 
 def make_hessian2D(matrix):
@@ -174,33 +153,5 @@ def make_hessian3D(tensor):
                 tensor[int(size/2),i,j] = tensor[int(size/2),i,j].real + 0J
                 tensor[i,j,int(size/2)] = tensor[i,j,int(size/2)].real + 0J
                 tensor[i,int(size/2),j] = tensor[i,int(size/2),j].real + 0J
-
-
-
-
     
     return tensor
-
-
-
-size = 20
-min_distance = 1
-max_distance = size*min_distance
-field_matrix = np.zeros((size,size,size),dtype=complex)
-
-wave_numbers  = _gen_shiffted_wavenumbers((2*np.pi/min_distance), (2*np.pi/max_distance), size)
-
-for row, k_x in enumerate(wave_numbers):
-    for column, k_y in enumerate(wave_numbers):
-        for depth, k_z in enumerate(wave_numbers):
-            
-            if row == 0 and column == 0 and depth == 0:
-                continue # zero variance
-
-            k = np.sqrt(k_x**2 + k_y**2 + k_z**2)
-            sigma = np.sqrt(k**(-2))
-            field_matrix[row, column, depth] = complex(np.random.normal(0,sigma), np.random.normal(0,sigma))
-
-symmetrix = make_hessian3D(field_matrix*1J)
-#print(symmetrix)
-print(np.fft.ifftn(symmetrix))

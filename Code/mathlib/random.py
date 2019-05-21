@@ -110,6 +110,17 @@ class Random(object):
         # Use the box muller transformation.
         return sigma*np.sqrt(-2* np.log(1-u1))*np.cos(2*np.pi*u2) + mean
 
+    def gen_normal_uniform(self, mean, sigma, u1, u2):
+        """
+            Generate a random normal distributed float from two provided
+            uniform variables.
+        
+        
+        """
+        pre_factor= sigma*np.sqrt(-2* np.log(1-u1))
+
+        return pre_factor*np.cos(2*np.pi*u2) + mean, pre_factor*np.sin(2*np.pi*u2) + mean
+
     def gen_normals(self, mean, sigma, amount):
         """
             Generate multible random normal distributed float.
