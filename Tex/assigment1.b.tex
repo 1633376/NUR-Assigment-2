@@ -3,7 +3,7 @@
 \begin{quote}
 
 \textbf{Problem}
-\begin{quote}Now use the Box-Muller method to generate 1000 normally-distributed random numbers. To check if they are following the expected Gaussian distribution, make a histogram (scaled appropriate) with the corresponding true probability distribution (normalized to integrate to 1) as line. This plot should contain the interval of -5 $\sigma$ until $5\sigma$ from the theoretical probability distribution. Indicate the theoretical $1\sigma$, $2\sigma$, $3\sigma$ and $4\sigma$ interval with a line. For this plot, use $\mu =3$ and $\sigma = 2.4$ and choose bins that are appropriate.
+\begin{quote}Now use the Box-Muller method to generate 1000 normally-distributed random numbers. To check if they are following the expected Gaussian distribution, make a histogram (scaled appropriate) with the corresponding true probability distribution (normalized to integrate to 1) as line. This plot should contain the interval of -5$\sigma$ until $5\sigma$ from the theoretical probability distribution. Indicate the theoretical $1\sigma$, $2\sigma$, $3\sigma$ and $4\sigma$ interval with a line. For this plot, use $\mu =3$ and $\sigma = 2.4$ and choose bins that are appropriate.
 \end{quote}
 
 \textbf{Solution} 
@@ -11,7 +11,9 @@
 
 
 \begin{quote}
-The solution consists of deriving the correct transformation of two i.i.d uniform variables to two i.i.d normal distributed variables with the Box-Muller method. This is done by first transforming the joined CDF of the two random Gaussian variables to polar coordinates. This transformation makes it possible to find the CDFs for the polar coordinates of the random Gaussian variables. 
+The solution consists of deriving the  transformation of two i.i.d uniform variables to two i.i.d normal distributed variables with the Box-Muller method. The derivation can be found below and the derived transformation is added to the random number generator class to produce normal distributed values.
+
+% and adding it to the random number generator. This is done by first transforming the joined CDF of the two random Gaussian variables to polar coordinates. This transformation makes it possible to find the CDFs for the polar coordinates of the random Gaussian variables. 
 
 %The Box-Muller method allows two i.i.d uniform variables to be transformed to two i.i.d Gaussian distributed variables. It thereby overcomes the problem that there lacks a closed form for the CDF of a Gaussian distribution. The method overcomes the problem by transforming the joined CDF of the two random Gaussian variables to polar coordinates. This transformation makes it possible to find the CDFs for the polar coordinates of the random Gaussian variables. The CDFs can be used to convert the two uniform distributed variables to the polar coordinates of the Gaussian distributed variables. The polar coordinates can then finally be transformed back to Cartesian coordinates to find the transformation between the two uniform random variables and two gaussian random variables.
 
@@ -58,15 +60,18 @@ x_1 &= r\cos(\theta) + \mu = \sqrt{-2\sigma^2 \ln(1 - u_1)} \cos( 2 \pi u_2 ) + 
 y_1 &= r\sin(\theta) + \mu = \sqrt{-2\sigma^2 \ln(1 - u_1)} \sin( 2 \pi u_2 ) + \mu
 \end{align*}
 
-These transformation are implemented in the class that contains the random number generator (see page ...). The code for the plots and the created plots can be found below. The code for the creation of the plots makes besides the random number generator use of a function that represents the normal distribution in the file '.....'. This file is treated as shared module and can be found on page ...
+These transformation are implemented in  the random number generator, which is treated as a shared module and can be found on page .... The code for the generation of the plot and the created plot can be found below. The code that generates the plot makes besides the RNG use of a function for the normal distribution in the file \texttt{./Code/mathlib/statistics.py}. This file is treated as a shared module and can be found on page ...
+
+
 \end{quote}
 
 \textbf{Code - Plots}
 
 \begin{quote}
-The code for generating the plots. The code for the function \textit{mathlib.statistics.normal} can be found on page ..., where the shared modules are shown. 
+The code for generating the plots. The imports are not explicit shown, but can be found on page ... where the code for the full assignment is shown. The shared modules include ... and .... .These can be found on pages .... 
 
-\lstinputlisting[firstline=63,lastline=115]{./Code/assigment1.py}
+
+\lstinputlisting[firstline=63,lastline=115]{./Code/assigment_1.py}
 \end{quote}
 
 
@@ -75,7 +80,7 @@ The code for generating the plots. The code for the function \textit{mathlib.sta
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=12cm, height=7.5cm]{./Plots/1_hist_gaussian.pdf}
-\caption{TODO}
+\caption{A histogram of the 1000 random nomal distributed variables generated with the box muller method for $\mu = 3$ and $\sigma = 2.4$  (orange) and the true normal distribution (red). The histogram approximates the normal distribution by eye, but displays some deviations. The peak is higher than it should be and slightly left of the peak is a bin with a low amount of counts. The left part of the histogram furthermore appears to be below the true normal distribution. By eye the histogram appears to be acceptable. A statistical test is of course better to determine whether the histogram would truly be acceptable or not.}
 \end{figure}
 
 \end{quote}

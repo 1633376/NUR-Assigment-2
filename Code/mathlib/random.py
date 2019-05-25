@@ -29,7 +29,13 @@ class Random(object):
 
         # The values for the multiply with carry.
         self._mwc_a = np.uint64(4294957665)
-        self._mwc_base = np.uint64(0xFFFFFFFF)
+        self._mwc_base = np.uint64(2**32)
+
+        #The values for the Linear congruential genrator
+        self._lgc_a = np.uint64(1664525)         
+        self._lgc_c = np.uint64(1013904223)
+        self._lgc_m = np.uint64(2**32)
+
 
 
     def get_seed(self):
@@ -134,21 +140,28 @@ class Random(object):
                     distribution.
         """
 
-        # Ppre-factors in the box muller transformation.
-        square_pre_factor = -2*sigma**2 #pre-factor in the square root
-        angle_pre_factor = 2*np.pi #pre-factor in the cosine
+        # Pre-factors in the box muller transformation.
+        square_pre_factor = -2*sigma**2 
+        angle_pre_factor = 2*np.pi 
+
+        # With the Box-muller two random normals can be generated for two
+        # uniforms. If the amount of requested variables is odd then add
+        # one to it and later remove it when returning the result.
+        elements = amount if amount % 2 == 0 else amount + 1
 
         # Array in which the drawn normal distributed variables are stored.
-        normal_dist = np.zeros(amount)
+        normal_dist = np.zeros(elements)
 
         # Apply the box muller transformation to generate the samples and return them.
-        for i in range(0, amount, 1):
-            value = np.sqrt(square_pre_factor *np.log(1 - self.gen_uniform()))
-            value = value*np.cos(angle_pre_factor*self.gen_uniform()) + mean
+        for i in range(0, elements, 2):
+            u1 = self.gen_uniform()
+            u2 = self.gen_uniform()
 
-            normal_dist[i] = value
-        
-        return normal_dist
+            normal_dist[i] = np.sqrt(square_pre_factor * np.log(1-u1))*np.cos(angle_pre_factor*u2) + mean
+            normal_dist[i+1] = np.sqrt(square_pre_factor * np.log(1-u1))*np.sin(angle_pre_factor*u2) + mean
+       
+        # If amount is odd, don't return the last element
+        return normal_dist[0:amount]
         
     def _update_state(self):
         """
@@ -158,11 +171,12 @@ class Random(object):
             return: The new state of the random number generator.
         """
 
-        self._state = self._xor_shift(self._state)
+        self._state = self._xor_shift(self._state) # & self._uint32_max))
         # Mwc can take as input a 64 bit unsigned values between 0 < x < 2^32.
         # To obtain this value we first perform the 'AND' operation with the current state
         # to only keep the first 32 bits. The value is still a np.uint64 type after this operation.
-        self._state = self._mwc(np.uint64(self._state & self._uint32_max))
+        self._state = self._mwc(self._state & self._uint32_max) ^ self._state
+
         return self._state
 
 
@@ -196,4 +210,10 @@ class Random(object):
         """
         return self._mwc_a * (number & (self._uint32_max -np.uint64(1))) + (number >> np.uint64(32))
 
- 
+    def _lcg(self, n):
+
+      #  print(n, self._lgc_a, self._lgc_c)
+      #  print(n*self._lgc_a + self._lgc_c)
+      #  print((n*self._lgc_a + self._lgc_c) % self._lgc_m)
+        """ Execute the linear congurential algorithm on the value 'n' """
+        return (self._lgc_a*n + self._lgc_c ) % self._lgc_m

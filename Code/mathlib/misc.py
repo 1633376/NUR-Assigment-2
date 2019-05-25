@@ -24,7 +24,27 @@ def gen_wavenumbers(size, min_distance):
         ret[int(size/2)+1:] = -np.arange(int(size/2),0,-1)
   
 
-    return ret/(size*min_distance)
+    return (ret/(size*min_distance))*2*np.pi
+
+
+def generate_matrix(size, min_distance, func, random_numbers, power):
+
+    wavenumber = gen_wavenumbers(size,min_distance)
+    steps = 0
+    ret = np.zeros((size,size),dtype=complex)
+
+    for i in range(size):
+        for j in range(size):
+
+            if i == 0 and j == 0:
+                continue
+            
+            k = np.sqrt(wavenumber[i]**2 + wavenumber[j]**2)
+             
+            ret[i][j] = func(k, power, random_numbers[steps], random_numbers[steps+1])
+            steps += 2
+
+    return ret
 
 def generate_hermitian_fs_2D(size, min_distance, func, random_numbers,power = 2):
     """
@@ -54,7 +74,7 @@ def generate_hermitian_fs_2D(size, min_distance, func, random_numbers,power = 2)
     for row in range(1, int(size/2)+1):
 
         # Determine the k-value for the edges and the complex number
-        k = np.sqrt(2*wave_numbers[row]**2)
+        k = np.sqrt(wave_numbers[row]**2)
         z = func(k,power, random_numbers[random_num_counter],random_numbers[random_num_counter+1])
         random_num_counter+= 2
        
@@ -108,9 +128,14 @@ def make_hessian2D(matrix):
     # point 4
     if size % 2 == 0:
         for i in range(0,size):
-            matrix[int(size/2),i] = matrix[int(size/2),i].real + 0J
-            matrix[i,int(size/2)] = matrix[i,int(size/2)].real + 0J
-    
+            if i == 0 or i == int(size/2):
+                matrix[int(size/2),i] = matrix[int(size/2),i].real + 0J
+                matrix[i,int(size/2)] = matrix[i,int(size/2)].real + 0J
+            else:
+                matrix[int(size/2),i] = complex(matrix[int(size/2),i].real, - matrix[int(size/2),i].imag)
+                matrix[i,int(size/2)] = complex(matrix[i,int(size/2)].real, - matrix[int(size/2),i].imag)
+                
+
     return matrix
 
 
@@ -120,7 +145,11 @@ def make_hessian3D(tensor):
 
     # Inner matrix
     for row in range(1, size): #int(size/2) + size-3):
+
+
         for column in range(1, size): #int(size/2)+size-3):
+
+            
             for depth in range(1,size):               
                 tensor[row, column, depth] = complex(tensor[size-row,size-column,size-depth].real, -tensor[size-row, size-column, size-depth].imag)
                 

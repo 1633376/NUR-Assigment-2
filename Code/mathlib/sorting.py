@@ -22,6 +22,8 @@ def merge_sort(array):
     # Split the array in an sorted left and right segment.
     left_sorted = merge_sort(array[:size >> 1])
     right_sorted = merge_sort(array[size >> 1:])
+    left_sorted_len = len(left_sorted)
+    right_sorted_len = len(right_sorted)
 
 	#
     # Merge the left and right array.
@@ -39,7 +41,7 @@ def merge_sort(array):
     
     # While we didn't fill the result array.
     while result_idx < size: 
-               
+
         # Element from left array is smaller, insert it and increase position.
         if left_sorted[left_idx] < right_sorted[right_idx]: 
             result[result_idx] = left_sorted[left_idx]
@@ -52,13 +54,14 @@ def merge_sort(array):
             result_idx += 1
         
         # Only right arrat has elements left, insert the remaining elements.
-        if left_idx == len(left_sorted): 
+        if left_idx == left_sorted_len: 
             result[result_idx:] = right_sorted[right_idx:]
             break
             
         # Only left has elements left, insert the remaining elements
-        if right_idx == len(right_sorted): 
+        if right_idx == right_sorted_len: 
             result[result_idx:] = left_sorted[left_idx:]
             break
             
     return result
+

@@ -56,9 +56,52 @@ def kstest(x, cdf):
     square_elements = np.sqrt(x_size)
     return 1 - _ks_statistic_cdf((square_elements + 0.12+0.11/square_elements)*max_dist)
  
+def kstest2(x1, x2, x2_sorted = None):
+    """
+        Perform the Kolmogorov-Smirnov test for goodness of fit 
+        and return the p-value. 
+    In:
+        param: x1   -- An array with value's who's CDF is expected to be
+                       the same as the CDF of the proviced values.
+                       Must be atleast size 4.
 
+        param: x2 -- A discretized pdf of the expected distribution under the null hypothesis.
+    Out:
+        return: The p-value obtained by performing the KS-test 
+    """
 
-def kuper_test(x, cdf):
+    # Amount of values in the input distributions.
+    x1_size = len(x1)
+    x2_size = len(x2)
+
+    # Sort both arrays.
+    x1 = sorting.merge_sort(x1)
+    x2 = sorting.merge_sort(x2) if type(x2_sorted) is not None else x2_sorted
+
+    # The maximum distance
+    max_dist = 0
+
+    # The iteration values used to determine
+    # the emperical pdf's and the max distance.
+    x1_i, x2_j = 0,0
+  
+    # Find the maximum distance by updating the emperical CDFs.
+    while x1_i < x1_size and x2_j < x2_size:
+
+        # Update the indices used for the emperical CDF's. 
+        
+        if x1[x1_i] < x2[x2_j]:           
+            x1_i += 1  
+        else:
+            x2_j += 1
+
+        # Find the max distance
+        max_dist = max(abs(x1_i/x1_size-x2_j/x2_size), max_dist)
+
+    square_factor = np.sqrt((x1_size*x2_size)/(x1_size+x2_size))
+    return 1 - _ks_statistic_cdf((square_factor + 0.12+0.11/square_factor)*max_dist)
+
+def kuiper_test(x, cdf):
     """
         Perform the Kuiper test for goodness of fit 
         and return the p-value.
@@ -143,11 +186,10 @@ def _kuiper_statistic_cdf(z):
         ret = 0
         z_squared = z**2
 
-        for j in range(1,100):
+        for j in range(1,50):
             power = j**2 * z_squared
             ret += (4 * power -1)*np.exp(-2*power)
 
-   
         return 1- 2*ret
 
 
@@ -216,19 +258,3 @@ def erf(x):
     return ret
 
 
-def rayliegh_dist(x, sigma):
-    """
-        Evaluate the rayliegh distribution at x 
-        for the given value of sigma.
-    In:
-        param: x -- The value(s) to evaluate the distribution at.
-        param: sigma -- The square root of the variance for the distribution.
-    Out:
-        return: The distribution evaluated at the given value of x.
-    """
-
-    return 2*x/(sigma**2)*np.exp(-(x/sigma)**2)
-
-    
-    
-    

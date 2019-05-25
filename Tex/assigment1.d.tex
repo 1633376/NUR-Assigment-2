@@ -1,5 +1,5 @@
 
-\subsection*{\textbf{Question 1.c}}
+\subsection*{\textbf{Question 1.d}}
 \begin{quote}
 
 \textbf{Problem}
@@ -10,73 +10,35 @@ Write a code that does the Kuiper’s test on your random numbers (see tutorial
 
 \textbf{Solution} 
 \begin{quote}
-The implementation of the Kuiper test does simmilar to the KS-test require a numerical approximation of the kuiper statistics,
-
-%KS-test is in general straight forwards. There are however two points of interest that needs to be discussed. The first point is the implementation of the CDF for the KS-statistic and the second point is the implementation of the CDF for the normal distribution.
-
-\textbf{(1) CDF KS-statistic }
-\begin{quote}
-The p-value produced by the KS-tests requires the evaluation of the CDF for the KS-test statistic,
+The implementation of the Kuiper test does simmilar to the KS-test require a numerical approximation of the CDF for the kuiper statistics. The CDF of the kuiper staistic is given by, 
 \begin{equation}
-P_{KS}(z) = \frac{2\sqrt{\pi}}{z} \sum_{j=1}^{\infty} \exp\left(- \frac{(2j-1)^2+\pi^2}{8z^2} \right)
+P_{kuiper}( \lambda) =  1 - 2  \sum_{j=1}^{\infty} (4j^2 \lambda^2-1) e^{-2j^2 \lambda^2 }
 \end{equation}
 
-This infinite sum needs to be numerically approximated in order to perform the KS-test. The chosen approximation in the implementation of the KS-test for  the sum is taken from ... who states that the sum can be approximated by, % approximation can according to .. be approximated by, 
-\begin{equation}
-P_{KS}(z) \approx
-\begin{cases}
-\frac{\sqrt{2 \pi}}{z} \left[ \left( e^{-\pi^2/(8z^2)} \right)+^{9} + \left( e^{-\pi^2/(8z^2)} \right) \left( e^{-\pi^2/(8z^2)} \right)^{25} \right] &\quad \text{for $ z < 1.18$}\\
-1 -2 \left[ \left(e^{-2z^2}\right) - \left(e^{-2z^2}\right)^4 + \left(e^{-2z^2}\right)^9 \right]  &\quad \text{for $ z >= 1.18$}
-\end{cases}
-\end{equation}
+here the sum is negligible compared to the machine error if $\lambda < 0.4$. In this case the numerically approximation thus consist of simply returning 1.  If $\lambda > 0.4$ then the sum is approximated by calculating the first 100 terms of the sum, as this should be more than enough for the sum to converge. \footnote{In theory less terms should be more than enough. The evaluation of the sum could therefore stop early by checking for a required precision. This is however not implemented as summing 100 terms is cheap. } 
+
+The kuiper test and the CDF are implemented in the shared module .\texttt{./Code/mathlib/statistics.py}, which is located on page ... .The code that creates the plots and the plots self can be found below.  This code does make use of \textbf{astropy} to compare self written implementation with the implementation of astropy. 
 \end{quote}
 
-\textbf{(2) CDF normal distribution}
-\begin{quote}
-The CDF of the normal distribution is needed in order to perform the KS-test under the null hypothesis that the data follows a normal distribution. The CDF of the normal distribution can in general be written as,
-\begin{equation}
-\Phi\left( \frac{x- \mu}{\sigma}\right) = \frac{1}{2} \left[ 1 + \text{erf} \left( \frac{x - \mu}{\sigma\sqrt{2}} \right) \right]
-\end{equation}
-
-where the erf is given by,
-\begin{equation}
-\text{erf}(x)  \frac{2}{\sqrt{\pi}} \int_0^{x} e^{-t^2} dt
-\end{equation}
-
-The integral of the erf function lacks a closed form and therefore also needs to be numerically approximated. The chosen approximation is taken from ..., who states that the function can be 
-approximated by,
-
-\begin{equation}
-\text{erf}(x) \approx 1- (a_1t+a_2t^2 + ... + a_5t^5)e^{-x^2} \text{x} \quad t = \frac{1}{1+px}
-\end{equation}
-
-where $p  =0.3275911$, $a_1 =  0.254829592$, $a_2 = -0.284496736$, $a_3 = 1.421413741$, $a_4 =  -1.453152027$, $a_5 = 1.061405429$.
-\end{quote}
-
-The implementation of the KS-tests and using it to test the null hypothesis that the samples follow a normal distribution is with the above approximations implemented. The code for the KS-test and the approximations for the CDF's is located in the file .... at page, as this file is threaded as module. The code for the creation of the plot is given below.  
-\end{quote}
-
-\newpage
 \textbf{Code - Plots}
 
 \begin{quote}
-The code for generating the two plots.
-\lstinputlisting[firstline=117,lastline=169]{./Code/assigment1.py}
+The code for generating the two plots in which the kuiper test is performed. The imports are not explicit shown but can be shown on page ..., where the code of the full assignment is displayed. The comments give an overview of the imports used. 
+\lstinputlisting[firstline=167,lastline=197]{./Code/assigment_1.py}
 \end{quote}
-\newpage
 
 \textbf{Code - Output plot(s)}
 \begin{quote}
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=12cm, height=7.5cm]{./Plots/1_plot_ks_test_self.pdf}
-\caption{TODO}
+\includegraphics[width=12cm, height=7.5cm]{./Plots/1_plot_kuiper_test_self.pdf}
+\caption{The P-value produced by the kuiper test against the number of samples on which the kuiper-test is performed for the self written RNG. The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the RNG always passes kuiper test. IT can however be seen that the value of the statistic stays lower for a significant amount of samples ($ N_{samples} > 10^4$). This might indicate that there is flaw in the random number generator.}
 \end{figure}
 
 \begin{figure}[!hb]
 \centering
-\includegraphics[width=12cm, height=7.5cm]{./Plots/1_plot_ks_test_self_scipy.pdf}
-\caption{TODO}
+\includegraphics[width=12cm, height=7.5cm]{./Plots/1_plot_kuiper_test_self_astropy.pdf}
+\caption{The P-value produced by the kuiper test against the number of samples on which the kuiper-test is performed for the self written RNG. The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the self written implementation deviates from the astropy implementation at the start, similar to what happend in the KS-test.   }
 \end{figure}
 
 \end{quote}
@@ -84,6 +46,8 @@ The code for generating the two plots.
 
 
 \end{quote}
+
+\newpage
 
 %\textbf{Code - output } 
 %\begin{quote}

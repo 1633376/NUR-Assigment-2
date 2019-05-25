@@ -51,15 +51,16 @@ approximated by,
 where $p  =0.3275911$, $a_1 =  0.254829592$, $a_2 = -0.284496736$, $a_3 = 1.421413741$, $a_4 =  -1.453152027$, $a_5 = 1.061405429$.
 \end{quote}
 
-The implementation of the KS-tests and using it to test the null hypothesis that the samples follow a normal distribution is with the above approximations implemented. The code for the KS-test and the approximations for the CDF's is located in the file .... at page, as this file is threaded as module. The code for the creation of the plot is given below.  
+The KS-test and the CDF are implemented with these approximations. The code for the KS-test and the CDF  is located in the file .... at page, as this file is threaded as a shared module. The KS-test does require an sorting alogirhtm, this algorithm is implemented in the file ... and can be found on page ..., as it is simillar to the previous file treated as a shared module.
+ The code for generating the plots and plots are displayed below.  
 \end{quote}
 
 \newpage
 \textbf{Code - Plots}
 
 \begin{quote}
-The code for generating the two plots.
-\lstinputlisting[firstline=117,lastline=169]{./Code/assigment1.py}
+The code for generating the two plots.The imports for this file are not explicit shown, but giving in the comments to make the code easier to understand. The code of assigment 1, inclusive imports, can as mentioned before be found on page ....
+\lstinputlisting[firstline=117,lastline=169]{./Code/assigment_1.py}
 \end{quote}
 \newpage
 
@@ -68,13 +69,13 @@ The code for generating the two plots.
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=12cm, height=7.5cm]{./Plots/1_plot_ks_test_self.pdf}
-\caption{TODO}
+\caption{The P-value produced by the KS-test against the number of samples on which the KS-test is performed for the self written RNG. The red line indicates the line of $ p = 0.05$. A point \textbf{below} thered  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the RNG always passes ks-test up to atleast $10^5$ samples.}
 \end{figure}
 
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=12cm, height=7.5cm]{./Plots/1_plot_ks_test_self_scipy.pdf}
-\caption{TODO}
+\caption{The P-value produced by the KS-test against the number of samples on which the KS-test is performed for the self written RNG. The red line indicates the line of $ p = 0.05$. The orange line is the self written implementation of the KS-test and the blue line is the scipy version.  A point \textbf{below} the red line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The self written ks-test is always close to the scipy version. It shows  (small) deviations for small sample sizes. The exact cause of this is unknown, but is likely the result of an approximation that scipy makes that the self written implementation doesn't make (This is not confirmed by looking at the scipy code.). }
 \end{figure}
 
 \end{quote}

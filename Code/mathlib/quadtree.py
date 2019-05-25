@@ -1,31 +1,54 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-
+import matplotlib.collections as collections
 
 class QuadTree(object):
 
     def __init__(self, left_bottom, size, max_boddies):
-        self._root = Quad(left_bottom, size, max_boddies,None)
-
-    
+        self._root = Quad(left_bottom, size, max_boddies, None)
+   
     def add_boddy(self, boddy):
+        if boddy[0]  < 30: # and boddy[1] > 120:
+            print(boddy[0], boddy[1])
+
         self._root.add_boddy(boddy)
        
+    def find_leaf(self, pos_x, pos_y):
+        
+        leaf = self._root
+
+        while not leaf._leaf:
+            leaf = leaf._find_quad(pos_x, pos_y)
+        return leaf
+
+    def print_moments(self, pos_x, pos_y):
+        leaf = self.find_leaf(pos_x, pos_y)
+
+        print(leaf._moment)
+        parent = leaf._parent
+
+        while parent._parent != None: # not root
+            print(parent._moment)
+            parent = parent._parent
+        # root
+        print(parent._moment)
+
     def plot(self):
-        self._root._plot()
 
-        plt.xlim(self._root._left_bottom[0], self._root._left_bottom[1] + self._root._size+1)
-        plt.ylim(self._root._left_bottom[1], self._root._left_bottom[1] + self._root._size+1)
+        axis = plt.gca()
+        rectangles = list()
+
+        self._root._plot(axis, rectangles)
+        axis.add_collection(collections.PatchCollection(rectangles, match_original=True))
+
+        plt.xlim(self._root._left_bottom[0], self._root._left_bottom[1] + self._root._size)
+        plt.ylim(self._root._left_bottom[1], self._root._left_bottom[1] + self._root._size)
         plt.show()
-        plt.show()
-
-
 
 class Quad(object):
 
     def __init__(self, left_bottom, size, max_boddies, parent = None):
-
 
         # Geometric properties
         self._left_bottom = left_bottom
@@ -41,50 +64,49 @@ class Quad(object):
         self._child_quads = None
         self._boddies = list()
 
+        # moment
+        self._moment = 0
+
 
     def add_boddy(self, boddy):
         
+        
         # if current quad is a leaf, add the item or split
-        if self._leaf:
+        if not self._leaf:
+            # Not a leaf or splitted, find the quad that 
+            # should hold the item and add it to that quad
+            self._find_quad(boddy[0], boddy[1]).add_boddy(boddy)    
+            return
 
-            # Can still add the item
-            if len(self._boddies) < self._max_boddies:
-                self._boddies.append(boddy)
-                return
-            # Split
-            else:
-                self._split()
-
-        # Not a leaf or splitted, find the quad that 
-        # should hold the item and add it to that quad
-        self._find_quad(boddy[0], boddy[1]).add_boddy(boddy)
+        # Can still add the item
+        if len(self._boddies) < self._max_boddies:
+            self._boddies.append(boddy)
+            self._update_moment(boddy[3])
+        else: # split
+            # on split moment is automatically updates
+            self._boddies.append(boddy) # add it and split, (given to children)
+            self._split()
+        
+      
         
     def _find_quad(self, pos_x, pos_y):
+             
         
-
-        quad_idx = -1
+        if self._leaf:
+            return self
 
         # right top or right bottom
         if pos_x > self._halve_size+self._left_bottom[0]:
-            # right top
-            if pos_y > self._halve_size+self._left_bottom[1]:
-                quad_idx = 2
+            if pos_y >= self._halve_size+self._left_bottom[1]:
+                return self._child_quads[2]  # right top
             else:
-                # right bottom
-                quad_idx = 3
+                return self._child_quads[3]  # right bottom
 
-        # left top or left bottom
-        else:
-            # left top
-            if pos_y > self._halve_size+self._left_bottom[1]:
-                quad_idx = 0
-            # left bottom
-            else:
-                quad_idx = 1
+        elif pos_y >= self._halve_size+self._left_bottom[1]:
+            return self._child_quads[0] # left top
+        else:   
+            return self._child_quads[1] # left bottom
        
-
-        return self._child_quads[quad_idx]
-
     def _split(self):
 
         self._child_quads = list()
@@ -111,17 +133,32 @@ class Quad(object):
         # Empty items that where hold by this node
         self._boddies = None
 
-    def _plot(self):
+    def _update_moment(self, moment = 0):
+        if self._leaf:
+            self._moment += moment
+        else:
+            self._moment = 0
+            
+            for quad in self._child_quads:
+                self._moment += quad._moment 
 
-        rect = plt.Rectangle(self._left_bottom,self._size, self._size, fill=False)
-        plt.gca().add_patch(rect)
+        if self._parent != None:
+            self._parent._update_moment()
+
+
+    def _plot(self,axis, rectangles):
+
+        rect = patches.Rectangle(self._left_bottom,self._size, self._size, fill=False)
+        rectangles.append(rect)
 
         if self._leaf:
-            for boddy in self._boddies:
-                plt.scatter(boddy[0],boddy[1],c='blue',s=1)
+            if len(self._boddies) == 0:
+                return
+            a = np.array(self._boddies)
+            axis.scatter(a[:,0],a[:,1],c='blue',s=1)
         else:
             for quad in self._child_quads:
-                quad._plot()
+                quad._plot(axis, rectangles)
 
 
 

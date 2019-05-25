@@ -24,6 +24,7 @@ def main():
         # the given value of n.
         
         # Generate the field.
+        
         field = misc.generate_hermitian_fs_2D(grid_size, min_distance, gen_complex,random_numbers,power)
         print(field)
         # Plot it
