@@ -4,7 +4,7 @@ import mathlib.random as rnd
 
 def gen_wavenumbers(size, min_distance):
     """
-        Generate the fourier transform sample wavenumbers
+        Generate the shifted wavenumbers
         for the discrete fourier transform.
     In:
         param: size -- The size of the matrix.

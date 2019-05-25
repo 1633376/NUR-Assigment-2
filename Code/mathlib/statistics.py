@@ -12,23 +12,23 @@ def kstest(x, cdf):
 
         param: cdf -- A function that is the expected cdf under the null hypothesis.
     Out:
-        return: The p-value obtained by performing the KS-test 
+        return: The p-value obtained by performing the KS-test. 
     """
 
     # Amount of values in the input array.
     x_size = len(x)
 
-    # Sort the values and evaluate the cdf
+    # Sort the values and evaluate the cdf.
     x_sorted = sorting.merge_sort(x)
     x_sorted_cdf = cdf(x_sorted) 
 
     # Maximum distance.
     max_dist = 0
 
-    # Value of the emperical cdf at step i -1
+    # Value of the emperical cdf at step i-1.
     x_cdf_emperical_previous = 0
 
-    # Find the maximum distance 
+    # Find the maximum distance.
     for idx in range(0,x_size):
 
         # Calculate the emperical cdf.
@@ -49,13 +49,15 @@ def kstest(x, cdf):
         # check if it is larger than the current know maximum distance.
         max_dist = max(max_dist, max(distance_one, distance_two))
 
-        # Save the current value of the emperical cdf
+        # Save the current value of the emperical cdf.
         x_cdf_emperical_previous = x_cdf_emperical
 
     # Calculate the p-value with the help of the CDF.
-    square_elements = np.sqrt(x_size)
-    return 1 - _ks_statistic_cdf((square_elements + 0.12+0.11/square_elements)*max_dist)
- 
+    sqrt_elemens = np.sqrt(x_size)
+    cdf = _ks_statistic_cdf((sqrt_elemens + 0.12+0.11/sqrt_elemens)*max_dist)
+    return 1 - cdf
+
+
 def kstest2(x1, x2, x2_sorted = None):
     """
         Perform the Kolmogorov-Smirnov test for goodness of fit 
@@ -98,8 +100,10 @@ def kstest2(x1, x2, x2_sorted = None):
         # Find the max distance
         max_dist = max(abs(x1_i/x1_size-x2_j/x2_size), max_dist)
 
-    square_factor = np.sqrt((x1_size*x2_size)/(x1_size+x2_size))
-    return 1 - _ks_statistic_cdf((square_factor + 0.12+0.11/square_factor)*max_dist)
+    sqrt_factor = np.sqrt((x1_size*x2_size)/(x1_size+x2_size))
+    cdf = _ks_statistic_cdf((sqrt_factor + 0.12+0.11/sqrt_factor)*max_dist)
+
+    return 1 - cdf
 
 def kuiper_test(x, cdf):
     """
@@ -115,8 +119,8 @@ def kuiper_test(x, cdf):
     """
 
     # Sort the data in ascending order, calculate the 
-    # cdf and the emperical cdf for the sorted values and save the total amount of 
-    # elements we have. 
+    # cdf and the emperical cdf for the sorted values and 
+    # save the total amount of  elements we have. 
     x_sorted = sorting.merge_sort(x)
     x_sorted_cdf = cdf(x_sorted) 
     x_elements = len(x)
@@ -126,7 +130,7 @@ def kuiper_test(x, cdf):
     max_dist_above = 0   
     max_dist_below = 0
 
-    # value of the cdf at step i -1
+    # Value of the cdf at step i-1.
     x_cdf_emperical_previous = 0 
     
 
@@ -144,9 +148,11 @@ def kuiper_test(x, cdf):
         # Update previous cdf
         x_cdf_emperical_previous = x_cdf_emperical
 
-    sqaure_elem = np.sqrt(x_elements)
-    return 1 - _kuiper_statistic_cdf((sqaure_elem + 0.155+0.24/sqaure_elem)*(max_dist_above + max_dist_below))
+    sqrt_elem = np.sqrt(x_elements)
+    v = max_dist_above + max_dist_below
+    cdf = _kuiper_statistic_cdf((sqrt_elem + 0.155+0.24/sqrt_elem)*v)
 
+    return 1 - cdf
     
 
 def _ks_statistic_cdf(z):
@@ -159,6 +165,9 @@ def _ks_statistic_cdf(z):
         return: An approximation of the cdf for the given value.    print(max_dist_above + max_dist_below)
     """
 
+    # Numerical approximation taken from:
+    # Numerical methods - The art of scientific computation.
+    # Third edition.
 
     if z < 1.18:
         exponent = np.exp(-np.pi**2/(8*z**2))
@@ -178,19 +187,24 @@ def _kuiper_statistic_cdf(z):
     Out:
         return: An approximation of the cdf for the given value.
     """
+
+    # Value of z is to small, sum will be 1 up to 7 digits
     if z < 0.4:
-        return 1 # value of z is to small, sum will be 1 up to 7 digits
-    else:
+        return 1 
         
-        # approximateed value of the sum
-        ret = 0
-        z_squared = z**2
+    # Approximateed value of the sum by performing 100 iterations
+    
+    # The value to return
+    ret = 0
+    # A term often needed in the sum.
+    z_squared = z**2
 
-        for j in range(1,50):
-            power = j**2 * z_squared
-            ret += (4 * power -1)*np.exp(-2*power)
+    # Evaluate the first 100 terms in the sum.
+    for j in range(1, 100):
+        power = j**2 * z_squared
+        ret += (4 * power -1)*np.exp(-2*power)
 
-        return 1- 2*ret
+    return 1- 2*ret
 
 
 
@@ -206,8 +220,7 @@ def normal_cdf(x, mean = 0, sigma = 1):
         return: The cummulative normal distribution evaluated at.
     """
 
-    # calculate it using the erf function (defined below)
-
+    # Calculate the CDF using the erf function (defined below).
     return 0.5 + 0.5*erf((x-mean)/(np.sqrt(2)*sigma)) 
 
 
@@ -233,6 +246,10 @@ def erf(x):
     Out:
         return: The erf function evaluated for the given value of x.
     """
+
+    # Numerical approximation taken from Abramowits and Stegun.
+
+    # Constants for the numerical approximation
     p = 0.3275911
     a1 = 0.254829592
     a2 = -0.284496736
@@ -240,13 +257,14 @@ def erf(x):
     a4 = -1.453152027
     a5 = 1.061405429
 
-    # negative and positive part 
+    # Array in which the result is stored
     ret = np.zeros(len(x))
     
+    # The approximation functions
     erf_func_t_val = lambda x: 1/(1+ p*x)
     erf_func_approx = lambda t, x : 1 -  t*(a1 + t*(a2 + t*(a3 + t*(a4 + t*a5))))*np.exp(-x**2) 
 
-    # evaluate for both positive and negative
+    # Evaluate for both positive and negative
     neg_mask = x < 0
     neg_x = x[neg_mask]
     pos_mask = x >= 0

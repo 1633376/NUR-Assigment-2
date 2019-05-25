@@ -1,1 +1,0 @@
-# NUR-Assigment-2

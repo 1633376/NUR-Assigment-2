@@ -16,19 +16,22 @@ n = [-1,-2,-3]
 
 def main():
 
+    # Generate the random uniform numbers that 
+    # are later transformed to normal distributed variablaes.
+    # The numbers are generated once to reduce computational time.
     random_numbers = random.gen_uniforms(grid_size*grid_size)
 
     for power in n:
 
-        # The function that generates the complex numbers for
-        # the given value of n.
-        
         # Generate the field.
         
-        field = misc.generate_hermitian_fs_2D(grid_size, min_distance, gen_complex,random_numbers,power)
-        print(field)
+        field = misc.generate_hermitian_fs_2D(grid_size, min_distance, 
+                                              gen_complex,random_numbers,power)
         # Plot it
+        # The field is real, but it is still treated as a complex
+        # value this, we have to take the r eal part.
         plt.imshow(np.fft.ifft2(field).real)
+        plt.colorbar()
         plt.show()
 
 def gen_complex(k, n, rand1, rand2):
@@ -38,6 +41,7 @@ def gen_complex(k, n, rand1, rand2):
     In:
         param:k -- The magnitude of the wavenumber.
         param:n -- The order of the power law.
+
     """
     sigma = 0
 

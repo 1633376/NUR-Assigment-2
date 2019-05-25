@@ -4,7 +4,7 @@
 
 \textbf{Problem}
 \begin{quote}
-Write a code that can do the KS-test on the your function to determine if it is consistent with a normal distribution. For this, use $\mu = 0$ and $\sigma = 1$. Make a plot of the probability that your Gaussian random number generator is consistent with Gaussian distributed random numbers, start with 10 random numbers and use in your plot a spacing of 0.1 dex until you have calculated it for $10^5$ random numbers on the x-axis. Compare your algorithm with the KS-test function from \textit{scipy, scipy.stats.kstest} by making an other plot with the result from your KS-test and the KS-test from scipy.
+Write a code that can do the KS-test on the your function to determine if it is consistent with a normal distribution. For this, use $\mu = 0$ and $\sigma = 1$. Make a plot of the probability that your Gaussian random number generator is consistent with Gaussian distributed random numbers, start with 10 random numbers and use in your plot a spacing of 0.1 dex until you have calculated it for $10^5$ random numbers on the x-axis. Compare your algorithm with the KS-test function from \texttt{scipy, scipy.stats.kstest} by making an other plot with the result from your KS-test and the KS-test from scipy.
 \end{quote}
 
 \textbf{Solution} 
@@ -19,7 +19,7 @@ The p-value produced by the KS-tests requires the evaluation of the CDF for the 
 P_{KS}(z) = \frac{2\sqrt{\pi}}{z} \sum_{j=1}^{\infty} \exp\left(- \frac{(2j-1)^2+\pi^2}{8z^2} \right)
 \end{equation}
 
-This infinite sum needs to be numerically approximated in order to perform the KS-test. The chosen approximation in the implementation of the KS-test for  the sum is taken from ... who states that the sum can be approximated by, % approximation can according to .. be approximated by, 
+This infinite sum needs to be numerically approximated in order to perform the KS-test. The chosen approximation in the implementation of the KS-test for  the sum is taken from the book \textit{Numerical Recipes - The art of Scientific Computation, 3d edition}, %... who states that the sum can be approximated by, % approximation can according to .. be approximated by, 
 \begin{equation}
 P_{KS}(z) \approx
 \begin{cases}
@@ -41,8 +41,7 @@ where the erf is given by,
 \text{erf}(x)  \frac{2}{\sqrt{\pi}} \int_0^{x} e^{-t^2} dt
 \end{equation}
 
-The integral of the erf function lacks a closed form and therefore also needs to be numerically approximated. The chosen approximation is taken from ..., who states that the function can be 
-approximated by,
+The integral of the erf function lacks a closed form and therefore also needs to be numerically approximated. The chosen approximation is taken from \textit{Abramowitz and Stegun},
 
 \begin{equation}
 \text{erf}(x) \approx 1- (a_1t+a_2t^2 + ... + a_5t^5)e^{-x^2} \text{x} \quad t = \frac{1}{1+px}
@@ -51,16 +50,16 @@ approximated by,
 where $p  =0.3275911$, $a_1 =  0.254829592$, $a_2 = -0.284496736$, $a_3 = 1.421413741$, $a_4 =  -1.453152027$, $a_5 = 1.061405429$.
 \end{quote}
 
-The KS-test and the CDF are implemented with these approximations. The code for the KS-test and the CDF  is located in the file .... at page, as this file is threaded as a shared module. The KS-test does require an sorting alogirhtm, this algorithm is implemented in the file ... and can be found on page ..., as it is simillar to the previous file treated as a shared module.
- The code for generating the plots and plots are displayed below.  
+The KS-test and the CDF are implemented with these approximations. The code for the KS-test and the CDF  is located in the file \texttt{./Code/mathlib/statistics.py} at page \pageref{CODE:Statistics}, as this file is threaded as a shared module. The KS-test does require an sorting algorithm, this algorithm is implemented in the file \texttt{./Code/matlib/sorting} and can be found on page \pageref{CODE:sorting}. 
+ The code for the generation of the plots and plots are displayed below.  
 \end{quote}
 
 \newpage
 \textbf{Code - Plots}
 
 \begin{quote}
-The code for generating the two plots.The imports for this file are not explicit shown, but giving in the comments to make the code easier to understand. The code of assigment 1, inclusive imports, can as mentioned before be found on page ....
-\lstinputlisting[firstline=117,lastline=169]{./Code/assigment_1.py}
+The code for generating the two plots. The imports for this file are not explicit shown, but can be found on page \pageref{CODE:MAIN1}.
+\lstinputlisting[firstline=125,lastline=180]{./Code/assigment_1.py}
 \end{quote}
 \newpage
 
@@ -69,21 +68,18 @@ The code for generating the two plots.The imports for this file are not explicit
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=12cm, height=7.5cm]{./Plots/1_plot_ks_test_self.pdf}
-\caption{The P-value produced by the KS-test against the number of samples on which the KS-test is performed for the self written RNG. The red line indicates the line of $ p = 0.05$. A point \textbf{below} thered  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the RNG always passes ks-test up to atleast $10^5$ samples.}
+\caption{The P-value produced by the KS-test against the number of samples on which the KS-test is performed for the self written RNG. The red line indicates the line of $ p = 0.05$. A point \textbf{below} the line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the RNG always passes KS-test up to atleast $10^5$ samples. The p-value  does however appear to drop for a large number of samples and might even drop further when more samples are used. The drop suggests again that the RNG is likely not perfect.}
 \end{figure}
 
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=12cm, height=7.5cm]{./Plots/1_plot_ks_test_self_scipy.pdf}
-\caption{The P-value produced by the KS-test against the number of samples on which the KS-test is performed for the self written RNG. The red line indicates the line of $ p = 0.05$. The orange line is the self written implementation of the KS-test and the blue line is the scipy version.  A point \textbf{below} the red line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The self written ks-test is always close to the scipy version. It shows  (small) deviations for small sample sizes. The exact cause of this is unknown, but is likely the result of an approximation that scipy makes that the self written implementation doesn't make (This is not confirmed by looking at the scipy code.). }
+\caption{The P-value produced by the KS-test against the number of samples on which the KS-test is performed for the self written RNG. The red line indicates the line of $ p = 0.05$. The orange line is the self written implementation of the KS-test and the blue line is the scipy version.  A point \textbf{below} the red line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The self written KS-test is  close to the scipy version, but shows (small) deviations at small sample sizes (for example at $N_{samples} = 10$ or $N_{samples} = 200$).  The self written implementation always has the same shape as the scipy version, even at the deviations. The exact cause for the deviations are unknown, but are likely the result of an approximation that scipy makes that the self written implementation doesn't make. (This is not confirmed by looking at the scipy code.) }
 \end{figure}
+\end{quote}
 
 \end{quote}
 
-
-
-\end{quote}
-\newpage
 
 
 %\textbf{Code - output } 
@@ -104,7 +100,6 @@ The code for generating the two plots.The imports for this file are not explicit
 %The output produced by \textsf{/code/assigment1\_ a.py} 
 %\lstinputlisting{./output/assigment1_a_out.txt}
 %\end{quote}
-\newpage
 
 
 

@@ -31,13 +31,6 @@ class Random(object):
         self._mwc_a = np.uint64(4294957665)
         self._mwc_base = np.uint64(2**32)
 
-        #The values for the Linear congruential genrator
-        self._lgc_a = np.uint64(1664525)         
-        self._lgc_c = np.uint64(1013904223)
-        self._lgc_m = np.uint64(2**32)
-
-
-
     def get_seed(self):
         """ 
             Get the seed that is used to initialize this generator. 
@@ -152,15 +145,21 @@ class Random(object):
         # Array in which the drawn normal distributed variables are stored.
         normal_dist = np.zeros(elements)
 
-        # Apply the box muller transformation to generate the samples and return them.
+        # Apply the box muller transformation to generate the samples.
         for i in range(0, elements, 2):
+            
+            # Generate the uniforms.
             u1 = self.gen_uniform()
             u2 = self.gen_uniform()
+            
+            # Calculate common terms.
+            pre_fact = np.sqrt(square_pre_factor*np.log(1-u1))
 
-            normal_dist[i] = np.sqrt(square_pre_factor * np.log(1-u1))*np.cos(angle_pre_factor*u2) + mean
-            normal_dist[i+1] = np.sqrt(square_pre_factor * np.log(1-u1))*np.sin(angle_pre_factor*u2) + mean
+            # Calculate the samples.
+            normal_dist[i] = pre_fact*np.cos(angle_pre_factor*u2) + mean
+            normal_dist[i+1] = pre_fact*np.sin(angle_pre_factor*u2) + mean
        
-        # If amount is odd, don't return the last element
+        # If amount is odd, don't return the last element.
         return normal_dist[0:amount]
         
     def _update_state(self):
@@ -171,10 +170,7 @@ class Random(object):
             return: The new state of the random number generator.
         """
 
-        self._state = self._xor_shift(self._state) # & self._uint32_max))
-        # Mwc can take as input a 64 bit unsigned values between 0 < x < 2^32.
-        # To obtain this value we first perform the 'AND' operation with the current state
-        # to only keep the first 32 bits. The value is still a np.uint64 type after this operation.
+        self._state = self._xor_shift(self._state) 
         self._state = self._mwc(self._state & self._uint32_max) ^ self._state
 
         return self._state
@@ -209,11 +205,3 @@ class Random(object):
             return: The new number.
         """
         return self._mwc_a * (number & (self._uint32_max -np.uint64(1))) + (number >> np.uint64(32))
-
-    def _lcg(self, n):
-
-      #  print(n, self._lgc_a, self._lgc_c)
-      #  print(n*self._lgc_a + self._lgc_c)
-      #  print((n*self._lgc_a + self._lgc_c) % self._lgc_m)
-        """ Execute the linear congurential algorithm on the value 'n' """
-        return (self._lgc_a*n + self._lgc_c ) % self._lgc_m

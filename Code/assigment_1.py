@@ -9,9 +9,6 @@ import scipy.stats as sp_stats
 def main():
 
     # Initialize the random number generator.
-    #78322512
-    #78379512
-    #78379522
     rng = random.Random(78379522)
 
     # Run assigments
@@ -29,6 +26,13 @@ def assigment_1a(random):
         param: random -- An initialization of the random number generator.
     """
 
+    # The relevant imports for this piece of code are:
+
+    # (1) matplotlib.pyplot as plt
+    # (2) mathlib.random as random
+    # (3) mathlib.stats as ml_stats
+    # (3) numpy as np
+
     # Print the seed.
     print('[1.a] Initial seed: ', random.get_seed())
 
@@ -44,7 +48,7 @@ def assigment_1a(random):
 
     # Plot them against the index.
     plt.plot(range(0, 1000), numbers_1000)
-    plt.ylabel('Probability')
+    plt.ylabel('Probability p')
     plt.xlabel('Index')
     plt.savefig('./Plots/1_plot_index.pdf')
     plt.figure()
@@ -57,9 +61,8 @@ def assigment_1a(random):
     plt.savefig('./Plots/1_hist_uniformnes.pdf')
     plt.figure()
 
-    # Extra, to print the smallest and lagest bin value
-    counts, _ = np.histogram(numbers_mil, bins=20)
-    
+    # Extra, to print the smallest and lagest bin value.
+    counts, _ = np.histogram(numbers_mil, bins=20) 
     print('[1.a] Max counts: ', max(counts))
     print('[1.a] Min counts: ', min(counts))
 
@@ -70,6 +73,13 @@ def assigment_1b(random):
         param: random -- An instance of the random number generator.
     """
     
+    # The relevant imports for this piece of code are:
+
+    # (1) matplotlib.pyplot as plt
+    # (2) mathlib.random as random
+    # (3) mathlib.stats as ml_stats
+    # (4) numpy as np
+
     # Sigma and mean for the distribution.
     mean = 3.0
     sigma = 2.4
@@ -122,9 +132,8 @@ def assigment_1c(random):
     # The relevant imports for this piece of code are:
     # (1) matplotlib.pyplot as plt
     # (2) numpy as np
-    # (3) scipy.stats as sp_stats
-    # (4) mathlib.sorting as sorting
-    # (5) mathlib.statistics as ml_stats 
+    # (3) astropy.stats
+    # (4) mathlib.statistics as ml_stats 
 
     # The values to plot point for.
     plot_values = np.array(10**np.arange(1, 5.1, 0.1),dtype=int)
@@ -141,12 +150,15 @@ def assigment_1c(random):
     for idx, values in enumerate(plot_values):
 
         # Calculate the value with scipy. 
-        p_values_scipy[idx] = sp_stats.kstest(random_numbers[0:values], 'norm')[1]
-        p_values_self[idx] = ml_stats.kstest(random_numbers[0:values], ml_stats.normal_cdf)
+        p_values_scipy[idx] = sp_stats.kstest(random_numbers[0:values], 
+                                              'norm')[1]
+        # Calculate the p-values with the own implementation.
+        p_values_self[idx] = ml_stats.kstest(random_numbers[0:values],
+                                             ml_stats.normal_cdf)
 
 
-    # Plot the probabilities for only my own implementation
-    plt.plot(plot_values, p_values_self, label = 'self')
+    # Plot the probabilities for only my own implementation.
+    plt.plot(plot_values, p_values_self, label = 'self', color='orange')
     plt.hlines(0.05,0,10**5,colors='red',linestyles='--')
     plt.xscale('log')
     plt.xlabel(r'Log($N_{samples}$)')
@@ -155,9 +167,11 @@ def assigment_1c(random):
     plt.savefig('./Plots/1_plot_ks_test_self.pdf')
     plt.figure()
 
-    # Plot the probabilities for beeing consistent under the null hypothesies.
-    plt.plot(plot_values, p_values_scipy, label='scipy', linestyle=':', zorder=1.1)
-    plt.plot(plot_values, p_values_self, label='self',zorder=1.0)
+    # Plot the probabilities for both the scipy and my own implemntation.
+    plt.plot(plot_values, p_values_scipy, label='scipy', linestyle=':',
+                                                        zorder=1.1)
+    plt.plot(plot_values, p_values_self, label='self', zorder=1.0, 
+                                                        color='orange')
     plt.hlines(0.05,0,10**5,colors='red',linestyles='--')
     plt.xscale('log')
     plt.xlabel(r'Log($N_{samples}$)')
@@ -167,6 +181,17 @@ def assigment_1c(random):
     plt.figure()
 
 def assigment_1d(random):
+    """
+        Execute assigment 1.d
+    Int:
+        param: random -- An initialization of the random number generator.
+    """
+    
+    # The relevant imports for this piece of code are:
+    # (1) matplotlib.pyplot as plt
+    # (2) numpy as np
+    # (3) scipy.stats as sp_stats
+    # (4) mathlib.statistics as ml_stats 
 
     # The values to plot point for.
     plot_values = np.array(10**np.arange(1, 5.1, 0.1), dtype=int)
@@ -175,16 +200,18 @@ def assigment_1d(random):
     random_numbers = random.gen_normals(0, 1, int(1e5))
 
     # An array in which the p-values are stored for the self created
-    # ks-test and the scipy version.
+    # kuiper-test and the astropy version.
     p_values_self = np.zeros(len(plot_values))
     p_values_astropy = np.zeros(len(plot_values))
 
     # Calculate the p-values with the ks-test
     for idx, values in enumerate(plot_values):
 
-        # Calculate the value with both astropy and the own implemnetation
-        p_values_self[idx] = ml_stats.kuiper_test(random_numbers[0:values], ml_stats.normal_cdf) # discard distance
-        p_values_astropy[idx] = astropy.stats.kuiper(random_numbers[0:values], ml_stats.normal_cdf)[1] # stats.kuper_test(random_numbers,  stats.normal_cdf) #scipy_stats.norm.cdf)
+        # Calculate the value with the own implemnetation
+        p_values_self[idx] = ml_stats.kuiper_test(random_numbers[0:values], ml_stats.normal_cdf) 
+        # Calculare the value with astropy. 
+        p_values_astropy[idx] = astropy.stats.kuiper(random_numbers[0:values],
+                                                     ml_stats.normal_cdf)[1] 
 
     # Plot the probabilities for only my own implementation
     plt.plot(plot_values, p_values_self, label = 'self')
@@ -200,15 +227,26 @@ def assigment_1d(random):
     plt.plot(plot_values, p_values_astropy, label='astropy', linestyle=':', zorder=1.1)
     plt.plot(plot_values, p_values_self, label='self',zorder=1.0)
     plt.hlines(0.05,0,10**5,colors='red',linestyles='--')
-
-    plt.xlabel(r'Log($N_{samples}$) [dex]')
-    plt.ylabel('Probability')
     plt.xscale('log')
+
+    plt.xlabel(r'Log($N_{samples}$)')
+    plt.ylabel('Probabillity (p-value)')
     plt.legend()
     plt.savefig('./Plots/1_plot_kuiper_test_self_astropy.pdf')
     plt.figure()
 
 def assigment_1e(random):
+    """
+        Execute assigment 1.e
+    Int:
+        param: random -- An initialization of the random number generator.
+    """
+    
+    # The relevant imports for this piece of code are:
+    # (1) matplotlib.pyplot as plt
+    # (2) numpy as np
+    # (3) scipy.stats as sp_stats
+    # (4) mathlib.statistics as ml_stats 
 
     # Load the data.
     data = np.loadtxt('randomnumbers.txt')
@@ -219,35 +257,34 @@ def assigment_1e(random):
     # The values to plot point for.
     plot_values = np.array(10**np.arange(1, 5.1, 0.1), dtype=int)
 
-    # Generate the sorted random numbers
-    random_numbers_sorted = list()
+    # Pre-sort the random numbers
+    random_nums_sorted = list()
 
     for idx, values in enumerate(plot_values):
-        random_numbers_sorted.append(sorting.merge_sort(random_numbers[0:values]))
+        random_nums_sorted.append(sorting.merge_sort(random_numbers[0:values]))
 
 
-    # Go over the columns and perform the KS-test 2
+    # Go over the columns and perform the KS-test2
     for i in range(data.shape[1]):
 
         # An array in which the p-values are stored for the self created
         # ks-test2 and the scipy version.
         p_values_self = np.zeros(len(plot_values))
-        p_values_scipy = np.zeros(len(plot_values))
 
         # Calculate the p-values with the ks-test2
         for idx, values in enumerate(plot_values):
 
-            # Calculate the value with both astropy and the own implemnetation
-            p_values_self[idx] = ml_stats.kstest2(data[:,i][0:values],random_numbers[0:values], random_numbers_sorted[idx]) 
-            p_values_scipy[idx] = sp_stats.ks_2samp(data[:,i][0:values], random_numbers[0:values])[1] # stats.kuper_test(random_numbers,  stats.normal_cdf) #scipy_stats.norm.cdf)
+            # Perform the ks-test2 with the own implementation.
+            p_values_self[idx] = ml_stats.kstest2(data[:,i][0:values], 
+                                                  random_numbers[0:values], 
+                                                  random_nums_sorted[idx])
 
-        # Plot the probabiliteis for beeing consistent under the null hypothesies, thus p-values
-        plt.plot(plot_values, p_values_self, label = 'self')
-        plt.plot(plot_values, p_values_scipy, label='scipy')
+        # Plot the p-values.
+        plt.plot(plot_values, p_values_self, label = 'self',color = 'orange')
         plt.hlines(0.05,0,10**5,colors='red',linestyles='--')
 
-        plt.xlabel(r'Log($N_{samples}$) [dex]')
-        plt.ylabel('Probability')
+        plt.xlabel(r'Log($N_{samples}$)')
+        plt.ylabel('Probabillity (p-value)')
         plt.xscale('log')
         plt.legend()
         plt.savefig("./Plots/1e_plot_column_{0}.pdf".format(i))

@@ -1,39 +1,99 @@
 
-\subsection*{\textbf{Question 1.e}}
+\subsection*{\textbf{Question 1.e)}}
 \begin{quote}
 
 \textbf{Problem}
 \begin{quote}
-Download the dataset. The dataset contains 10 sets of random numbers. Compare these 10 sets with your Gaussian pseudo random numbers and make the plot of the probabilities as in either of the previous two exercises (your choice). Which random number arrays is/are consistent with a Gaussian random numbers with $\sigma = 1$ and $\mu 0$
+Download the dataset. The dataset contains 10 sets of random numbers. Compare these 10 sets with your Gaussian pseudo random numbers and make the plot of the probabilities as in either of the previous two exercises (your choice). Which random number arrays is/are consistent with a Gaussian random numbers with $\sigma = 1$ and $\mu = 0$
 \end{quote}
 
 \textbf{Solution} 
 \begin{quote}
-The distirbutions are compared with the ks-test2. The 
+The distributions are compared by performing the ks-test2. The random numbers are generated once and presorted to save computation time by performing the ks-test2 10 times. The code that contains the implementation of the ks-test2 can be found on page \pageref{CODE:Statistics}.  The code that generates the plots and the generated plots can be found below.
+\\
+The plots show that there is only one column which might be\footnote{A p-value only shows statistical evidence against the null hypothesis, it isn't a measure of how good the null hypothesis is.} a normal distribution with $\sigma = 1$ and $\mu = 0$. This is column 3 (figure ...). In all other plots the p-value drops and stays below $ p = 0.05$ when including all samples, which indicates that their is enough statistical evidence to reject the hypothesis that they follow a normal distribution with $\sigma = 1$ and $\mu = 0$. 
 
 \end{quote}
+\newpage
 
 \textbf{Code - Plots}
 
 \begin{quote}
-The code for generating the two plots in which the kuiper test is performed. The imports are not explicit shown but can be shown on page ..., where the code of the full assignment is displayed. The comments give an overview of the imports used. 
-\lstinputlisting[firstline=167,lastline=197]{./Code/assigment_1.py}
+The code for generating the 10 plots. 
+\lstinputlisting[firstline=237,lastline=290]{./Code/assigment_1.py}
 \end{quote}
+\newpage
+
 
 \textbf{Code - Output plot(s)}
 \begin{quote}
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=12cm, height=7.5cm]{./Plots/1_plot_kuiper_test_self.pdf}
-\caption{The P-value produced by the kuiper test against the number of samples on which the kuiper-test is performed for the self written RNG. The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the RNG always passes kuiper test. IT can however be seen that the value of the statistic stays lower for a significant amount of samples ($ N_{samples} > 10^4$). This might indicate that there is flaw in the random number generator.}
+\includegraphics[width=12cm, height=7.5cm]{./Plots/1e_plot_column_0.pdf}
+\caption{The P-value produced by performing the KS-test2 for a normal distribution with $\mu = 0$ and $\sigma = 1$ on the \textbf{first} column.  The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the p-value drops below 0.05 when including all samples. There is thus enough statistical evidence to reject the hypothesis that this column is normal distributed with $\mu = 0$ and $\sigma = 1$.}
 \end{figure}
 
-\begin{figure}[!hb]
+\begin{figure}[!ht]
 \centering
-\includegraphics[width=12cm, height=7.5cm]{./Plots/1_plot_kuiper_test_self_astropy.pdf}
-\caption{The P-value produced by the kuiper test against the number of samples on which the kuiper-test is performed for the self written RNG. The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the self written implementation deviates from the astropy implementation at the start, similar to what happend in the KS-test.   }
+\includegraphics[width=12cm, height=7.5cm]{./Plots/1e_plot_column_1.pdf}
+\caption{The P-value produced by performing the KS-test2 for a normal distribution with $\mu = 0$ and $\sigma = 1$ on the \textbf{second} column.  The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the p-value drops below 0.05 when including all samples. There is thus enough statistical evidence to reject the hypothesis that this column is normal distributed with $\mu = 0$ and $\sigma = 1$.}
+\end{figure}
+\newpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=12cm, height=7.5cm]{./Plots/1e_plot_column_2.pdf}
+\caption{The P-value produced by performing the KS-test2 for a normal distribution with $\mu = 0$ and $\sigma = 1$ on the \textbf{third} column.  The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the p-value drops below 0.05 when including all samples. There is thus enough statistical evidence to reject the hypothesis that this column is normal distributed with $\mu = 0$ and $\sigma = 1$.}
 \end{figure}
 
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=12cm, height=7.5cm]{./Plots/1e_plot_column_3.pdf}
+\caption{The P-value produced by performing the KS-test2 for a normal distribution with $\mu = 0$ and $\sigma = 1$ on the \textbf{forth} column.  The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the p-value drops below 0.05 only between $500-1000$ samples. In all other cases it passes the ks-test. }
+\end{figure}
+\newpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=12cm, height=7.5cm]{./Plots/1e_plot_column_4.pdf}
+\caption{The P-value produced by performing the KS-test2 for a normal distribution with $\mu = 0$ and $\sigma = 1$ on the \textbf{fifth} column.  The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the p-value drops below 0.05 when including all samples. There is thus enough statistical evidence to reject the hypothesis that this column is normal distributed with $\mu = 0$ and $\sigma = 1$.}
+\end{figure}
+
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=12cm, height=7.5cm]{./Plots/1e_plot_column_5.pdf}
+\caption{The P-value produced by performing the KS-test2 for a normal distribution with $\mu = 0$ and $\sigma = 1$ on the \textbf{sixth} column.  The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the p-value drops below 0.05 and stays there when including halve of the samples.  There is thus enough statistical evidence to reject the hypothesis that this column is normal distributed with $\mu = 0$ and $\sigma = 1$.}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=12cm, height=7.5cm]{./Plots/1e_plot_column_6.pdf}
+\caption{The P-value produced by performing the KS-test2 for a normal distribution with $\mu = 0$ and $\sigma = 1$ on the \textbf{seventh} column.  The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the p-value drops below 0.05 when including all samples. There is thus enough statistical evidence to reject the hypothesis that this column is normal distributed with $\mu = 0$ and $\sigma = 1$.}
+\end{figure}
+
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=12cm, height=7.5cm]{./Plots/1e_plot_column_7.pdf}
+\caption{The P-value produced by performing the KS-test2 for a normal distribution with $\mu = 0$ and $\sigma = 1$ on the \textbf{eight} column.  The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the p-value drops below 0.05 when including all samples. There is thus enough statistical evidence to reject the hypothesis that this column is normal distributed with $\mu = 0$ and $\sigma = 1$.}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=12cm, height=7.5cm]{./Plots/1e_plot_column_8.pdf}
+\caption{The P-value produced by performing the KS-test2 for a normal distribution with $\mu = 0$ and $\sigma = 1$ on the \textbf{ninth} column.  The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the p-value drops below 0.05 when including all samples. There is thus enough statistical evidence to reject the hypothesis that this column is normal distributed with $\mu = 0$ and $\sigma = 1$.}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=12cm, height=7.5cm]{./Plots/1e_plot_column_9.pdf}
+\caption{The P-value produced by performing the KS-test2 for a normal distribution with $\mu = 0$ and $\sigma = 1$ on the \textbf{tenth} column.  The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the p-value drops below 0.05 when including all samples. There is thus enough statistical evidence to reject the hypothesis that this column is normal distributed with $\mu = 0$ and $\sigma = 1$.}
+\end{figure}
 \end{quote}
 
 
