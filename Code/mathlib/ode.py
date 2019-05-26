@@ -61,7 +61,9 @@ def runge_kutta_54(func, y0, t_start, t_stop, t_step, atol=1e-6, rtol=1e-3):
         # Get the value found at the previous step
         previous = ret[steps-1]     
 
-        # Calculate the constants for the runge kutta method. TODO exact name 
+        # Calculate the constants for the Dormand Prince Runge kutta method.
+
+        # Appoligies if this looks ugly in the report.
         k1 = t_step*func(previous, t_now)            
         k2 = t_step*func(previous + (1/5)*k1, t_now + (1/5)*t_step)
         k3 = t_step*func(previous + (3/40)*k1 + (9/40)*k2, t_now + (3/10)*t_step)

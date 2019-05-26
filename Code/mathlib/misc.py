@@ -1,6 +1,4 @@
 import numpy as np
-import mathlib.random as rnd
-
 
 def gen_wavenumbers(size, min_distance):
     """
@@ -9,9 +7,9 @@ def gen_wavenumbers(size, min_distance):
     In:
         param: size -- The size of the matrix.
         param: min_distance -- The distance of a cell/ the sample spacing.
-    
+    Out:
+        return: An array with shifted wave numbers.
     """
-
     # Array to return.
     ret = np.zeros(size)
 
@@ -27,115 +25,85 @@ def gen_wavenumbers(size, min_distance):
     return (ret/(size*min_distance))*2*np.pi
 
 
-def generate_matrix(size, min_distance, func, random_numbers, power):
-
+def generate_matrix_2D(size, min_distance, func, random_numbers, power):
+    """
+        Generate a 2D matrix with complex numbers in 
+        shifted fourier coordinates using the power spectrum
+    In:
+        param: size -- The size of the matrix (size x size).
+        param: min_distance -- The physical size of 1 cell.
+        param: func -- A functiion that takes the power and to random uniform
+                      variables to calculate the correct complex number.
+        param: random_numbers -- An array with random uniform numbers. 
+                                 Must be of atleast size: size x size x 2.
+        param: power -- The power of the power spectrum to create the matrix for.
+    Out:
+        return: A 2D matrix with complex numbers assigned by the power spectrum
+                in fourier shifted coordinates.
+    """
+    
+    # Generate the shifted wavenumbers
     wavenumber = gen_wavenumbers(size,min_distance)
-    steps = 0
+    # The matrix to return
     ret = np.zeros((size,size),dtype=complex)
 
+    # A counter for the random uniform variables.
+    steps = 0
+
+    # Fill the matrix
     for i in range(size):
         for j in range(size):
 
+            # Element of k_0,k_0 is left zero.
             if i == 0 and j == 0:
                 continue
             
+            # Calculate the magnitude of the wavenumbers.
             k = np.sqrt(wavenumber[i]**2 + wavenumber[j]**2)
-             
-            ret[i][j] = func(k, power, random_numbers[steps], random_numbers[steps+1])
+            # Fill the matrix.
+            ret[i][j] = func(k, power, 
+                            random_numbers[steps], random_numbers[steps+1])
             steps += 2
 
+    # Return the matrix
     return ret
 
-def generate_hermitian_fs_2D(size, min_distance, func, random_numbers,power = 2):
+def make_hermitian2D(matrix):
     """
-        Generate a hermitan matrix in shifted fourier space.
+        Give a matrix in shifted fourier coordinates
+        the correct hermitian symmetry so that the ifft is real.
     In:
-        param: size -- The size of the matrix.
-        param: min_distance -- The sample spacing.
-        param: func -- A function that given the magnitude of 
-                       the k-vector produces a complex number that
-                       is placed inside the matrix.
-        param: power -- The power to use for the power law.
-        param: random_numers -- An optional array with random numbers.
+        param: matrix -- The matrix to give the correct symmetry.
     Out:
-        return: A hemritian symmetric matrix in shifted fourier coordinates
-    """           
+        return: A matrix with the correct hermitan symmetry so that the 
+                ifft is real.
+    """
 
-    # The matrix to return.
-    matrix = np.zeros((size,size),dtype=complex)
-
-    # Create the wave numbers for fourier shifted coordinates.
-    wave_numbers = gen_wavenumbers(size, min_distance)
-
-    # Counter for random numbers
-    random_num_counter = 0
-
-    # Create the matrix
-    for row in range(1, int(size/2)+1):
-
-        # Determine the k-value for the edges and the complex number
-        k = np.sqrt(wave_numbers[row]**2)
-        z = func(k,power, random_numbers[random_num_counter],random_numbers[random_num_counter+1])
-        random_num_counter+= 2
-       
-        # Set the value for the first row and column
-        matrix[size-row, 0] = z
-        matrix[0, size-row] = z
-
-        # Make sure the first row and first colum have the correct symmetry
-        matrix[row, 0] = complex(z.real, -z.imag)
-        matrix[0, row] = complex(z.real, -z.imag)
-        
-        # Go over the inner matrix and make sure that it has the right symmetry
-        for column in range(1, size):
-
-            # Find the value of k and create the complex number
-            k = np.sqrt(wave_numbers[row]**2 + wave_numbers[column]**2)
-            z = func(k, power,random_numbers[random_num_counter],random_numbers[random_num_counter+1])
-            random_num_counter += 2
-            
-            # Set the complex value in the inner matrix and make sure that the symmetry is correct.
-            matrix[size - row, size -column] = z
-            matrix[row,column] = complex(z.real, -z.imag)
-
-    # If the matrix is even, set the imaginary part of the columns correpsonding with a niquest
-    # wavenumber to zero.
-    if size % 2 == 0:
-        for i in range(0,size):
-            matrix[int(size/2),i] = matrix[int(size/2),i].real + 0J
-            matrix[i,int(size/2)] = matrix[i,int(size/2)].real + 0J
-
-    return matrix
-
-
-def make_hessian2D(matrix):
-
+    # The size of the matrix
     size = matrix.shape[0]
 
+    # Loop over the rows
     for row in range(1, int(size/2) +1):
         
-        # First row and first column, points (1) and (2)
-        # correct first column, point (2)
-        matrix[row,0] = complex(matrix[size-row,0].real, - matrix[size-row,0].imag)
-        # current first row, point (1)
-        matrix[0, row] = complex(matrix[0, size-row].real,- matrix[0,size- row].imag)
+        # Give the first column (index 0) has the correct symmetry (see report point A)
+        matrix[row,0] = complex(matrix[size-row,0].real,
+                              - matrix[size-row,0].imag)
+        # Give the first row (index 0) the correct symmetry (see report point B)
+        matrix[0, row] = complex(matrix[0, size-row].real,
+                             - matrix[0,size- row].imag)
 
-        # inner matrix (point 3)
+        # Give the inner matrix the correct symmetry (see report point C)
         for column in range(1, size):
-            # point (3)
-            matrix[row, column] = complex(matrix[size-row, size-column].real, -matrix[size-row, size-column].imag)
-            
-    # point 4
+            matrix[row, column] = complex(matrix[size-row, size-column].real,
+                                         -matrix[size-row, size-column].imag)
+    
+    # Corrections for even matrix
     if size % 2 == 0:
-        for i in range(0,size):
-            if i == 0 or i == int(size/2):
-                matrix[int(size/2),i] = matrix[int(size/2),i].real + 0J
-                matrix[i,int(size/2)] = matrix[i,int(size/2)].real + 0J
-            else:
-                matrix[int(size/2),i] = complex(matrix[int(size/2),i].real, - matrix[int(size/2),i].imag)
-                matrix[i,int(size/2)] = complex(matrix[i,int(size/2)].real, - matrix[int(size/2),i].imag)
-                
-
+        matrix[int(size/2), 0] = matrix[int(size/2), 0].real + 0J
+        matrix[0, int(size/2)] = matrix[0, int(size/2)].real + 0J
+        matrix[int(size/2), int(size/2)] = matrix[int(size/2), int(size/2)].real + 0J
+                 
+    # Return the matrix.
     return matrix
 
 

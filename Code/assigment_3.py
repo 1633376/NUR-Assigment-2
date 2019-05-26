@@ -35,10 +35,14 @@ def main():
         analytical = lambda t: c1*t**(2/3)+ c2*t**(-1)
 
         # The numerical solutions.
-        sol_num, time = ml_ode.runge_kutta_54(_linear_density_growth, initial_cond, t_start, t_stop, t_step, 1e-6, 1e-3)
+        sol_num, time = ml_ode.runge_kutta_54(_linear_density_growth,
+                                               initial_cond,
+                                               t_start, t_stop, t_step,
+                                               1e-6, 1e-3)
        
         # Plot the analytical and numeric solution.
-        plt.plot(t_plot, analytical(t_plot), label='Analytical', linestyle=':', zorder=0.1)
+        plt.plot(t_plot, analytical(t_plot), label='Analytical',
+                             linestyle=':', zorder=0.1)
         plt.plot(time, sol_num[:,0], label='Numeric',zorder=0)
         plt.xlabel('Time [year]')
         plt.ylabel('D(t)')
