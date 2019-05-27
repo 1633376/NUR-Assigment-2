@@ -7,7 +7,6 @@ import numpy as np
 import scipy.stats as sp_stats
 
 def main():
-
     # Initialize the random number generator.
     rng = random.Random(78379522)
 
@@ -110,12 +109,12 @@ def assigment_1b(random):
         # Sigma right of the mean.
         plt.vlines(mean + shift, 0, lines_height, 
                     linestyles='-', color='black', zorder=0.0)
-        plt.text(mean + shift-0.4, lines_height/1.3, str(i) + r'$\sigma$',
+        plt.text(mean + shift-0.4, lines_height/1.2, str(i) + r'$\sigma$',
                 color='black', backgroundcolor='white', fontsize=9)
 
         # Sigma line left of the mean.
         plt.vlines(mean - shift, 0, lines_height, linestyles='-', zorder=0.0)  
-        plt.text(mean - shift -0.4, lines_height/1.3, str(i) + r'$\sigma$',
+        plt.text(mean - shift -0.4, lines_height/1.2, str(i) + r'$\sigma$',
                             color='black', backgroundcolor='white', fontsize=9)
  
     plt.legend(framealpha=1.0)

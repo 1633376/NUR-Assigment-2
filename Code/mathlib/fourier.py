@@ -20,7 +20,8 @@ def fft(data):
     
     # The FFT of 1 element is the element self.
     if n == 1:
-        return data
+        ret[0] = data[0]
+        return ret
 
     # Perform the FFT on the even indices and
     # odd indices.
@@ -45,46 +46,42 @@ def fft(data):
     return ret
 
 
-
-
-def set_bits(number, b1, one):
+def fft2(data):
     """
-        Set a specific bit of a n umber (starting) at one
-    """
+        Calculate the 2D fourier transformation.
+    In:
+        param: data -- The data to fourier transform
+    Out:
 
-    # Set the bit by b2 at the value of b2.
-    if one == 1: # put it at 1
-        number |= ( 1 << b1)
-    else: # put it at 0
-        number &= ~(1 << b1)
-
-    return number
-
-def get_bit(number,b1):
-    """
-        Get the value of as pecific bit starting at 0
     """
 
-    return (number & (1 << b1-1)) != 0
+    for i in range(data.shape[0]):
+        #kx_0,ky_0, kx_0,ky_1, kx_0,ky_2, kx_0,ky_3
+        data[i] = fft(data[i])      
+    
+    # now perform it over the rows (x direction)
+    for i in range(data.shape[0]):
+        #kx_0,ky_0, kx_1,ky_0, kx_2,ky_0, (store in column)
+        data[:,i] = fft(data[:,i])
+        
+    return data
 
-
-def reverse2(number,bits):
-   return int('{:0{bits}b}').format(number, bits)[::-1], 2)
-
-
-import matplotlib.pyplot as plt
-import scipy.fftpack
-
-x = np.arange(0,64) #linspace(0,4,16)
-y = np.sin(x)
-z = np.zeros(64,dtype=int)
-bits = int(np.log2(max(x)))+1
-
-for i in x:
-    z[i] = reverse2(i,bits)
-
-
-plt.plot(x,abs(scipy.fftpack.rfft(y)),label='np')
-plt.plot(x,abs(FFT(np.array(y,dtype=complex))),label='self')
-plt.legend()
-plt.show()
+def fft3(data):
+    """
+        Perform the 3 dimensionale fourier transform
+    In:
+        param: -- The data to fourier transform
+    Out:
+        return: The 3D fourier transform of the data.
+    """
+    
+    # First fourier transform the planes
+    for i in range(data.shape[0]):
+        data[i,:,:] = fft2(data[i,:,:])
+    
+    # Finally fourier transform the last axis.
+    for i in range(data.shape[2]):
+        for j in range(data.shape[1]):
+            data[:,i,j] = fft(data[:,i,j])
+            
+    return data

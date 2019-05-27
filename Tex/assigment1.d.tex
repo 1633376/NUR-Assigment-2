@@ -14,16 +14,16 @@ The implementation of the Kuiper test does require a numerical approximation of 
 P_{kuiper}( \lambda) =  1 - 2  \sum_{j=1}^{\infty} (4j^2 \lambda^2-1) e^{-2j^2 \lambda^2 }
 \end{equation}
 
-The sum is in the above expression negligible compared to the machine error if $\lambda < 0.4$. In this case the numerically approximation thus consist of returning 1.  If $\lambda > 0.4$ then the sum is approximated by calculating the first 100 terms of the sum. This should be more than enough for the sum to converge. \footnote{In theory less terms are enough. The evaluation of the sum could therefore stop early by checking for a required precision. } 
+The sum is in the above expression negligible compared to the machine error if $\lambda < 0.4$. In this case the numerically approximation thus consist of returning 1.  If $\lambda > 0.4$ then the sum is approximated by calculating the first 100 terms of the sum. This should be more than enough for the sum to converge. \footnote{Actually, less terms are enough. The evaluation of the sum could therefore stop early by checking for a required precision. } 
 
-The kuiper test and the CDF are implemented in the shared module \texttt{./Code/mathlib/statistics.py} on page \pageref{CODE:Statistics}. The code that creates the plots and the plots can be found below.  The code does make use of \textbf{astropy} to compare the self written implementation of the Kuiper-test with the implementation of astropy. 
+The Kuiper-test and the CDF are implemented in the shared module \texttt{./Code/mathlib/statistics.py} that can be found on page 22. The code that creates the plots and the plots can be found below.  The code does make use of \textbf{astropy} to compare the self written implementation of the Kuiper-test with the implementation of astropy. 
 \end{quote}
 
 \textbf{Code - Plots}
 
 \begin{quote}
 The code for generating the two plots. The imports are not explicit shown but can be shown on page \pageref{CODE:MAIN1}. 
-\lstinputlisting[firstline=183,lastline=236]{./Code/assigment_1.py}
+\lstinputlisting[firstline=182,lastline=235]{./Code/assigment_1.py}
 \end{quote}
 
 \textbf{Code - Output plot(s)}
@@ -31,7 +31,7 @@ The code for generating the two plots. The imports are not explicit shown but ca
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=12cm, height=7.5cm]{./Plots/1_plot_kuiper_test_self.pdf}
-\caption{The P-value produced by the kuiper test against the number of samples on which the kuiper-test is performed for the self written RNG. The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the RNG always passes kuiper test. It can however be seen that the p-value stays lower for larger sample size, similar as with the KS-test.}
+\caption{The P-value produced by the Kuiper-test against the number of samples on which the kuiper-test is performed for the self written RNG. The red line indicates the line of $ p = 0.05$. A point \textbf{below} there  line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The plot shows that the RNG always passes Kuiper test. It can however be seen that the p-value drops for larger sample size, similar as what happens by the KS-test. This might, as mentioned before, indicate that there is an flaw in the random number generator.}
 \end{figure}
 \newpage
 \begin{figure}[!hb]

@@ -11,7 +11,7 @@
 
 
 \begin{quote}
-The solution consists of deriving the  transformation of two i.i.d uniform variables to two i.i.d normal distributed variables with the Box-Muller method. A brief form of the derivation can be found below. The final transformation, equation \ref{EQ:boxmuller}, is  implemented in the random number generator and used to generate the plot. The final histogram is created with 20 bins and can be found on page \pageref{fig:normal}.
+The solution consists of deriving the  transformation of two i.i.d uniform variables to two i.i.d normal distributed variables with the Box-Muller method. A brief version of the derivation can be found below. The final transformation, equation \ref{EQ:boxmuller}, is  implemented in the random number generator and used to generate the plot. The final histogram is created with 20 bins and can be found on page \pageref{fig:normal}.
 \\
 
 
@@ -49,7 +49,7 @@ r_1 &=  \sqrt{-2\sigma^2 \ln(1 - u_1)} \\
 \theta_1 &= 2 \pi u_2
 \end{align}
 
-Converting back to Cartesian coordinates then yields the transformation from two i.i.d uniform distributed variables to two i.i.d Gaussian distributed variables;
+Converting back to Cartesian coordinates  yields the transformation from two i.i.d uniform distributed variables to two i.i.d Gaussian distributed variables;
 \begin{align}
 x_1 &= r\cos(\theta) + \mu = \sqrt{-2\sigma^2 \ln(1 - u_1)} \cos( 2 \pi u_2 ) + \mu \\
 y_1 &= r\sin(\theta) + \mu = \sqrt{-2\sigma^2 \ln(1 - u_1)} \sin( 2 \pi u_2 ) + \mu
@@ -57,7 +57,7 @@ y_1 &= r\sin(\theta) + \mu = \sqrt{-2\sigma^2 \ln(1 - u_1)} \sin( 2 \pi u_2 ) + 
 \end{align}
 \\
 \\
-These transformation are implemented in  the random number generator (see page \pageref{CODE:RNG}) on line 130.  The code for the generation of the plot and the created plot can be found below. The code that generates the plot makes besides the RNG use of a function for the normal distribution in the file \texttt{./Code/mathlib/statistics.py}. This file is treated as a shared module and can be found on page \pageref{CODE:Statistics}. The called function, \texttt{normal}, can be found on line 214 in this file.
+These above transformation are implemented in  the random number generator (see page \pageref{CODE:RNG}).  The code for the generation of the plot and the created plot can be found below. The code that generates the plot makes besides the RNG use of a function for the normal distribution in the file \texttt{./Code/mathlib/statistics.py}. This file is treated as a shared module and can be found on page \pageref{CODE:Statistics}. The called function, \texttt{normal}, can be found on line 227 in this file.
 
 
 \end{quote}
@@ -65,22 +65,22 @@ These transformation are implemented in  the random number generator (see page \
 \textbf{Code - Plots}
 
 \begin{quote}
-The code for generating the plots. The imports are again not explicit shown, but can be found on page \pageref{CODE:MAIN1}. The shared modules can be found on pages \pageref{CODE:RNG} and \pageref{CODE:Statistics}. 
+The code for generating the plots. The imports are again not explicit shown, but can be found on page \pageref{CODE:MAIN1}. The shared modules can be found on pages \pageref{CODE:RNG} and 22. 
 
 
-\lstinputlisting[firstline=69,lastline=115]{./Code/assigment_1.py}
+\lstinputlisting[firstline=68,lastline=122]{./Code/assigment_1.py}
 \end{quote}
 
 
 \textbf{Code - Output plot(s)}
+\vspace*{-0.5cm}
 \begin{quote}
-\begin{figure}[!ht]
+\begin{figure}[!hb]
 \centering
-\includegraphics[width=13cm, height=8.5cm]{./Plots/1_hist_gaussian.pdf}
-\caption{A histogram of the 1000 random nomal distributed variables generated with the box muller method for $\mu = 3$ and $\sigma = 2.4$  (orange). The red line is the true normal distribution for these values of $\mu$ and $\sigma$.  The histogram appears to approximate the distribution quite well, but displays small deviations. The bin left of the peak (the highest bin) is larger than it should be and the first two bins right of the peak appear to respectively lack counts and have to many counts.  By eye the histogram appears to be acceptable. A statistical test is of course better to determine whether the histogram would truly be acceptable or not.}
+\includegraphics[width=13cm, height=7.0cm]{./Plots/1_hist_gaussian.pdf}
+\caption{A histogram of the 1000 random normal distributed variables generated with the box muller method for $\mu = 3$ and $\sigma = 2.4$  (orange). The red line is the true normal distribution.  The histogram appears to approximate the distribution quite well, but displays small deviations. The bin left of the peak (the highest bin) is larger than it should be. The first bins right of the peak is smaller than it should be and the second bin right of the peak is to high.  The histogram does however still appear to be acceptable by eye. A statistical test is of course better to determine whether the histogram would truly be acceptable or not.}
 \label{fig:normal}
 \end{figure}
-
 \end{quote}
 \end{quote}
 
@@ -102,7 +102,6 @@ The code for generating the plots. The imports are again not explicit shown, but
 %The output produced by \textsf{/code/assigment1\_ a.py} 
 %\lstinputlisting{./output/assigment1_a_out.txt}
 %\end{quote}
-\newpage
 
 
 

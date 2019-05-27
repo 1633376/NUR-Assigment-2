@@ -1,0 +1,42 @@
+
+\subsection*{\textbf{Question 4.b}}
+\begin{quote}
+
+\textbf{Problem}
+\begin{quote} 
+Use your result from the previous question to analytically calculate for $a = 1/51$,
+\begin{equation}
+\dot{D(t)} = \frac{dD(a)}{da}\dot{da}
+\end{equation}
+\end{quote}
+
+\textbf{Solution} 
+\begin{quote}
+Let $C = \int_{0}^{a'} \frac{a'^{-3}}{\left( \Omega_m a'^{-3} + \Omega_{\Lambda} \right)^{3/2}} da'$. The derivative can then by plugin in \ref{EQ:Stuffffff} be written as,
+
+\begin{align}
+\dot{D}(t) &= \frac{5 \Omega_m}{2} \left( \frac{-3 \Omega_m a^{-4}}{2} \left(\Omega_m a^{-3} + \Omega_{\Lambda} \right)^{-0.5}C + \left(\Omega_m a^{-3} + \Omega_{\Lambda} \right)^{0.5} \frac{a^{-3}}{\left( \Omega_m a^{-3} + \Omega_{\Lambda} \right)^{3/2} }  \right) \dot{a} \\
+&= \frac{5 \Omega_m}{2} \left( \frac{-3 \Omega_m a^{-4}}{2 \left(\Omega_m a^{-3} + \Omega_{\Lambda} \right)^{0.5}}C + \frac{a^{-3}}{\left( \Omega_m a^{-3} + \Omega_{\Lambda} \right)} \right) \dot{a}
+\end{align}
+
+Substituting $\dot{a} = H(a)a(t) = H_0 \left(\Omega_m a^{-3}  + \Omega_{\Lambda} \right)^{0.5}a(t)$ results in,
+
+\begin{align}
+\dot{D} &= \frac{5 \Omega_m H_0}{2} \left( \frac{-3 \Omega_m a^{-3}}{2}C + \frac{a^{-2}}{\left( \Omega_m a^{-3} + \Omega_{\Lambda} \right)^{0.5}}  \right)  \\
+&= \frac{5 \Omega_m H_0}{2 a^2} \left( \frac{1}{\left(\Omega_m a^{-3} + \Omega_{\Lambda} \right)^{0.5}} - \frac{3\Omega_m}{2a} C \right)
+\end{align}
+
+Plugin in the above expression with $ C = 0.00013$ (see previous question), $\Omega_{m} = 0.3$, $\Omega_{\Lambda} = 0.7$, $a = 1/51$ and $H_0 = 7.16 \times 10^{-11} $ yr$^{-1}$ gives,
+\begin{equation}
+\dot{D} = 2.8 \times 10^{-7} \text{yr}^{-1}
+\end{equation}
+
+\end{quote}
+
+\textbf{Code}
+\end{quote}
+
+
+
+
+

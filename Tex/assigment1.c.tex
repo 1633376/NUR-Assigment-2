@@ -1,5 +1,5 @@
 
-\subsection*{\textbf{Question 1.c}}
+\subsection*{\textbf{Question 1.c)}}
 \begin{quote}
 
 \textbf{Problem}
@@ -19,7 +19,8 @@ The p-value produced by the KS-tests requires the evaluation of the CDF for the 
 P_{KS}(z) = \frac{2\sqrt{\pi}}{z} \sum_{j=1}^{\infty} \exp\left(- \frac{(2j-1)^2+\pi^2}{8z^2} \right)
 \end{equation}
 
-This infinite sum needs to be numerically approximated in order to perform the KS-test. The chosen approximation in the implementation of the KS-test for  the sum is taken from the book \textit{Numerical Recipes - The art of Scientific Computation, 3d edition}, %... who states that the sum can be approximated by, % approximation can according to .. be approximated by, 
+This infinite sum needs to be numerically approximated in order to perform the KS-test. The chosen approximation for the above equation is taken from the book \textit{Numerical Recipes - The art of Scientific Computation, 3d edition}, 
+
 \begin{equation}
 P_{KS}(z) \approx
 \begin{cases}
@@ -41,16 +42,16 @@ where the erf is given by,
 \text{erf}(x)  \frac{2}{\sqrt{\pi}} \int_0^{x} e^{-t^2} dt
 \end{equation}
 
-The integral of the erf function lacks a closed form and therefore also needs to be numerically approximated. The chosen approximation is taken from \textit{Abramowitz and Stegun},
+The integral of the erf function lacks a closed form and therefore needs to be numerically approximated. The chosen approximation is taken from \textit{Abramowitz and Stegun},
 
 \begin{equation}
 \text{erf}(x) \approx 1- (a_1t+a_2t^2 + ... + a_5t^5)e^{-x^2} \text{x} \quad t = \frac{1}{1+px}
 \end{equation}
 
-where $p  =0.3275911$, $a_1 =  0.254829592$, $a_2 = -0.284496736$, $a_3 = 1.421413741$, $a_4 =  -1.453152027$, $a_5 = 1.061405429$.
+where, $p  =0.3275911$, $a_1 =  0.254829592$, $a_2 = -0.284496736$, $a_3 = 1.421413741$, $a_4 =  -1.453152027$, $a_5 = 1.061405429$.
 \end{quote}
 
-The KS-test and the CDF are implemented with these approximations. The code for the KS-test and the CDF  is located in the file \texttt{./Code/mathlib/statistics.py} at page \pageref{CODE:Statistics}, as this file is threaded as a shared module. The KS-test does require an sorting algorithm, this algorithm is implemented in the file \texttt{./Code/matlib/sorting} and can be found on page \pageref{CODE:sorting}. 
+The KS-test and the CDF are implemented with these approximations. The code for the KS-test and the CDF  is located in the file \texttt{./Code/mathlib/statistics.py} at page 22, as this file is threaded as a shared module. The KS-test does require an sorting algorithm, this algorithm is implemented in the file \texttt{./Code/matlib/sorting} and can be found on page 26. 
  The code for the generation of the plots and plots are displayed below.  
 \end{quote}
 
@@ -59,7 +60,7 @@ The KS-test and the CDF are implemented with these approximations. The code for 
 
 \begin{quote}
 The code for generating the two plots. The imports for this file are not explicit shown, but can be found on page \pageref{CODE:MAIN1}.
-\lstinputlisting[firstline=125,lastline=180]{./Code/assigment_1.py}
+\lstinputlisting[firstline=124,lastline=180]{./Code/assigment_1.py}
 \end{quote}
 \newpage
 
@@ -74,7 +75,7 @@ The code for generating the two plots. The imports for this file are not explici
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=12cm, height=7.5cm]{./Plots/1_plot_ks_test_self_scipy.pdf}
-\caption{The P-value produced by the KS-test against the number of samples on which the KS-test is performed for the self written RNG. The red line indicates the line of $ p = 0.05$. The orange line is the self written implementation of the KS-test and the blue line is the scipy version.  A point \textbf{below} the red line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The self written KS-test is  close to the scipy version, but shows (small) deviations at small sample sizes (for example at $N_{samples} = 10$ or $N_{samples} = 200$).  The self written implementation always has the same shape as the scipy version, even at the deviations. The exact cause for the deviations are unknown, but are likely the result of an approximation that scipy makes that the self written implementation doesn't make. (This is not confirmed by looking at the scipy code.) }
+\caption{The P-value produced by the KS-test against the number of samples on which the KS-test is performed for the self written RNG. The red line indicates the line of $ p = 0.05$. The orange line is the self written implementation of the KS-test and the blue line is the scipy version.  A point \textbf{below} the red line would suggests that there is enough statistical evidence to reject the (null) hypothesis that the data is normal distributed. The self written KS-test is  close to the scipy version, but shows (small) deviations at small sample sizes (see $N_{samples} = 10$ or $N_{samples} = 200$).  The self written implementation always has the same shape as the scipy version, even at the deviations. The exact cause for the deviations are unknown, but are likely the result of an approximation that scipy makes that the self written implementation doesn't make. }
 \end{figure}
 \end{quote}
 

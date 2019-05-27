@@ -39,16 +39,23 @@ D(a) = \frac{5 \Omega_m H_0^2}{2}H(a) \int_{a}^{0} \frac{-a'^{-3}}{H^3(a')} da' 
 
 Here the Hubble parameter in terms of the scale factor $a$ is given by,
 \begin{equation}
-H(a) = H_0^2 ( \Omega_m a^{-3} + \Omega_{\Lambda} )
+H(a)^2 = H_0^2 ( \Omega_m a^{-3} + \Omega_{\Lambda} )
 \end{equation}
 
 Filling this in by equation \ref{eq:Dd} and simplifying yields,
 \begin{align}
-D(a) &= \frac{5 \Omega_m H_0^3}{2} ( \Omega_m a^{-3} + \Omega_{\Lambda} ) \int_0^{a} \frac{a'^{-3}s}{\left(H_0^2( \Omega_m a^{-3} + \Omega_{\Lambda} ) \right)^{3/2}} da' \\
-&= \frac{5 \Omega_m}{2}  ( \Omega_m a^{-3} + \Omega_{\Lambda} ) \int_0^{a'} \frac{a'^{-3}}{\left(\Omega_m a^{-3} + \Omega_{\lambda}\right)^{3/2}} da'
+D(a) &= \frac{5 \Omega_m H_0^3}{2} ( \Omega_m a^{-3} + \Omega_{\Lambda} )^{0.5} \int_0^{a} \frac{a'^{-3}s}{\left(H_0^2( \Omega_m a^{-3} + \Omega_{\Lambda} ) \right)^{3/2}} da' \\
+&= \frac{5 \Omega_m}{2}  ( \Omega_m a^{-3} + \Omega_{\Lambda} )^{0.5} \int_0^{a'} \frac{a'^{-3}}{\left(\Omega_m a^{-3} + \Omega_{\lambda}\right)^{3/2}} da'
+\label{EQ:Stuffffff}
 \end{align}
-\newpage
-The above integral is with the help of Romberg integration solved for $\Omega_{m} =0.3$ and $\Omega_{\lambda} = 0.7$.  
+The above integral is with the help of Romberg integration solved for $\Omega_{m} =0.3$ and $\Omega_{\lambda} = 0.7$.  The code for romberg integration is locate in the shared module ... at pahe ... The code that prints the output and the printed output can be found below.
+\end{quote}
+
+\textbf{Code}
+\begin{quote}
+The code that calculates the scale factor. 
+\lstinputlisting[firstline = 27, lastline=158]{./Code/assigment_4.py}
+
 \end{quote}
 \end{quote}
 
