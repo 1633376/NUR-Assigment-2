@@ -11,7 +11,8 @@ def calculate_linear_growth(a_max, omega_m = 0.3, omega_lambda = 0.7):
     Out:
         return: The value of the linear growth factor for the given parameters.
     """
-    
+    if a_max <= 0 :
+        return 0
 
     # The prefactor of the integral
     pre_factor = 0.5*(5*omega_m)*(omega_m*a_max**(-3) + omega_lambda)**(0.5)

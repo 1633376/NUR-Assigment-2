@@ -3,6 +3,7 @@ import mathlib.misc as misc
 import mathlib.random as rnd
 import mathlib.helpers4 as helpers4
 import matplotlib.pyplot as plt
+import mathlib.derivative as ml_dir
 import numpy as np
 import scipy.fftpack
 
@@ -10,6 +11,7 @@ random = rnd.Random(783341)
 
 def main():
     assigment4_a()
+    assigment4_b()
     assigment4_c()
     assigment4_d()
 
@@ -32,6 +34,14 @@ def gen_complex(k, power, rand1, rand2):
     return complex(a,-b)*(1/k**2) *0.5*sigma
 
 def assigment4_a():
+    """
+        Execute assigment 4a
+    """
+
+    # Relevant imports are.
+    # (1) import mathlib.helpers4 as helpers4
+
+
     # The value of the scale to integrate to
     a_max = 1/51
 
@@ -39,10 +49,64 @@ def assigment4_a():
     omega_m = 0.3
     omega_lambda = 0.7
 
-    # The result
-    print('D(a = 1/51) = ', helpers4.calculate_linear_growth(a_max, omega_m, omega_lambda)) 
+    # Print the result
+    print('[4a] D(a = 1/51) = ', helpers4.calculate_linear_growth(a_max, 
+                            omega_m, omega_lambda)) 
+def assigment4_b():
+    """
+        Execute assigment 4b
+    """
+
+    # Relevant imports include:
+    # (1) import mathlib.derivative as ml_dir
+    # (2) import mathlib.helpers4 as helpers4
+    # (3) import mathlib.integrate as integrate
+
+    # Start with numerical
+
+    # The linear growth factor as function of a
+    D = lambda a: helpers4.calculate_linear_growth(a, 0.3, 0.7)
+
+    # Calculate the derivative with ridder for a = 1/51
+    dirivative = ml_dir.ridder(D,1/51,1e-15)
+
+    # Calculate \dot{a} = H(a)a
+    H_0 = 7.16e-11
+    H = H_0 * (0.3*(1/51)**(-3) + 0.7)**0.5
+    
+    # Final result
+    final_numerical = dirivative*H*(1/51)
+
+    # Analytical
+
+    # The function to integrate.
+    func = lambda a: a**(-3) /(0.3 * (1/(a**3))+0.7)**(3/2) 
+    C = integrate.romberg(func, 1e-7, (1/51), 15)
+
+    # The right term in brackets
+    right = -(3*0.3*C)/(2*(1/51))
+    # The left term in brackets
+    left = 1/(0.3*(1/51)**(-3)+0.7)**0.5
+
+    # Prefactor
+    pre = (5*0.3*H_0)/(2*(1/51)**2)
+
+    # Print the results
+    print("[4b] Analytical: ", pre*(left+right))
+    print("[4b] Numerically: ", final_numerical)
 
 def assigment4_c():
+    """
+        Execute assigment 4c
+    """
+
+    # The relevant imports include:
+    # (1) import numpy as np
+    # (2) import scipy.fftpack
+    # (3) import mathlib.misc as misc
+    # (4) random, defined outside the main function.
+    
+    
 
     # Constants and random number generator
     grid_size = 64
@@ -82,6 +146,8 @@ def assigment4_c():
 
     # Generate the componentes of the displacemnet vectors
     # We have to transpose/ switch to get the x and y.
+    # Multiplication with grid_size is to correct for the
+    # normalization factor of the scipy implementation of the ifft.
     s_x = scipy.fftpack.ifft2(matrix_y).real *grid_size 
     s_y = scipy.fftpack.ifft2(matrix_x).real *grid_size 
 
@@ -161,6 +227,15 @@ def assigment4_c():
     plt.close()
 
 def assigment4_d():
+    """
+        Execute assigment 4d
+    """
+
+    # The relevant imports include:
+    # (1) import numpy as np
+    # (2) import scipy.fftpack
+    # (3) import mathlib.misc as misc
+    # (4) random, defined outside the main function.    
 
     # Create the matrix
     grid_size = 64

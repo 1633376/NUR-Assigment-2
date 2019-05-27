@@ -1,5 +1,5 @@
 
-\subsection*{\textbf{Question 4.c}}
+\subsection*{\textbf{Question 4.c)}}
 \begin{quote}
 
 \textbf{Problem}
@@ -10,20 +10,27 @@ from a scale factor of 0.0025 until a scale factor of 1.0. To do this, start wit
 
 \textbf{Solution} 
 \begin{quote}
-The difficulty in this exercise lays by determining the displacement vector. The displacement vector is calculated by first creating a matrix in $k-space$ with complex values based on the given power law. The matrix is next given the correct hermitian symmetry, (see exercise 2). The components of the displacement vector, $s_x$ and $s_y$, are then calculated independent with the help of this matrix.  This calculation is done as follows. First the hemitian matrix is multiplyed with the wavenumbers and $1i$ to obtain two matrices where the cells have respectively values of $ic_k k_x$ and $ic_k k_y$. After this multiplication the matrix cannot be directly fourier transformed to obtain $s_x$ and $s_y$, as the multiplication with the wavenumbers breaks the symmetry in the columns with nyquest wavenumbers. The symmetry is only broken by a minus sign and this is corrected before doing the IFFT. 
+The difficulty of this exercise lays by the calculation the components of the displacement vector. A brief description of how this is done can be found below.
 \\
-The code that creates the movie and the plots can be found below. The final plot of the simulation is also included and shows that the particles clearly move to the denser region.
+
+The displacement vector is calculated by first creating a matrix in $k$ -space with complex values based on the given power law (similar to exercise 2). The matrix is next given the correct hermitian symmetry (see again exercise 2). The components of the displacement vector, $s_x$ and $s_y$, are then calculated independent with the help of this matrix.  This calculation is done as follows. The hemitian matrix is copied and the components in the matrices are multiplied with the wavenumbers and the complex number $i$. The wavenumbers by which the components are multiplied depends on whether we want $s_x$ or $s_y$. The result is two matrices where the cells have respectively values of $ic_k k_x$ and $ic_k k_y$. After this multiplication the matrices cannot be directly fourier transformed to obtain $s_x$ and $s_y$, as the multiplication with the wavenumbers breaks the symmetry in the columns with nyquest wavenumbers. The symmetry is only broken by a minus sign and this is corrected before doing the IFFT. 
+\\
+The code that creates the movie and the plots for the first 10 particles can be found below. The final plot of the movie is also included and shows that the particles clearly move to the denser region (see figure \ref{FIG:stuff} on page \pageref{FIG:stuff}).
 
 \end{quote}
+\newpage
 
-\textbf{Code -plots}:
+
+\textbf{Code - Plots}:
 \begin{quote}
 
-The code that creates the movie and the plots of the first 10 particles. 
-\lstinputlisting[firstline = 27, lastline=158]{./Code/assigment_4.py}
+The code that creates the movie and the plots of the first 10 particles. The code does make use of an object called 'random' and a function called \texttt{gen\_ complex}. This object and the function  can be found on page 53. The code for the imported shared modules can also be found at page 53. The movie can be found in the movie folder.
+\lstinputlisting[firstline = 98, lastline=227]{./Code/assigment_4.py}
 \end{quote}
 
-\textbf{Plots - field}
+\newpage
+
+\textbf{Plots - Field}
 
 \begin{quote}
 \begin{figure}[!ht]
@@ -33,24 +40,21 @@ The code that creates the movie and the plots of the first 10 particles.
 \label{FIG:stuff}
 \end{figure}
 \end{quote}
-\newpage
 
 \textbf{Plots - particles}
 \begin{quote}
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=14cm, height=8.5cm]{./Plots/4c_pos.pdf}
-\caption{The y-positions of the first 10 particles. The plot shows that the particles are slowly moving to a denser region (see figure \ref{FIG:stuff}, where the first 10 particles are at the left top). The large jump for particle 2 (orange) at a scale factor of around $ a \approx 0.8$ is the result of the circular boundary conditions.  }
+\caption{The y-positions of the first 10 particles as function of the scale factor. The plot shows that the particles are slowly moving to a denser region (see figure \ref{FIG:stuff}, where the first 10 particles are at the left top). The large jump for particle 2 (orange) at a scale factor of around $ a \approx 0.8$ is the result of the circular boundary conditions.  }
 \end{figure}
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=14cm, height=8.5cm]{./Plots/4c_momentum.pdf}
-\caption{The momentum of the first 10 particles. The fact that about halve of the particles have a positive momentum and that the other halve have a negative momentum is a result of the circular boundary conditions and the created field.  }
+\caption{The momentum of the first 10 particles as function of the scale factor. The fact that about halve of the particles have a positive momentum and that the other halve have a negative momentum is the result of the circular boundary conditions and the created field.  }
 \end{figure}
 \end{quote}
-\newpage
-
-
 \end{quote}
 
 

@@ -1,5 +1,5 @@
-
-\subsection*{\textbf{Question 4.b}}
+\newpage
+\subsection*{\textbf{Question 4.b)}}
 \begin{quote}
 
 \textbf{Problem}
@@ -7,12 +7,23 @@
 Use your result from the previous question to analytically calculate for $a = 1/51$,
 \begin{equation}
 \dot{D(t)} = \frac{dD(a)}{da}\dot{da}
+\label{EQ:weird}
 \end{equation}
+
+Bonus points if you calculate it numerically and match the analytical result within $10^{-8}$. 
 \end{quote}
 
 \textbf{Solution} 
 \begin{quote}
-Let $C = \int_{0}^{a'} \frac{a'^{-3}}{\left( \Omega_m a'^{-3} + \Omega_{\Lambda} \right)^{3/2}} da'$. The derivative can then by plugin in \ref{EQ:Stuffffff} be written as,
+In this question the derivative is not only calculated analytically, but also numerically. The numerical calculation is performed with ridders method. The analytical solution is derived below and evaluated. The code for the numerical solution and the code that prints the analytical solution\footnote{The analytical solution is printed to make it easier to compare.} can be found after this derivation. This includes the code for ridders method.
+\\
+
+To simplify the derivation we define,
+\begin{equation}
+C = \int_{0}^{a'} \frac{a'^{-3}}{\left( \Omega_m a'^{-3} + \Omega_{\Lambda} \right)^{3/2}} da'
+\end{equation}
+
+The derivative can then by substituting \ref{EQ:Stuffffff} in equation \ref{EQ:weird} be written as,
 
 \begin{align}
 \dot{D}(t) &= \frac{5 \Omega_m}{2} \left( \frac{-3 \Omega_m a^{-4}}{2} \left(\Omega_m a^{-3} + \Omega_{\Lambda} \right)^{-0.5}C + \left(\Omega_m a^{-3} + \Omega_{\Lambda} \right)^{0.5} \frac{a^{-3}}{\left( \Omega_m a^{-3} + \Omega_{\Lambda} \right)^{3/2} }  \right) \dot{a} \\
@@ -26,14 +37,32 @@ Substituting $\dot{a} = H(a)a(t) = H_0 \left(\Omega_m a^{-3}  + \Omega_{\Lambda}
 &= \frac{5 \Omega_m H_0}{2 a^2} \left( \frac{1}{\left(\Omega_m a^{-3} + \Omega_{\Lambda} \right)^{0.5}} - \frac{3\Omega_m}{2a} C \right)
 \end{align}
 
-Plugin in the above expression with $ C = 0.00013$ (see previous question), $\Omega_{m} = 0.3$, $\Omega_{\Lambda} = 0.7$, $a = 1/51$ and $H_0 = 7.16 \times 10^{-11} $ yr$^{-1}$ gives,
-\begin{equation}
-\dot{D} = 2.8 \times 10^{-7} \text{yr}^{-1}
-\end{equation}
+The above expression is evaluated in the code. The value of $C$ is numerically calculated for the analytical expression. This value is just the result of the previous question without scale factor and was allowed to be used for this question. The analytical output (with the numerical calculation for C) and the numerical output (with ridders method) can be found below after the code section.
 
 \end{quote}
+\newpage
 
-\textbf{Code}
+\textbf{Code - Print} \\
+
+\begin{quote}
+The code that prints the analytical and numerical result. The code for ridders method follows after
+this.
+\lstinputlisting[firstline = 55, lastline=96]{./Code/assigment_4.py}
+\end{quote}
+
+\textbf{Code - Ridder} \\
+
+\begin{quote}
+The code for ridders method.
+\lstinputlisting{./Code/mathlib/derivative.py}
+\end{quote}
+
+\textbf{Text - Output} \\
+
+The analytical and numerical result. As can be seen is the numerical approximation within $10^{-8}$. 
+\begin{quote}
+\lstinputlisting[firstline=1,lastline=3]{./Output/assigment4_out.txt}
+\end{quote}
 \end{quote}
 
 
