@@ -121,7 +121,7 @@ def assigment4_c():
     matrix = misc.make_hermitian2D(matrix)
     
     # Calculate the ifft, used for the background of the movie.
-    matrix_ifft = scipy.fftpack.ifft2(matrix).real
+    matrix_ifft = scipy.fftpack.ifft2(matrix).real * grid_size
 
     # wavenumbers
     wavenumbers = misc.gen_wavenumbers(grid_size, min_distance)
@@ -167,7 +167,7 @@ def assigment4_c():
 
     # Create the plot
     for idx,a in enumerate(scale_factors):
-    
+        print(idx)
         # Calculate da    
         da = 0
 
@@ -193,10 +193,13 @@ def assigment4_c():
         momentum_top_10.append(p_y[0:10,0])
 
         # Create the plot.       
+        img = plt.pcolormesh(matrix_ifft)
         plt.scatter(pos_x_new, pos_y_new,s=1,c='black')
-        plt.imshow(matrix_ifft*grid_size,alpha=0.7)
-    
-        plt.colorbar()
+
+        #plt.imshow(matrix_ifft,alpha=0.7)
+        plt.xlim([0,grid_size])
+        plt.ylim([0,grid_size])
+        plt.colorbar(img)
         plt.title('a=' + str(a))
         plt.xlabel('x [Mpc]')
         plt.ylabel('y [Mpc]')

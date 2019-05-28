@@ -53,11 +53,10 @@ class LogisticRegression(object):
             # Update the weights
             self._weights += self._learn_rate*gradient
 
-            # Update the erro
+            # Update the error
             error = abs(cost - old_cost)
             old_cost = cost
             curr_iter += 1
-            print(error)
 
 
     def predict(self, data):

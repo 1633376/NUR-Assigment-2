@@ -1,6 +1,6 @@
 import numpy as np
 import mathlib.LogisticRegression as lg
-
+import matplotlib.pyplot as plt
 
 # Load the data
 # Column 2 = red_shift, 3 = T90
@@ -8,7 +8,7 @@ data = np.genfromtxt("GRBs.txt")
 
 # Remove the first 2 columns. These contain 'GRB/XRF' and the number. 
 data = data[:,2:]
-data = np.array(data,dtype=np.float128)
+data = np.array(data)
 # The columns are now:
 # 0 = red_shift, 1 = T90, 2 = log(M^*/M_{sun})
 # 3 = SFR, 4 = log(Z/Z_{sun}), 5 = SSFR, 6 = AV
@@ -32,26 +32,40 @@ for i in range(0,7):
         mask = (data[:,i] == -1)
         data[:,i][mask] = 0 
 
+
 # The chosen columns are:
-# (1) - redshift
-# (2) - log(M^*/M_{sun})
-# (3) - SFR
+#  - redshift
+#  - log(M^*/M_{sun})
+#  - SFR
 #
 # These are used to create the final data for training the model.
 # The final train data consits of the chosen columns plus 
 # one additional column that is all 1 (used for bias)
 
 # The columns in the dataset to select.
-columns = [0]
-columns_set = [0]
+columns = [0,2,3]
 
 train_data = np.ones((data.shape[0],len(columns)+1))
-train_data[:,columns_set] = data[:,columns] 
+train_data[:,[0,1,2]] = data[:,columns] 
 train_labels = data[:,1] > 10
 
+# Train the model.
 logistic_reg = lg.LogisticRegression(len(columns),1e-3,1e-5)
 logistic_reg.train(train_data,train_labels)
 
+# Predictions
+predictions = logistic_reg.predict(train_data)
+predictions = np.array(predictions,dtype=int)
 
-print(1 - (((sum(logistic_reg.predict(train_data)) - sum(train_labels)))/len(train_labels)))
+#Create the histogram
+bins = np.arange(0,1.1,0.05)
+
+plt.hist(predictions,alpha=0.9,bins=bins, label='Model')
+plt.hist(np.array(train_labels, dtype=int),bins=bins, label='True', density=True )
+plt.legend()
+plt.ylabel('Normalized counts')
+plt.savefig('./Plots/6a_hist.pdf')
+
+# Print the accuracy
+print('[6] Accuracy: ', 1 - np.sum(predictions - train_labels)/len(train_labels))
 

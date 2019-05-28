@@ -20,7 +20,6 @@ if [ ! -d "./Plots/" ]; then
 
 fi
 
-
 echo "Downloading data files....."
 if [ ! -f "randomnumbers.txt" ]; then
   wget "https://home.strw.leidenuniv.nl/~nobels/coursedata/randomnumbers.txt"
@@ -46,10 +45,10 @@ echo "Executing assigment-3............(around 2 sec)"
 python3 ./Code/assigment_3.py > ./Output/assigment3_out.txt
 echo "Executing assigment-4............(around 1 min 30)"
 python3 ./Code/assigment_4.py > ./Output/assigment4_out.txt
-
 echo "Executing assigment-5............(around 30 sec)"
 python3 ./Code/assigment_5.py > ./Output/assigment5_out.txt
-
+echo "Executing assigment-6............(around 10 sec)"
+python3 ./Code/assigment_6.py > ./Output/assigment6_out.txt
 echo "Executing assigment-7............(around 3 sec)"
 python3 ./Code/assigment_7.py > ./Output/assigment7_out.txt
 echo ""
