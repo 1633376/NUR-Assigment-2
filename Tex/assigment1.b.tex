@@ -11,7 +11,7 @@
 
 
 \begin{quote}
-The solution consists of deriving the  transformation of two i.i.d uniform variables to two i.i.d normal distributed variables with the Box-Muller method. A brief version of the derivation can be found below. The final transformation, equation \ref{EQ:boxmuller}, is  implemented in the random number generator and used to generate the plot. The final histogram is created with 20 bins and can be found on page 6.
+The solution consists of deriving the  transformation of two i.i.d uniform variables to two i.i.d normal distributed variables with the Box-Muller method. A brief version of the derivation can be found below. The final transformation, equation 9, is  implemented in the random number generator and used to generate the plot. The final histogram is created with 20 bins and can be found on page 6.
 \\
 
 
@@ -57,7 +57,7 @@ y_1 &= r\sin(\theta) + \mu = \sqrt{-2\sigma^2 \ln(1 - u_1)} \sin( 2 \pi u_2 ) + 
 \end{align}
 \\
 \\
-These above transformation are implemented in  the random number generator (see page \pageref{CODE:RNG}).  The code for the generation of the plot and the created plot can be found below. The code that generates the plot makes besides the RNG use of a function for the normal distribution in the file \texttt{./Code/mathlib/statistics.py}. This file is treated as a shared module and can be found on page 22. The called function, \texttt{normal}, can be found on line 227 in this file.
+These above transformation are implemented in  the random number generator (see page 19).  The code for the generation of the plot and the created plot can be found below. The code that generates the plot makes besides the RNG use of a function for the normal distribution in the file \texttt{./Code/mathlib/statistics.py}. This file is treated as a shared module and can be found on page 22. The called function, \texttt{normal}, can be found on line 227 in this file.
 
 
 \end{quote}
