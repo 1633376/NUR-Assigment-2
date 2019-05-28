@@ -18,47 +18,52 @@ Display x-y slices of the grid with $z$ values of 4,9,11 and 14.
 
 \textbf{Solution} 
 \begin{quote}
-The easiest way of assigning the mass of the particles to a grid is by assigning it to the grid points.  For the given particle shape this would correspond of assigning the full mass of a particle to the nearest gird point, from which the name follows. For other particle shapes, such as the cloud in a cell shape, the mass might be fully assignment the nearest gird point, but might also be partially assigned to multiple grid points, depending on the position of the particle.
+The easiest way of assigning the mass of the particles to a grid is by assigning it to the grid points.  For the given particle shape this would correspond to assigning the full mass of a particle to its nearest gird point, from which the name follows. For other particle shapes, such as the cloud in a cell shape, the mass might be fully assignment to the nearest gird point, but it might also be partially assigned to multiple grid points. % (depending on the position of the particle).
 \\
-The mass is for the given  particle shape is assigned to the gird points by abusing the fact that a cast to integers always result in down a cast (i.e 15.7 casted to an integer gives 15). The indices of the grid points to which the particles have to assign their mass can by abusing this be found by adding 0.5 to the position of a particle and then casting it to an integer. To include circular boundary conditions the modulo with 16 (grid size) is taken of the result. % (i.e 15.6 + 0.5 = 16.1, int cast -> 16 , mod -> 0)
-\\
-The code that creates the plots with the slices and the plots can be found below. The code that assigns the mass can be found in the shared module \texttt{./Code/mathlib/mass.py} on page ...
+The mass is for the given  particle shape assigned to the gird points by abusing the fact that a cast to an integer always result in down a cast (i.e 15.7 casted to an integer gives 15). The indices of a grid point to which a particle has to assign its mass can, by abusing the down cast, be found by adding 0.5 to the position and then down casting the result to an integer.  To include circular boundary conditions the modulo with 16 (grid size) is taken. 
+
+%the particles have to assign their mass can be found by adding 0.5 to the position of a particle and then casting it to an integer. To include circular boundary conditions the modulo with 16 (grid size) is taken of the result. % (i.e 15.6 + 0.5 = 16.1, int cast -> 16 , mod -> 0)
+
+The code that creates the plots with the slices and the plots can be found below. The code that assigns the mass can be found in the shared module \texttt{./Code/mathlib/mass.py} on page 73
 \end{quote}
 
-\newpage
 \textbf{Code - slices}
 \begin{quote}
 The code that creates the plots with the slices of the mass grid.
-\lstinputlisting[firstline = 8, lastline=27]{./Code/assigment_5.py}
+\lstinputlisting[firstline = 14, lastline=40]{./Code/assigment_5.py}
 \end{quote}
+
+\newpage
 
 \textbf{Plots - Slices}
 \begin{quote}
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=14cm, height=9.5cm]{./Plots/5a_slice_4.pdf}
-\caption{The x-y slice of the created mass grid for $z = 4$. The color indicates the assignment mass in terms of particle mass. }
+\caption{The x-y slice of the created mass grid for $z = 4$. The color indicates the assigned mass in terms of particle mass. }
 \end{figure}
-\newpage
+
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=14cm, height=9.5cm]{./Plots/5a_slice_9.pdf}
-\caption{The x-y slice of the created mass grid for $z = 9$. The color indicates the assignment mass in terms of particle mass. }
+\caption{The x-y slice of the created mass grid for $z = 9$. The color indicates the assigned mass in terms of particle mass. Notice that the range of the colorbar is different from the first and last plot.}
 \end{figure}
+\newpage
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=14cm, height=9.5cm]{./Plots/5a_slice_11.pdf}
-\caption{The x-y slice of the created mass grid for $z = 11$. The color indicates the assignment mass in terms of particle mass. }
+\caption{The x-y slice of the created mass grid for $z = 11$. The color indicates the assigned mass in terms of particle mass. Notice that the range of the colorbar is different than the first and last plot. }
 \end{figure}
-\newpage
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=14cm, height=9.5cm]{./Plots/5a_slice_14.pdf}
-\caption{The x-y slice of the created mass grid for $z = 14$. The color indicates the assignment mass in terms of particle mass. }
+\caption{The x-y slice of the created mass grid for $z = 14$. The color indicates the assigned mass in terms of particle mass. }
 \end{figure}
 \end{quote}
+\newpage
 \end{quote}
 
 

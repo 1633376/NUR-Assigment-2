@@ -47,7 +47,7 @@ python3 ./Code/assigment_3.py > ./Output/assigment3_out.txt
 echo "Executing assigment-4............(around 1 min 30)"
 python3 ./Code/assigment_4.py > ./Output/assigment4_out.txt
 
-echo "Executing assigment-5............(around 1 min)"
+echo "Executing assigment-5............(around 30 sec)"
 python3 ./Code/assigment_5.py > ./Output/assigment5_out.txt
 
 echo "Executing assigment-7............(around 3 sec)"

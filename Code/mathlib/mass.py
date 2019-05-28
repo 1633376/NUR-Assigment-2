@@ -55,9 +55,11 @@ def _assign_mass_CIC(positions):
         #  |/          |/
         # LBD -------RBD
         
-        # Let $x_{cell},y_{cell},z_{cell}$ be the position of the left top bottom (LTB) edge of the Grid Cube that
-        # encloses the particle. Let x,y,z be the position of the particle. The difference between
-        # the particle positon and the LTB edge is then given by,
+        # Let $x_{cell},y_{cell},z_{cell}$ be the position of 
+        # the left top bottom (LTB) edge of the Grid Cube that
+        # encloses the particle. Let x,y,z be the position of the particle.
+        # The difference between the particle positon and the LTB edge 
+        # is then given by,
         # dx = x - x_{cell}
         # dy = y - y_{cell}
         # dz = z - z_{cell}

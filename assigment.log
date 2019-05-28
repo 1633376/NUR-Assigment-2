@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.23)  28 MAY 2019 01:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.23)  28 MAY 2019 09:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1029,49 +1029,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--21
  []
 
 (./Code/mathlib/helpers4.py [53]) (./Code/mathlib/misc.py [54] [55] [56])
-(./Code/mathlib/integrate.py [57]) [58]) (./Tex/assigment5.a.tex [59]
-(./Code/assigment_5.py)
-<./Plots/5a_slice_4.pdf, id=3599, 462.52798pt x 346.89601pt>
+(./Code/mathlib/integrate.py [57]) [58]) (./Tex/assigment5.a.tex
+(./Code/assigment_5.py) [59]
+<./Plots/5a_slice_4.pdf, id=3626, 462.52798pt x 346.89601pt>
 File: ./Plots/5a_slice_4.pdf Graphic file (type pdf)
 <use ./Plots/5a_slice_4.pdf>
-Package pdftex.def Info: ./Plots/5a_slice_4.pdf  used on input line 39.
+Package pdftex.def Info: ./Plots/5a_slice_4.pdf  used on input line 42.
 (pdftex.def)             Requested size: 398.35913pt x 270.31313pt.
- [60 <./Plots/5a_slice_4.pdf>]
-<./Plots/5a_slice_9.pdf, id=3645, 462.52798pt x 346.89601pt>
+<./Plots/5a_slice_9.pdf, id=3627, 462.52798pt x 346.89601pt>
 File: ./Plots/5a_slice_9.pdf Graphic file (type pdf)
 <use ./Plots/5a_slice_9.pdf>
-Package pdftex.def Info: ./Plots/5a_slice_9.pdf  used on input line 46.
+Package pdftex.def Info: ./Plots/5a_slice_9.pdf  used on input line 49.
 (pdftex.def)             Requested size: 398.35913pt x 270.31313pt.
-<./Plots/5a_slice_11.pdf, id=3646, 462.52798pt x 346.89601pt>
+ [60 <./Plots/5a_slice_4.pdf> <./Plots/5a_slice_9.pdf
+
+pdfTeX warning: pdflatex (file ./Plots/5a_slice_9.pdf): PDF inclusion: multiple
+ pdfs with page group included in a single page
+>]
+<./Plots/5a_slice_11.pdf, id=3671, 462.52798pt x 346.89601pt>
 File: ./Plots/5a_slice_11.pdf Graphic file (type pdf)
 <use ./Plots/5a_slice_11.pdf>
-Package pdftex.def Info: ./Plots/5a_slice_11.pdf  used on input line 52.
+Package pdftex.def Info: ./Plots/5a_slice_11.pdf  used on input line 56.
 (pdftex.def)             Requested size: 398.35913pt x 270.31313pt.
- [61 <./Plots/5a_slice_9.pdf> <./Plots/5a_slice_11.pdf
-
-pdfTeX warning: pdflatex (file ./Plots/5a_slice_11.pdf): PDF inclusion: multipl
-e pdfs with page group included in a single page
->]
-<./Plots/5a_slice_14.pdf, id=3691, 462.52798pt x 346.89601pt>
+<./Plots/5a_slice_14.pdf, id=3672, 462.52798pt x 346.89601pt>
 File: ./Plots/5a_slice_14.pdf Graphic file (type pdf)
 <use ./Plots/5a_slice_14.pdf>
-Package pdftex.def Info: ./Plots/5a_slice_14.pdf  used on input line 58.
+Package pdftex.def Info: ./Plots/5a_slice_14.pdf  used on input line 62.
 (pdftex.def)             Requested size: 398.35913pt x 270.31313pt.
-) (./Tex/assigment5.b.tex (./Code/assigment_5.py) [62 <./Plots/5a_slice_14.pdf>
-]
-<./Plots/5b_cell.pdf, id=3731, 462.52798pt x 346.89601pt>
+ [61 <./Plots/5a_slice_11.pdf> <./Plots/5a_slice_14.pdf
+
+pdfTeX warning: pdflatex (file ./Plots/5a_slice_14.pdf): PDF inclusion: multipl
+e pdfs with page group included in a single page
+>]) (./Tex/assigment5.b.tex (./Code/assigment_5.py) [62]
+<./Plots/5b_cell.pdf, id=3756, 462.52798pt x 346.89601pt>
 File: ./Plots/5b_cell.pdf Graphic file (type pdf)
 <use ./Plots/5b_cell.pdf>
-Package pdftex.def Info: ./Plots/5b_cell.pdf  used on input line 26.
-(pdftex.def)             Requested size: 398.35913pt x 270.31313pt.
-) (./Tex/assigment5.c.tex [63 <./Plots/5b_cell.pdf>] (./Code/assigment_5.py) [6
-4]
-<./Plots/5c_slice_4.pdf, id=3818, 462.52798pt x 346.89601pt>
+Package pdftex.def Info: ./Plots/5b_cell.pdf  used on input line 27.
+(pdftex.def)             Requested size: 398.35913pt x 241.8463pt.
+)
+(./Tex/assigment5.c.tex [63 <./Plots/5b_cell.pdf>] (./Code/assigment_5.py)
+[64]
+<./Plots/5c_slice_4.pdf, id=3848, 462.52798pt x 346.89601pt>
 File: ./Plots/5c_slice_4.pdf Graphic file (type pdf)
 <use ./Plots/5c_slice_4.pdf>
 Package pdftex.def Info: ./Plots/5c_slice_4.pdf  used on input line 29.
 (pdftex.def)             Requested size: 398.35913pt x 270.31313pt.
-<./Plots/5c_slice_9.pdf, id=3819, 462.52798pt x 346.89601pt>
+<./Plots/5c_slice_9.pdf, id=3849, 462.52798pt x 346.89601pt>
 File: ./Plots/5c_slice_9.pdf Graphic file (type pdf)
 <use ./Plots/5c_slice_9.pdf>
 Package pdftex.def Info: ./Plots/5c_slice_9.pdf  used on input line 35.
@@ -1081,12 +1084,12 @@ Package pdftex.def Info: ./Plots/5c_slice_9.pdf  used on input line 35.
 pdfTeX warning: pdflatex (file ./Plots/5c_slice_9.pdf): PDF inclusion: multiple
  pdfs with page group included in a single page
 >]
-<./Plots/5c_slice_11.pdf, id=3859, 462.52798pt x 346.89601pt>
+<./Plots/5c_slice_11.pdf, id=3889, 462.52798pt x 346.89601pt>
 File: ./Plots/5c_slice_11.pdf Graphic file (type pdf)
 <use ./Plots/5c_slice_11.pdf>
 Package pdftex.def Info: ./Plots/5c_slice_11.pdf  used on input line 42.
 (pdftex.def)             Requested size: 398.35913pt x 270.31313pt.
-<./Plots/5c_slice_14.pdf, id=3860, 462.52798pt x 346.89601pt>
+<./Plots/5c_slice_14.pdf, id=3890, 462.52798pt x 346.89601pt>
 File: ./Plots/5c_slice_14.pdf Graphic file (type pdf)
 <use ./Plots/5c_slice_14.pdf>
 Package pdftex.def Info: ./Plots/5c_slice_14.pdf  used on input line 49.
@@ -1096,34 +1099,74 @@ Package pdftex.def Info: ./Plots/5c_slice_14.pdf  used on input line 49.
 pdfTeX warning: pdflatex (file ./Plots/5c_slice_14.pdf): PDF inclusion: multipl
 e pdfs with page group included in a single page
 >]
-<./Plots/5c_cell.pdf, id=3900, 462.52798pt x 346.89601pt>
+<./Plots/5c_cell.pdf, id=3931, 462.52798pt x 346.89601pt>
 File: ./Plots/5c_cell.pdf Graphic file (type pdf)
 <use ./Plots/5c_cell.pdf>
 Package pdftex.def Info: ./Plots/5c_cell.pdf  used on input line 58.
 (pdftex.def)             Requested size: 398.35913pt x 270.31313pt.
 ) (./Tex/assigment5.d.tex [67 <./Plots/5c_cell.pdf>] (./Code/assigment_5.py)
 [68]
-<./Plots/5d_fourier.pdf, id=3978, 462.52798pt x 346.89601pt>
+<./Plots/5d_fourier.pdf, id=4014, 462.52798pt x 346.89601pt>
 File: ./Plots/5d_fourier.pdf Graphic file (type pdf)
 <use ./Plots/5d_fourier.pdf>
 Package pdftex.def Info: ./Plots/5d_fourier.pdf  used on input line 40.
 (pdftex.def)             Requested size: 398.35913pt x 241.8463pt.
-) (./Tex/assigment7.tex [69 <./Plots/5d_fourier.pdf>]
-(./Code/assigment_7.py) (./Code/mathlib/quadtree.py [70] [71] [72] [73])
-[74] [75] (./Output/assigment7_out.txt)
-<./Plots/7_quadtree.pdf, id=4395, 462.52798pt x 346.89601pt>
+) (./Tex/assigment5.e.tex [69 <./Plots/5d_fourier.pdf>]
+(./Code/assigment_5.py [70])
+Underfull \hbox (badness 10000) in paragraph at lines 27--28
+
+ []
+
+<./Plots/5e_2d_fft.pdf, id=4127, 409.94215pt x 223.02927pt>
+File: ./Plots/5e_2d_fft.pdf Graphic file (type pdf)
+<use ./Plots/5e_2d_fft.pdf>
+Package pdftex.def Info: ./Plots/5e_2d_fft.pdf  used on input line 32.
+(pdftex.def)             Requested size: 426.79266pt x 213.40799pt.
+<./Plots/5e_gaussian_yz.pdf, id=4128, 462.52798pt x 346.89601pt>
+File: ./Plots/5e_gaussian_yz.pdf Graphic file (type pdf)
+<use ./Plots/5e_gaussian_yz.pdf>
+Package pdftex.def Info: ./Plots/5e_gaussian_yz.pdf  used on input line 43.
+(pdftex.def)             Requested size: 398.35913pt x 213.39536pt.
+[71 <./Plots/5e_2d_fft.pdf> <./Plots/5e_gaussian_yz.pdf
+
+pdfTeX warning: pdflatex (file ./Plots/5e_gaussian_yz.pdf): PDF inclusion: mult
+iple pdfs with page group included in a single page
+>]
+<./Plots/5e_gaussian_xz.pdf, id=4193, 462.52798pt x 346.89601pt>
+File: ./Plots/5e_gaussian_xz.pdf Graphic file (type pdf)
+<use ./Plots/5e_gaussian_xz.pdf>
+Package pdftex.def Info: ./Plots/5e_gaussian_xz.pdf  used on input line 50.
+(pdftex.def)             Requested size: 398.35913pt x 213.39536pt.
+<./Plots/5e_gaussian_xy.pdf, id=4194, 462.52798pt x 346.89601pt>
+File: ./Plots/5e_gaussian_xy.pdf Graphic file (type pdf)
+<use ./Plots/5e_gaussian_xy.pdf>
+Package pdftex.def Info: ./Plots/5e_gaussian_xy.pdf  used on input line 56.
+(pdftex.def)             Requested size: 398.35913pt x 213.39536pt.
+) (./Tex/assigment5.sum.tex (./Code/assigment_5.py [72 <./Plots/5e_gaussian_xz.
+pdf> <./Plots/5e_gaussian_xy.pdf
+
+pdfTeX warning: pdflatex (file ./Plots/5e_gaussian_xy.pdf): PDF inclusion: mult
+iple pdfs with page group included in a single page
+>])
+Underfull \hbox (badness 10000) in paragraph at lines 20--21
+
+ []
+
+(./Code/mathlib/mass.py [73]) [74] (./Code/mathlib/fourier.py [75]) [76])
+(./Tex/assigment7.tex (./Code/assigment_7.py) [77] (./Code/mathlib/quadtree.py
+[78] [79] [80] [81]) (./Output/assigment7_out.txt) [82]
+<./Plots/7_quadtree.pdf, id=4858, 462.52798pt x 346.89601pt>
 File: ./Plots/7_quadtree.pdf Graphic file (type pdf)
 <use ./Plots/7_quadtree.pdf>
 Package pdftex.def Info: ./Plots/7_quadtree.pdf  used on input line 46.
 (pdftex.def)             Requested size: 398.35913pt x 241.8463pt.
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 83.
- [76 <./Plots/7_quadtree.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 83.
-
-(./assigment.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 83.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 83.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 87.
+ [83 <./Plots/7_quadtree.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 87.
+ (./assigment.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 87.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 87.
 Package rerunfilecheck Info: File `assigment.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -1134,13 +1177,13 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 83.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 87.
  ) 
 Here is how much of TeX's memory you used:
- 11333 strings out of 492982
- 165403 string characters out of 6134896
- 716240 words of memory out of 5000000
- 11905 multiletter control sequences out of 15000+600000
+ 11740 strings out of 492982
+ 172030 string characters out of 6134896
+ 696240 words of memory out of 5000000
+ 11952 multiletter control sequences out of 15000+600000
  11144 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  31i,12n,40p,1078b,2042s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1167,10 +1210,10 @@ nts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmtt10.pfb>
-Output written on assigment.pdf (76 pages, 2060760 bytes).
+Output written on assigment.pdf (83 pages, 2161395 bytes).
 PDF statistics:
- 5262 PDF objects out of 6186 (max. 8388607)
- 3857 compressed objects within 39 object streams
- 2721 named destinations out of 2984 (max. 500000)
- 206 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 5789 PDF objects out of 6186 (max. 8388607)
+ 4307 compressed objects within 44 object streams
+ 3061 named destinations out of 3580 (max. 500000)
+ 226 words of extra memory for PDF output out of 10000 (max. 10000000)
 

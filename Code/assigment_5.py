@@ -5,16 +5,21 @@ import mathlib.fourier as fourier
 import mathlib.misc as misc
 
 def main():
-    #assigment_5a()
-    #assigment_5b()
-    #assigment_5c()
+    assigment_5a()
+    assigment_5b()
+    assigment_5c()
     assigment_5d()
-    #Passigment_5e()
+    assigment_5e()
 
 def assigment_5a():
     """
         Execute assignment 5.a
     """
+
+    # Relevant imports are:
+    # (1) import numpy as np
+    # (2) import mathlib.mass as mass
+    # (3) import matplotlib.pyplot as plt
 
     # Create the positions of the particles.
     np.random.seed(121)
@@ -37,6 +42,11 @@ def assigment_5b():
     """
         Execute assignment 5.b
     """
+
+    # Relevant imports are:
+    # (1) import numpy as np
+    # (2) import mathlib.mass as mass
+    # (3) import matplotlib.pyplot as plt
 
     # The x positions of the moving particle
     x_values = np.linspace(0, 16, 1000)
@@ -65,6 +75,12 @@ def assigment_5c():
     """
         Execute assigment 5.c
     """
+
+    # Relevant imports are:
+    # (1) import numpy as np
+    # (2) import mathlib.mass as mass
+    # (3) import matplotlib.pyplot as plt
+
 
     np.random.seed(121)
     positions = np.random.uniform(low =0, high=16, size=(3,1024))
@@ -110,6 +126,12 @@ def assigment_5d():
         Execute assignment 5.d
     """
 
+    # Relevant imports are:
+    # (1) import numpy as np
+    # (2) import matplotlib.pyplot as plt
+    # (3) import mathlib.misc as misc
+    # (3) import mathlib.fourier as fourier
+
     # Create the data to fourier transform.
     size = 64
 
@@ -138,14 +160,49 @@ def assigment_5d():
 
 
 def assigment_5e():
+    """
+        Execute assigment 5e
+    """
 
-    # The gaussian and multivariate gaussian for sigma = 1 and mu = 0
-    gaus = lambda x : 1/np.sqrt(2*np.pi)*np.exp(-0.5*x**2)
-    multivariate = lambda x,y,z: gaus(x)*gaus(y)*gaus(z)
+    # Relevant imports are:
+    # (1) import numpy as np
+    # (2) import matplotlib.pyplot as plt
+    # (3) import mathlib.misc as misc
+    # (3) import mathlib.fourier as fourier
 
+    # The function to 2D fourier transform
+    func_2d = lambda x,y: np.cos(x+y)
+    x,y = np.meshgrid(range(0, 64), range(0,64))
+    x = np.array(x, dtype=complex)
+    y = np.array(y, dtype=complex)
+
+    _, ax = plt.subplots(nrows=1,ncols=2)
+
+    # Self written FFT2
+    ax[0].imshow(abs(fourier.fft2(func_2d(x,y))))
+    ax[0].set_title("Self written FFT2")
+    ax[0].set_xlabel('index')
+    ax[0].set_ylabel('index')
+
+    # Numpy FFT
+    ax[1].imshow(abs(np.fft.fft2(func_2d(x,y))))
+    ax[1].set_title("Numpy version FFT2")
+    ax[1].set_xlabel('index')
+    ax[1].set_ylabel('index')
+    
+    plt.savefig('./Plots/5e_2d_fft.pdf',bbox_inches='tight')
+    plt.close()
+
+    # 3D
+    # The multivariate gaussian.
+    # I am fully aware that this line looks ugly in the report.
+    multivariate_sigma = lambda x,y,z, sigma:  (1.0/(sigma**2*2*np.pi)**(3/2)) * np.exp(-(((x**2)/2) + ((y**2)/2) + ((z**2)/2))/sigma**2)
+
+    # The multivariate to plot, sigma = 0.5
+    multivariate = lambda x,y,z: multivariate_sigma(x,y,z, 0.5)
 
     # Plot the multivariate gaussian
-    N = 128
+    N = 64
     values = np.arange(0,N)
     values = np.array(values,dtype=complex)
     x,y,z = np.meshgrid(values,values,values)
@@ -154,28 +211,25 @@ def assigment_5e():
     matrix_fft = fourier.fft3(matrix)
 
     # y-z slice
-    plt.imshow(abs(matrix_fft[int(128/2)]))
+    plt.imshow(abs(matrix_fft[int(N/2)]))
     plt.xlabel('y')
     plt.ylabel('z')
-    plt.show()
+    plt.savefig('./Plots/5e_gaussian_yz.pdf')
+    plt.close()
 
     # x-z slice
-    plt.imshow(abs(matrix_fft[:,int(128/2),:]))
+    plt.imshow(abs(matrix_fft[:,int(N/2),:]))
     plt.xlabel('x')
-    plt.ylabel('y')
-    plt.show()
-
+    plt.ylabel('z')
+    plt.savefig('./Plots/5e_gaussian_xz.pdf')
+    plt.close()
+    
     # y-x slice
-    plt.imshow(abs(matrix_fft[:,:,int(128/2)]))
+    plt.imshow(abs(matrix_fft[:,:,int(N/2)]))
     plt.xlabel('x')
     plt.ylabel('y')
-    plt.show()
-
-    #print(multivariate(x,y,z))
-
-    #numpy_fft = np.fft3()
-  
-    pass
+    plt.savefig('./Plots/5e_gaussian_xy.pdf')
+    plt.close()
 
 if __name__ == "__main__":
     main()
