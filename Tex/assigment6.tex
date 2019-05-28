@@ -14,13 +14,11 @@ Use logistic regression to make a model of the data, suing a binary classificati
 \begin{quote}
 
 
-The data is before training the model pre-processed as follows. The first stap consists of removing all rows with missing $T_{90}$ (this only consists of two rows). Next, the columns with  logarithmic values are taken to the power of an exponent. Finally the values of $-1$ in the non logarithmic columns and the values of $e^{-1}$ in the logarithmic columns are replaced with 0. The reason that the columns with logarithmic values was first taken to the exponent is because directly replacing -1.0 in such a column with zero corresponds to creating your own data. (i.e if $\ln(M_{*}/M_{\odot}) = 0$, then we would have created data that implies that $M_{*} = M_{\odot}$). 
+The data is before training the model pre-processed as follows. The first stap consists of removing all rows with missing $T_{90}$ (this only consists of two rows). Next, the columns with  logarithmic values are taken to the power of an exponent. Finally the values of $-1$ in the non logarithmic columns and the values of $e^{-1}$ in the logarithmic columns are replaced with 0. The reason that the columns with logarithmic values where first taken to the exponent is because directly replacing -1.0 in such a column with 0 is equivalent to creating your own data. (i.e if $\ln(M_{*}/M_{\odot}) = 0$, then we would have created data that implies that $M_{*} = M_{\odot}$). 
 \\
-The columns that where chosen to train the model consists of the redshift, the star formation rate and the log of the mass ratio. These coloms where selected based on a scatter plot with seaborn in which all columns where plotted against each other. The code for this is not included\footnote{I did not had enough time to recreate the plot without seaborn before the deadline.}. 
+The columns that where chosen for training  consist of the redshift, the star formation rate and the log of the mass ratio. These columns where selected based on a scatter plot made with seaborn in which all columns where plotted against each other. The code for this is not included\footnote{I did not had enough time to recreate the plot without seaborn before the deadline.}. 
 \\
-With these columns an accuracy of 78 \% was obtained (see below). This value is unfortunately the base line that needs to be broken, as in the final dataset 78\% of all entries are long GRBS. The model is thus imply returning '1' for each entry. Attempts to use different combinations of columns always resulted in the same accuracy. 
-\\
-The code that creates the histogram and the code for the logistic regression can be found below.  
+With these columns an accuracy of 78 \% was obtained (see page 80). This value is unfortunately the base line that needs to be broken, as in the final dataset 78\% of all entries are long GRBS. The model is thus returning '1' for each entry. Attempts to use different combinations of columns always resulted in the same accuracy. The code that creates the histogram and the code for the logistic regression can be found below.  
 
 \end{quote}
 

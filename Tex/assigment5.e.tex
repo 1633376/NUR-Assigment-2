@@ -4,16 +4,16 @@
 
 \textbf{Problem}
 \begin{quote}
-Generalize your own FFT algorithm to 2 and 3 dimensions and make a plot of the FFT of a 2D function (no bivariate Gaussian) and compare it with the analytical FFT of your FFT. Also make a plot of the FFT of a 3D multivariate Gaussian f unction, plot 3 slices centered at the center for the 3 different slice options x-y, x-z,y-z.
+Generalize your own FFT algorithm to 2 and 3 dimensions and make a plot of the FFT of a 2D function (no bivariate Gaussian) and compare it with the analytical FFT of your FFT. Also make a plot of the FFT of a 3D multivariate Gaussian function, plot 3 slices centered at the center for the 3 different slice options x-y, x-z,y-z.
 \end{quote}
 
 \textbf{Solution} 
 \begin{quote}
 
-The code for the 2D and 3D implementation makes use of the code for the 1D implementation. In 2D the FFT is first taken over the first axis of the input matrix and then over the second axis.In Three day the FFT2 is first taken over the first axis and then the FFT is taken over the third axis. 
+The code for the 2D and 3D implementation makes use of the code for the 1D implementation. In 2D the FFT is first taken over the first axis of the input matrix and then over the second axis. In 3D the FFT2 is first taken over the first axis and then the FFT is taken over the third axis. 
 The code is not generalized to N-dimensions, as the question did not ask to write your own swapaxis algorithm. 
 \\
-The chosen function to 2D fourier transform is $\cos(x+y)$. The analytical result consists of 2 2D delta functions. The code that makes the plots for the 2D FFT and the 3D FFT can be found below, the implementation its self can be found on pages. The plots can be found below the code.
+The chosen function to 2D fourier transform is $\cos(x+y)$. The analytical result consists of two 2D delta functions. The code that makes the plots for the 2D FFT and the 3D FFT can be found below, the implementation its self can be found on page 75. The plots can be found below the code.
 \end{quote}
 \newpage
 

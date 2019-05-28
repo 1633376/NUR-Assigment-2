@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.23)  28 MAY 2019 11:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.23)  28 MAY 2019 12:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -662,12 +662,12 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 43.
 ) (./Output/assigment1_out.txt) [2]
-<./Plots/1_plot_against.pdf, id=80, 462.52798pt x 346.89601pt>
+<./Plots/1_plot_against.pdf, id=77, 462.52798pt x 346.89601pt>
 File: ./Plots/1_plot_against.pdf Graphic file (type pdf)
 <use ./Plots/1_plot_against.pdf>
 Package pdftex.def Info: ./Plots/1_plot_against.pdf  used on input line 48.
 (pdftex.def)             Requested size: 341.44666pt x 213.39536pt.
-<./Plots/1_plot_index.pdf, id=81, 462.52798pt x 346.89601pt>
+<./Plots/1_plot_index.pdf, id=78, 462.52798pt x 346.89601pt>
 File: ./Plots/1_plot_index.pdf Graphic file (type pdf)
 <use ./Plots/1_plot_index.pdf>
 Package pdftex.def Info: ./Plots/1_plot_index.pdf  used on input line 54.
@@ -677,7 +677,7 @@ Package pdftex.def Info: ./Plots/1_plot_index.pdf  used on input line 54.
 pdfTeX warning: pdflatex (file ./Plots/1_plot_index.pdf): PDF inclusion: multip
 le pdfs with page group included in a single page
 >]
-<./Plots/1_hist_uniformnes.pdf, id=148, 462.52798pt x 346.89601pt>
+<./Plots/1_hist_uniformnes.pdf, id=145, 462.52798pt x 346.89601pt>
 File: ./Plots/1_hist_uniformnes.pdf Graphic file (type pdf)
 <use ./Plots/1_hist_uniformnes.pdf>
 Package pdftex.def Info: ./Plots/1_hist_uniformnes.pdf  used on input line 61.
@@ -693,7 +693,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--61
  []
 
 (./Code/assigment_1.py [5])
-<./Plots/1_hist_gaussian.pdf, id=230, 462.52798pt x 346.89601pt>
+<./Plots/1_hist_gaussian.pdf, id=223, 462.52798pt x 346.89601pt>
 File: ./Plots/1_hist_gaussian.pdf Graphic file (type pdf)
 <use ./Plots/1_hist_gaussian.pdf>
 Package pdftex.def Info: ./Plots/1_hist_gaussian.pdf  used on input line 80.
@@ -705,13 +705,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--14
  []
 
 [7] (./Code/assigment_1.py) [8]
-<./Plots/1_plot_ks_test_self.pdf, id=377, 462.52798pt x 346.89601pt>
+<./Plots/1_plot_ks_test_self.pdf, id=369, 462.52798pt x 346.89601pt>
 File: ./Plots/1_plot_ks_test_self.pdf Graphic file (type pdf)
 <use ./Plots/1_plot_ks_test_self.pdf>
 Package pdftex.def Info: ./Plots/1_plot_ks_test_self.pdf  used on input line 71
 .
 (pdftex.def)             Requested size: 341.44666pt x 213.39536pt.
-<./Plots/1_plot_ks_test_self_scipy.pdf, id=378, 462.52798pt x 346.89601pt>
+<./Plots/1_plot_ks_test_self_scipy.pdf, id=370, 462.52798pt x 346.89601pt>
 File: ./Plots/1_plot_ks_test_self_scipy.pdf Graphic file (type pdf)
 <use ./Plots/1_plot_ks_test_self_scipy.pdf>
 Package pdftex.def Info: ./Plots/1_plot_ks_test_self_scipy.pdf  used on input l
@@ -728,14 +728,14 @@ od-ule \OT1/cmtt/m/n/10 ./Code/mathlib/statistics.py
  []
 
 (./Code/assigment_1.py [10])
-<./Plots/1_plot_kuiper_test_self.pdf, id=523, 462.52798pt x 346.89601pt>
+<./Plots/1_plot_kuiper_test_self.pdf, id=514, 462.52798pt x 346.89601pt>
 File: ./Plots/1_plot_kuiper_test_self.pdf Graphic file (type pdf)
 <use ./Plots/1_plot_kuiper_test_self.pdf>
 Package pdftex.def Info: ./Plots/1_plot_kuiper_test_self.pdf  used on input lin
 e 33.
 (pdftex.def)             Requested size: 341.44666pt x 213.39536pt.
  [11 <./Plots/1_plot_kuiper_test_self.pdf>]
-<./Plots/1_plot_kuiper_test_self_astropy.pdf, id=598, 462.52798pt x 346.89601pt
+<./Plots/1_plot_kuiper_test_self_astropy.pdf, id=589, 462.52798pt x 346.89601pt
 >
 File: ./Plots/1_plot_kuiper_test_self_astropy.pdf Graphic file (type pdf)
 <use ./Plots/1_plot_kuiper_test_self_astropy.pdf>
@@ -750,12 +750,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--16
 
 [12 <./Plots/1_plot_kuiper_test_self_astropy.pdf>] (./Code/assigment_1.py)
 [13]
-<./Plots/1e_plot_column_0.pdf, id=718, 462.52798pt x 346.89601pt>
+<./Plots/1e_plot_column_0.pdf, id=706, 462.52798pt x 346.89601pt>
 File: ./Plots/1e_plot_column_0.pdf Graphic file (type pdf)
 <use ./Plots/1e_plot_column_0.pdf>
 Package pdftex.def Info: ./Plots/1e_plot_column_0.pdf  used on input line 34.
 (pdftex.def)             Requested size: 398.35913pt x 227.62347pt.
-<./Plots/1e_plot_column_1.pdf, id=719, 462.52798pt x 346.89601pt>
+<./Plots/1e_plot_column_1.pdf, id=707, 462.52798pt x 346.89601pt>
 File: ./Plots/1e_plot_column_1.pdf Graphic file (type pdf)
 <use ./Plots/1e_plot_column_1.pdf>
 Package pdftex.def Info: ./Plots/1e_plot_column_1.pdf  used on input line 40.
@@ -765,12 +765,12 @@ Package pdftex.def Info: ./Plots/1e_plot_column_1.pdf  used on input line 40.
 pdfTeX warning: pdflatex (file ./Plots/1e_plot_column_1.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
 >]
-<./Plots/1e_plot_column_2.pdf, id=819, 462.52798pt x 346.89601pt>
+<./Plots/1e_plot_column_2.pdf, id=807, 462.52798pt x 346.89601pt>
 File: ./Plots/1e_plot_column_2.pdf Graphic file (type pdf)
 <use ./Plots/1e_plot_column_2.pdf>
 Package pdftex.def Info: ./Plots/1e_plot_column_2.pdf  used on input line 47.
 (pdftex.def)             Requested size: 398.35913pt x 241.8463pt.
-<./Plots/1e_plot_column_3.pdf, id=820, 462.52798pt x 346.89601pt>
+<./Plots/1e_plot_column_3.pdf, id=808, 462.52798pt x 346.89601pt>
 File: ./Plots/1e_plot_column_3.pdf Graphic file (type pdf)
 <use ./Plots/1e_plot_column_3.pdf>
 Package pdftex.def Info: ./Plots/1e_plot_column_3.pdf  used on input line 53.
@@ -780,12 +780,12 @@ Package pdftex.def Info: ./Plots/1e_plot_column_3.pdf  used on input line 53.
 pdfTeX warning: pdflatex (file ./Plots/1e_plot_column_3.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
 >]
-<./Plots/1e_plot_column_4.pdf, id=920, 462.52798pt x 346.89601pt>
+<./Plots/1e_plot_column_4.pdf, id=909, 462.52798pt x 346.89601pt>
 File: ./Plots/1e_plot_column_4.pdf Graphic file (type pdf)
 <use ./Plots/1e_plot_column_4.pdf>
 Package pdftex.def Info: ./Plots/1e_plot_column_4.pdf  used on input line 61.
 (pdftex.def)             Requested size: 398.35913pt x 241.8463pt.
-<./Plots/1e_plot_column_5.pdf, id=921, 462.52798pt x 346.89601pt>
+<./Plots/1e_plot_column_5.pdf, id=910, 462.52798pt x 346.89601pt>
 File: ./Plots/1e_plot_column_5.pdf Graphic file (type pdf)
 <use ./Plots/1e_plot_column_5.pdf>
 Package pdftex.def Info: ./Plots/1e_plot_column_5.pdf  used on input line 68.
@@ -795,12 +795,12 @@ Package pdftex.def Info: ./Plots/1e_plot_column_5.pdf  used on input line 68.
 pdfTeX warning: pdflatex (file ./Plots/1e_plot_column_5.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
 >]
-<./Plots/1e_plot_column_6.pdf, id=1023, 462.52798pt x 346.89601pt>
+<./Plots/1e_plot_column_6.pdf, id=1011, 462.52798pt x 346.89601pt>
 File: ./Plots/1e_plot_column_6.pdf Graphic file (type pdf)
 <use ./Plots/1e_plot_column_6.pdf>
 Package pdftex.def Info: ./Plots/1e_plot_column_6.pdf  used on input line 76.
 (pdftex.def)             Requested size: 398.35913pt x 241.8463pt.
-<./Plots/1e_plot_column_7.pdf, id=1024, 462.52798pt x 346.89601pt>
+<./Plots/1e_plot_column_7.pdf, id=1012, 462.52798pt x 346.89601pt>
 File: ./Plots/1e_plot_column_7.pdf Graphic file (type pdf)
 <use ./Plots/1e_plot_column_7.pdf>
 Package pdftex.def Info: ./Plots/1e_plot_column_7.pdf  used on input line 83.
@@ -810,12 +810,12 @@ Package pdftex.def Info: ./Plots/1e_plot_column_7.pdf  used on input line 83.
 pdfTeX warning: pdflatex (file ./Plots/1e_plot_column_7.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
 >]
-<./Plots/1e_plot_column_8.pdf, id=1125, 462.52798pt x 346.89601pt>
+<./Plots/1e_plot_column_8.pdf, id=1114, 462.52798pt x 346.89601pt>
 File: ./Plots/1e_plot_column_8.pdf Graphic file (type pdf)
 <use ./Plots/1e_plot_column_8.pdf>
 Package pdftex.def Info: ./Plots/1e_plot_column_8.pdf  used on input line 91.
 (pdftex.def)             Requested size: 398.35913pt x 241.8463pt.
-<./Plots/1e_plot_column_9.pdf, id=1126, 462.52798pt x 346.89601pt>
+<./Plots/1e_plot_column_9.pdf, id=1115, 462.52798pt x 346.89601pt>
 File: ./Plots/1e_plot_column_9.pdf Graphic file (type pdf)
 <use ./Plots/1e_plot_column_9.pdf>
 Package pdftex.def Info: ./Plots/1e_plot_column_9.pdf  used on input line 97.
@@ -869,12 +869,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--45
  []
 
 (./Code/assigment_2.py [29]) (./Code/mathlib/misc.py [30]) [31]
-<./Plots/2_field_-1.pdf, id=2050, 462.52798pt x 346.89601pt>
+<./Plots/2_field_-1.pdf, id=2041, 462.52798pt x 346.89601pt>
 File: ./Plots/2_field_-1.pdf Graphic file (type pdf)
 <use ./Plots/2_field_-1.pdf>
 Package pdftex.def Info: ./Plots/2_field_-1.pdf  used on input line 66.
 (pdftex.def)             Requested size: 398.35913pt x 270.31313pt.
-<./Plots/2_field_-2.pdf, id=2051, 462.52798pt x 346.89601pt>
+<./Plots/2_field_-2.pdf, id=2042, 462.52798pt x 346.89601pt>
 File: ./Plots/2_field_-2.pdf Graphic file (type pdf)
 <use ./Plots/2_field_-2.pdf>
 Package pdftex.def Info: ./Plots/2_field_-2.pdf  used on input line 72.
@@ -884,7 +884,7 @@ Package pdftex.def Info: ./Plots/2_field_-2.pdf  used on input line 72.
 pdfTeX warning: pdflatex (file ./Plots/2_field_-2.pdf): PDF inclusion: multiple
  pdfs with page group included in a single page
 >]
-<./Plots/2_field_-3.pdf, id=2121, 462.52798pt x 346.89601pt>
+<./Plots/2_field_-3.pdf, id=2112, 462.52798pt x 346.89601pt>
 File: ./Plots/2_field_-3.pdf Graphic file (type pdf)
 <use ./Plots/2_field_-3.pdf>
 Package pdftex.def Info: ./Plots/2_field_-3.pdf  used on input line 82.
@@ -936,12 +936,12 @@ LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.5> not available
 (Font)              size <5> substituted on input line 89.
 
 [34] (./Code/assigment_3.py [35]) (./Code/mathlib/ode.py [36]) [37]
-<./Plots/3_ode_0.pdf, id=2385, 462.52798pt x 346.89601pt>
+<./Plots/3_ode_0.pdf, id=2376, 462.52798pt x 346.89601pt>
 File: ./Plots/3_ode_0.pdf Graphic file (type pdf)
 <use ./Plots/3_ode_0.pdf>
 Package pdftex.def Info: ./Plots/3_ode_0.pdf  used on input line 122.
 (pdftex.def)             Requested size: 398.35913pt x 241.8463pt.
-<./Plots/3_ode_1.pdf, id=2386, 462.52798pt x 346.89601pt>
+<./Plots/3_ode_1.pdf, id=2377, 462.52798pt x 346.89601pt>
 File: ./Plots/3_ode_1.pdf Graphic file (type pdf)
 <use ./Plots/3_ode_1.pdf>
 Package pdftex.def Info: ./Plots/3_ode_1.pdf  used on input line 128.
@@ -951,7 +951,7 @@ Package pdftex.def Info: ./Plots/3_ode_1.pdf  used on input line 128.
 pdfTeX warning: pdflatex (file ./Plots/3_ode_1.pdf): PDF inclusion: multiple pd
 fs with page group included in a single page
 >]
-<./Plots/3_ode_2.pdf, id=2454, 462.52798pt x 346.89601pt>
+<./Plots/3_ode_2.pdf, id=2445, 462.52798pt x 346.89601pt>
 File: ./Plots/3_ode_2.pdf Graphic file (type pdf)
 <use ./Plots/3_ode_2.pdf>
 Package pdftex.def Info: ./Plots/3_ode_2.pdf  used on input line 136.
@@ -987,17 +987,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--15
  []
 
 [44] (./Code/assigment_4.py [45]) [46]
-<./Plots/4c/4c=89.png, id=2850, 462.528pt x 346.896pt>
+<./Plots/4c/4c=89.png, id=2840, 462.528pt x 346.896pt>
 File: ./Plots/4c/4c=89.png Graphic file (type png)
 <use ./Plots/4c/4c=89.png>
 Package pdftex.def Info: ./Plots/4c/4c=89.png  used on input line 38.
 (pdftex.def)             Requested size: 398.35915pt x 270.31313pt.
-<./Plots/4c_pos.pdf, id=2852, 462.52798pt x 346.89601pt>
+<./Plots/4c_pos.pdf, id=2842, 462.52798pt x 346.89601pt>
 File: ./Plots/4c_pos.pdf Graphic file (type pdf)
 <use ./Plots/4c_pos.pdf>
 Package pdftex.def Info: ./Plots/4c_pos.pdf  used on input line 48.
 (pdftex.def)             Requested size: 398.35913pt x 241.8463pt.
-<./Plots/4c_momentum.pdf, id=2855, 462.52798pt x 346.89601pt>
+<./Plots/4c_momentum.pdf, id=2845, 462.52798pt x 346.89601pt>
 File: ./Plots/4c_momentum.pdf Graphic file (type pdf)
 <use ./Plots/4c_momentum.pdf>
 Package pdftex.def Info: ./Plots/4c_momentum.pdf  used on input line 54.
@@ -1008,12 +1008,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--16
  []
 
 [48 <./Plots/4c_momentum.pdf>] (./Code/assigment_4.py [49] [50]) [51]
-<./Plots/4d_pos.pdf, id=3135, 462.52798pt x 346.89601pt>
+<./Plots/4d_pos.pdf, id=3124, 462.52798pt x 346.89601pt>
 File: ./Plots/4d_pos.pdf Graphic file (type pdf)
 <use ./Plots/4d_pos.pdf>
 Package pdftex.def Info: ./Plots/4d_pos.pdf  used on input line 32.
 (pdftex.def)             Requested size: 398.35913pt x 270.31313pt.
-<./Plots/4d_momentum.pdf, id=3136, 462.52798pt x 346.89601pt>
+<./Plots/4d_momentum.pdf, id=3125, 462.52798pt x 346.89601pt>
 File: ./Plots/4d_momentum.pdf Graphic file (type pdf)
 <use ./Plots/4d_momentum.pdf>
 Package pdftex.def Info: ./Plots/4d_momentum.pdf  used on input line 38.
@@ -1031,12 +1031,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--21
 (./Code/mathlib/helpers4.py [53]) (./Code/mathlib/misc.py [54] [55] [56])
 (./Code/mathlib/integrate.py [57]) [58]) (./Tex/assigment5.a.tex
 (./Code/assigment_5.py) [59]
-<./Plots/5a_slice_4.pdf, id=3624, 462.52798pt x 346.89601pt>
+<./Plots/5a_slice_4.pdf, id=3614, 462.52798pt x 346.89601pt>
 File: ./Plots/5a_slice_4.pdf Graphic file (type pdf)
 <use ./Plots/5a_slice_4.pdf>
 Package pdftex.def Info: ./Plots/5a_slice_4.pdf  used on input line 42.
 (pdftex.def)             Requested size: 398.35913pt x 270.31313pt.
-<./Plots/5a_slice_9.pdf, id=3625, 462.52798pt x 346.89601pt>
+<./Plots/5a_slice_9.pdf, id=3615, 462.52798pt x 346.89601pt>
 File: ./Plots/5a_slice_9.pdf Graphic file (type pdf)
 <use ./Plots/5a_slice_9.pdf>
 Package pdftex.def Info: ./Plots/5a_slice_9.pdf  used on input line 49.
@@ -1046,12 +1046,12 @@ Package pdftex.def Info: ./Plots/5a_slice_9.pdf  used on input line 49.
 pdfTeX warning: pdflatex (file ./Plots/5a_slice_9.pdf): PDF inclusion: multiple
  pdfs with page group included in a single page
 >]
-<./Plots/5a_slice_11.pdf, id=3669, 462.52798pt x 346.89601pt>
+<./Plots/5a_slice_11.pdf, id=3659, 462.52798pt x 346.89601pt>
 File: ./Plots/5a_slice_11.pdf Graphic file (type pdf)
 <use ./Plots/5a_slice_11.pdf>
 Package pdftex.def Info: ./Plots/5a_slice_11.pdf  used on input line 56.
 (pdftex.def)             Requested size: 398.35913pt x 270.31313pt.
-<./Plots/5a_slice_14.pdf, id=3670, 462.52798pt x 346.89601pt>
+<./Plots/5a_slice_14.pdf, id=3660, 462.52798pt x 346.89601pt>
 File: ./Plots/5a_slice_14.pdf Graphic file (type pdf)
 <use ./Plots/5a_slice_14.pdf>
 Package pdftex.def Info: ./Plots/5a_slice_14.pdf  used on input line 62.
@@ -1061,7 +1061,7 @@ Package pdftex.def Info: ./Plots/5a_slice_14.pdf  used on input line 62.
 pdfTeX warning: pdflatex (file ./Plots/5a_slice_14.pdf): PDF inclusion: multipl
 e pdfs with page group included in a single page
 >]) (./Tex/assigment5.b.tex (./Code/assigment_5.py) [62]
-<./Plots/5b_cell.pdf, id=3754, 462.52798pt x 346.89601pt>
+<./Plots/5b_cell.pdf, id=3743, 462.52798pt x 346.89601pt>
 File: ./Plots/5b_cell.pdf Graphic file (type pdf)
 <use ./Plots/5b_cell.pdf>
 Package pdftex.def Info: ./Plots/5b_cell.pdf  used on input line 27.
@@ -1069,12 +1069,12 @@ Package pdftex.def Info: ./Plots/5b_cell.pdf  used on input line 27.
 )
 (./Tex/assigment5.c.tex [63 <./Plots/5b_cell.pdf>] (./Code/assigment_5.py)
 [64]
-<./Plots/5c_slice_4.pdf, id=3846, 462.52798pt x 346.89601pt>
+<./Plots/5c_slice_4.pdf, id=3836, 462.52798pt x 346.89601pt>
 File: ./Plots/5c_slice_4.pdf Graphic file (type pdf)
 <use ./Plots/5c_slice_4.pdf>
 Package pdftex.def Info: ./Plots/5c_slice_4.pdf  used on input line 29.
 (pdftex.def)             Requested size: 398.35913pt x 270.31313pt.
-<./Plots/5c_slice_9.pdf, id=3847, 462.52798pt x 346.89601pt>
+<./Plots/5c_slice_9.pdf, id=3837, 462.52798pt x 346.89601pt>
 File: ./Plots/5c_slice_9.pdf Graphic file (type pdf)
 <use ./Plots/5c_slice_9.pdf>
 Package pdftex.def Info: ./Plots/5c_slice_9.pdf  used on input line 35.
@@ -1084,12 +1084,12 @@ Package pdftex.def Info: ./Plots/5c_slice_9.pdf  used on input line 35.
 pdfTeX warning: pdflatex (file ./Plots/5c_slice_9.pdf): PDF inclusion: multiple
  pdfs with page group included in a single page
 >]
-<./Plots/5c_slice_11.pdf, id=3887, 462.52798pt x 346.89601pt>
+<./Plots/5c_slice_11.pdf, id=3877, 462.52798pt x 346.89601pt>
 File: ./Plots/5c_slice_11.pdf Graphic file (type pdf)
 <use ./Plots/5c_slice_11.pdf>
 Package pdftex.def Info: ./Plots/5c_slice_11.pdf  used on input line 42.
 (pdftex.def)             Requested size: 398.35913pt x 270.31313pt.
-<./Plots/5c_slice_14.pdf, id=3888, 462.52798pt x 346.89601pt>
+<./Plots/5c_slice_14.pdf, id=3878, 462.52798pt x 346.89601pt>
 File: ./Plots/5c_slice_14.pdf Graphic file (type pdf)
 <use ./Plots/5c_slice_14.pdf>
 Package pdftex.def Info: ./Plots/5c_slice_14.pdf  used on input line 49.
@@ -1099,14 +1099,14 @@ Package pdftex.def Info: ./Plots/5c_slice_14.pdf  used on input line 49.
 pdfTeX warning: pdflatex (file ./Plots/5c_slice_14.pdf): PDF inclusion: multipl
 e pdfs with page group included in a single page
 >]
-<./Plots/5c_cell.pdf, id=3929, 462.52798pt x 346.89601pt>
+<./Plots/5c_cell.pdf, id=3919, 462.52798pt x 346.89601pt>
 File: ./Plots/5c_cell.pdf Graphic file (type pdf)
 <use ./Plots/5c_cell.pdf>
 Package pdftex.def Info: ./Plots/5c_cell.pdf  used on input line 58.
 (pdftex.def)             Requested size: 398.35913pt x 270.31313pt.
 ) (./Tex/assigment5.d.tex [67 <./Plots/5c_cell.pdf>] (./Code/assigment_5.py)
 [68]
-<./Plots/5d_fourier.pdf, id=4012, 462.52798pt x 346.89601pt>
+<./Plots/5d_fourier.pdf, id=4002, 462.52798pt x 346.89601pt>
 File: ./Plots/5d_fourier.pdf Graphic file (type pdf)
 <use ./Plots/5d_fourier.pdf>
 Package pdftex.def Info: ./Plots/5d_fourier.pdf  used on input line 40.
@@ -1117,12 +1117,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 27--28
 
  []
 
-<./Plots/5e_2d_fft.pdf, id=4125, 409.94215pt x 223.02927pt>
+<./Plots/5e_2d_fft.pdf, id=4115, 409.94215pt x 223.02927pt>
 File: ./Plots/5e_2d_fft.pdf Graphic file (type pdf)
 <use ./Plots/5e_2d_fft.pdf>
 Package pdftex.def Info: ./Plots/5e_2d_fft.pdf  used on input line 32.
 (pdftex.def)             Requested size: 426.79266pt x 213.40799pt.
-<./Plots/5e_gaussian_yz.pdf, id=4126, 462.52798pt x 346.89601pt>
+<./Plots/5e_gaussian_yz.pdf, id=4116, 462.52798pt x 346.89601pt>
 File: ./Plots/5e_gaussian_yz.pdf Graphic file (type pdf)
 <use ./Plots/5e_gaussian_yz.pdf>
 Package pdftex.def Info: ./Plots/5e_gaussian_yz.pdf  used on input line 43.
@@ -1132,12 +1132,12 @@ Package pdftex.def Info: ./Plots/5e_gaussian_yz.pdf  used on input line 43.
 pdfTeX warning: pdflatex (file ./Plots/5e_gaussian_yz.pdf): PDF inclusion: mult
 iple pdfs with page group included in a single page
 >]
-<./Plots/5e_gaussian_xz.pdf, id=4195, 462.52798pt x 346.89601pt>
+<./Plots/5e_gaussian_xz.pdf, id=4181, 462.52798pt x 346.89601pt>
 File: ./Plots/5e_gaussian_xz.pdf Graphic file (type pdf)
 <use ./Plots/5e_gaussian_xz.pdf>
 Package pdftex.def Info: ./Plots/5e_gaussian_xz.pdf  used on input line 50.
 (pdftex.def)             Requested size: 398.35913pt x 213.39536pt.
-<./Plots/5e_gaussian_xy.pdf, id=4196, 462.52798pt x 346.89601pt>
+<./Plots/5e_gaussian_xy.pdf, id=4182, 462.52798pt x 346.89601pt>
 File: ./Plots/5e_gaussian_xy.pdf Graphic file (type pdf)
 <use ./Plots/5e_gaussian_xy.pdf>
 Package pdftex.def Info: ./Plots/5e_gaussian_xy.pdf  used on input line 56.
@@ -1155,27 +1155,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--21
 (./Code/mathlib/mass.py [73]) [74] (./Code/mathlib/fourier.py [75]) [76])
 (./Tex/assigment6.tex (./Code/assigment_6.py [77])
 (./Code/mathlib/LogisticRegression.py [78]) [79]
-Underfull \hbox (badness 10000) in paragraph at lines 42--43
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
 
  []
 
 (./Output/assigment6_out.txt)
-<./Plots/6a_hist.pdf, id=4665, 462.52798pt x 346.89601pt>
+<./Plots/6a_hist.pdf, id=4643, 462.52798pt x 346.89601pt>
 File: ./Plots/6a_hist.pdf Graphic file (type pdf)
 <use ./Plots/6a_hist.pdf>
-Package pdftex.def Info: ./Plots/6a_hist.pdf  used on input line 52.
+Package pdftex.def Info: ./Plots/6a_hist.pdf  used on input line 50.
 (pdftex.def)             Requested size: 398.35913pt x 213.39536pt.
 ) (./Tex/assigment7.tex [80 <./Plots/6a_hist.pdf>] (./Code/assigment_7.py) (./C
 ode/mathlib/quadtree.py [81] [82] [83] [84]
-[85]) (./Output/assigment7_out.txt) [86]
-<./Plots/7_quadtree.pdf, id=5090, 462.52798pt x 346.89601pt>
+[85]) (./Output/assigment7_out.txt)
+<./Plots/7_quadtree.pdf, id=5051, 462.52798pt x 346.89601pt>
 File: ./Plots/7_quadtree.pdf Graphic file (type pdf)
 <use ./Plots/7_quadtree.pdf>
-Package pdftex.def Info: ./Plots/7_quadtree.pdf  used on input line 46.
+Package pdftex.def Info: ./Plots/7_quadtree.pdf  used on input line 45.
 (pdftex.def)             Requested size: 398.35913pt x 241.8463pt.
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 88.
- [87 <./Plots/7_quadtree.pdf>]
+ [86 <./Plots/7_quadtree.pdf>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 88.
 
 (./assigment.aux)
@@ -1194,10 +1194,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 88.
  ) 
 Here is how much of TeX's memory you used:
- 11959 strings out of 492982
- 175459 string characters out of 6134896
+ 11955 strings out of 492982
+ 175414 string characters out of 6134896
  700240 words of memory out of 5000000
- 11987 multiletter control sequences out of 15000+600000
+ 11985 multiletter control sequences out of 15000+600000
  11144 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  31i,12n,40p,1078b,2042s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1224,10 +1224,10 @@ nts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmtt10.pfb>
-Output written on assigment.pdf (87 pages, 2206066 bytes).
+Output written on assigment.pdf (86 pages, 2198482 bytes).
 PDF statistics:
- 6053 PDF objects out of 6186 (max. 8388607)
- 4528 compressed objects within 46 object streams
- 3232 named destinations out of 3580 (max. 500000)
+ 6028 PDF objects out of 6186 (max. 8388607)
+ 4513 compressed objects within 46 object streams
+ 3230 named destinations out of 3580 (max. 500000)
  231 words of extra memory for PDF output out of 10000 (max. 10000000)
 

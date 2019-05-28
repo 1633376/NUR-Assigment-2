@@ -36,7 +36,7 @@ def assigment_5a():
         plt.imshow(slice)
         plt.colorbar()
         plt.savefig('./Plots/5a_slice_{0}.pdf'.format(z))
-        plt.figure() 
+        plt.close() 
       
 def assigment_5b():
     """
@@ -69,7 +69,7 @@ def assigment_5b():
     plt.ylabel('Mass in terms of particle mass')
     plt.legend()
     plt.savefig('./Plots/5b_cell.pdf')
-    plt.figure()
+    plt.close()
 
 def assigment_5c():
     """
@@ -96,7 +96,7 @@ def assigment_5c():
         plt.imshow(slice)
         plt.colorbar()
         plt.savefig('./Plots/5c_slice_{0}.pdf'.format(z))
-        plt.figure()
+        plt.close()
 
     # The x positions of the moving particle
     x_values = np.linspace(0, 16, 1000)
@@ -119,7 +119,7 @@ def assigment_5c():
     plt.ylabel('Mass in terms of particle mass')
     plt.legend()
     plt.savefig('./Plots/5c_cell.pdf')
-    plt.figure()
+    plt.close()
 
 def assigment_5d():
     """

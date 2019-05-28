@@ -60,7 +60,7 @@ predictions = np.array(predictions,dtype=int)
 #Create the histogram
 bins = np.arange(0,1.1,0.05)
 
-plt.hist(predictions,alpha=0.9,bins=bins, label='Model')
+plt.hist(predictions,alpha=0.9,bins=bins, label='Model', density=True)
 plt.hist(np.array(train_labels, dtype=int),bins=bins, label='True', density=True )
 plt.legend()
 plt.ylabel('Normalized counts')

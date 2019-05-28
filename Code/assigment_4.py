@@ -193,13 +193,9 @@ def assigment4_c():
         momentum_top_10.append(p_y[0:10,0])
 
         # Create the plot.       
-        img = plt.pcolormesh(matrix_ifft)
         plt.scatter(pos_x_new, pos_y_new,s=1,c='black')
-
-        #plt.imshow(matrix_ifft,alpha=0.7)
-        plt.xlim([0,grid_size])
-        plt.ylim([0,grid_size])
-        plt.colorbar(img)
+        plt.imshow(matrix_ifft,alpha=0.7)
+        plt.colorbar()
         plt.title('a=' + str(a))
         plt.xlabel('x [Mpc]')
         plt.ylabel('y [Mpc]')
