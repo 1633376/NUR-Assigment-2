@@ -37,19 +37,19 @@ echo "Finished preperations"
 
 
 echo "Executing code ........."
-echo "Executing assigment-1............(around 1 min 30)"
+echo "Executing assigment-1............(between 1 min 30 - 2 min 30)"
 python3 ./Code/assigment_1.py > ./Output/assigment1_out.txt
-echo "Executing assigment-2............(around 30 sec)"
+echo "Executing assigment-2............(between 30 sec -  1 min)"
 python3 ./Code/assigment_2.py > ./Output/assigment2_out.txt
-echo "Executing assigment-3............(around 2 sec)"
+echo "Executing assigment-3............(between 2 sec - 10 sec)"
 python3 ./Code/assigment_3.py > ./Output/assigment3_out.txt
-echo "Executing assigment-5............(around 30 sec)"
+echo "Executing assigment-5............(between 30 sec - 1 min)"
 python3 ./Code/assigment_5.py > ./Output/assigment5_out.txt
-echo "Executing assigment-6............(around 10 sec)"
+echo "Executing assigment-6............(betwen 10 sec - 15 sec)"
 python3 ./Code/assigment_6.py > ./Output/assigment6_out.txt
-echo "Executing assigment-7............(around 3 sec)"
+echo "Executing assigment-7............(between 3 sec - 10 sec)"
 python3 ./Code/assigment_7.py > ./Output/assigment7_out.txt
-echo "Executing assigment-4............(around 1 min 30)"
+echo "Executing assigment-4............(around 1 min 30 - xxxxxx)"
 echo "Note: While testing this on the PCZAAL with ssh, plt.scatter took 3 seconds (even when plotting 1 point)"
 echo "If this also happends without ssh then this code will take approximately 20 minutes (plt.scatter is called 4*90 times)"
 echo "In this case assigments 4a, 4b and 4.c will be finished before the 10 minute mark, but 4.d won't. "
