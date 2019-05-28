@@ -15,7 +15,7 @@ The difficulty of this exercise lays by the calculation the components of the di
 
 The displacement vector is calculated by first creating a matrix in $k$ -space with complex values based on the given power law (similar to exercise 2). The matrix is next given the correct hermitian symmetry (see again exercise 2). The components of the displacement vector, $s_x$ and $s_y$, are then calculated independent with the help of this matrix.  This calculation is done as follows. The hemitian matrix is copied and the components in the matrices are multiplied with the wavenumbers and the complex number $i$. The wavenumbers by which the components are multiplied depends on whether we want $s_x$ or $s_y$. The result is two matrices where the cells have respectively values of $ic_k k_x$ and $ic_k k_y$. After this multiplication the matrices cannot be directly fourier transformed to obtain $s_x$ and $s_y$, as the multiplication with the wavenumbers breaks the symmetry in the columns with nyquest wavenumbers. The symmetry is only broken by a minus sign and this is corrected before doing the IFFT. 
 \\
-The code that creates the movie and the plots for the first 10 particles can be found below. The final plot of the movie is also included and shows that the particles clearly move to the denser region (see figure \ref{FIG:stuff} on page \pageref{FIG:stuff}).
+The code that creates the movie and the plots for the first 10 particles can be found below. The final plot of the movie is also included and shows that the particles clearly move to the denser region (see figure 25 on page 47).
 
 \end{quote}
 \newpage
