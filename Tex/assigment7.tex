@@ -12,10 +12,10 @@ Download the file containing 1200 particle masses and positions. Considering onl
 
 \textbf{Solution} 
 \begin{quote}
-The zeroth order multipole moment for a leaf node corresponds to the sum of the masses of the particles in that leaf node. The multipole moment of a parent node (can be a parent of a leaf, or of a other non leaf) is the sum of the multipole moment of its children. With this knowledge a quadtree has been constructed that calculates the multipole moment for each of its nodes. The origin of the tree is chosen to be x = 0, y = 0 and corresponds with the left bottom coordinate of the root quad. The size of the root node is chosen to be 150. The root node is thus a quad with edge points: (0,0) (origin), (150,0) right bottom, (0,150) left top, (150,150) right top. 
+The zeroth order multipole moment for a leaf node corresponds to the sum of the masses of the particles in that leaf node. The multipole moment of a parent node (this can be a parent of a leaf, or a parent of a non leaf) is the sum of the multipole moment of its children. With this knowledge a quadtree has been constructed that calculates the multipole moment for each of its nodes. The origin of the tree is chosen to be x = 0, y = 0 and corresponds with the left bottom coordinate of the root quad. The size of the root node is chosen to be 150. The root node is thus a quad with edge points: (0,0) (origin), (150,0) right bottom, (0,150) left top, (150,150) right top. 
 \\
 The code for the tree, a plot of the particles in the tree and the multipole moments can be found below. The code is split over two files, the first file 
-contains the code that constructs  the quad tree and adds the particles to the tree. The second file contains the code that contains the quad tree its self.   
+contains the code that constructs  the quadtree and adds the particles to the tree. The second file contains the code that contains the quadtree its self.   
 \end{quote}
 
 \textbf{Code - Output}

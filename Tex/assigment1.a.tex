@@ -17,7 +17,7 @@ The state of the random number generator (RNG) is updated by first performing a 
 \\
 The first 32 bits of the new state are used to provide a random value, as the output of the MWC algorithm only contains 32 significant bits. This random value is obtained by performing the 'AND' operation between the seed and the maximum value of an unsigned int32. The resulting value is then divided by the maximum value of an unsigned int32 to obtain a value between 0 and 1.
 \\
-The code for the random number generator can be found at the end of this section, as it is treated as a shared module (see page \pageref{CODE:RNG}). The code for generating the plots and the created plots can be found below. The code does not only print the random seed, but also prints the maximum and minimum number of counts for the binned 1,000,000 values. These values are referred to in the description of the plot that displayed the uniformness (figure 2).
+The code for the random number generator can be found at the end of this section, as it is treated as a shared module (see page 19). The code for generating the plots and the created plots can be found below. The code does not only print the random seed, but also prints the maximum and minimum number of counts for the binned 1,000,000 values. These values are referred to in the description of the plot that displayed the uniformness (figure 2).
 \end{quote}
 \newpage
 
@@ -29,7 +29,7 @@ The code for the random number generator can be found at the end of this section
 \begin{quote}
 The code for generating the plots. The used imports and the initialization of the random number generator are not explicit shown in this piece of code, but can be found on page 19. The code for the random number generator can, as mentioned before, be found on page 19.
 
-\lstinputlisting[firstline=22,lastline=66]{./Code/assigment_1.py}
+\lstinputlisting[firstline=20,lastline=65]{./Code/assigment_1.py}
 \end{quote}
 \end{quote}
 

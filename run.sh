@@ -50,9 +50,9 @@ python3 ./Code/assigment_6.py > ./Output/assigment6_out.txt
 echo "Executing assigment-7............(around 3 sec)"
 python3 ./Code/assigment_7.py > ./Output/assigment7_out.txt
 echo "Executing assigment-4............(around 1 min 30)"
-echo "Note: While testing this on the PCZAAL with ssh plt.scatter took 3 seconds (even when plotting 1 point)"
-echo "If this also happends without ssh then this code will take approximately 20 minutes (as plt.scatter is called 4*90 times)"
-echo "In this case assigment 4.c will be finished before the 10 minute mark, but 4.d won't. "
+echo "Note: While testing this on the PCZAAL with ssh, plt.scatter took 3 seconds (even when plotting 1 point)"
+echo "If this also happends without ssh then this code will take approximately 20 minutes (plt.scatter is called 4*90 times)"
+echo "In this case assigments 4a, 4b and 4.c will be finished before the 10 minute mark, but 4.d won't. "
 echo "It is adviced to get some coffee if this happends."
 python3 ./Code/assigment_4.py > ./Output/assigment4_out.txt
 echo ""

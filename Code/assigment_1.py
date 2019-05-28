@@ -17,7 +17,6 @@ def main():
     assigment_1d(rng)
     assigment_1e(rng)
 
-
 def assigment_1a(random):
     """
         Execute assigment 1.a
